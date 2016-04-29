@@ -1,0 +1,186 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package comp.session;
+
+import java.util.List;
+import java.util.Map;
+import javax.persistence.EntityManager;
+import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.Order;
+import javax.persistence.criteria.Predicate;
+import org.primefaces.model.SortOrder;
+
+/**
+ *
+ * @author bnf02107
+ */
+public abstract class AbstractFacade<T> {
+    protected Class<T> entityClass;
+
+    public AbstractFacade(Class<T> entityClass) {
+        this.entityClass = entityClass;
+    }
+
+    protected abstract EntityManager getEntityManager();
+
+    public void create(T entity) {
+        getEntityManager().persist(entity);
+    }
+
+    public void edit(T entity) {
+        getEntityManager().merge(entity);
+    }
+
+    public void remove(T entity) {
+        getEntityManager().remove(getEntityManager().merge(entity));
+    }
+
+    public T find(Object id) {
+        return getEntityManager().find(entityClass, id);
+    }
+
+    public List<T> findAll() {
+        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+        cq.select(cq.from(entityClass));
+        return getEntityManager().createQuery(cq).getResultList();
+    }
+
+    public List<T> findRange(int[] range) {
+        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+        cq.select(cq.from(entityClass));
+        javax.persistence.Query q = getEntityManager().createQuery(cq);
+        q.setMaxResults(range[1] - range[0]);
+        q.setFirstResult(range[0]);
+        return q.getResultList();
+    }
+
+    public int count() {
+        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+        javax.persistence.criteria.Root<T> rt = cq.from(entityClass);
+        cq.select(getEntityManager().getCriteriaBuilder().count(rt));
+        javax.persistence.Query q = getEntityManager().createQuery(cq);
+        return ((Long) q.getSingleResult()).intValue();
+    }
+    
+   public List<T> findCriteria(int[] range,Predicate[] condicoes , Order[] Ordencao, boolean destintas ) {
+        javax.persistence.criteria.CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+        javax.persistence.criteria.CriteriaQuery cq = cb.createQuery();
+        cq.distinct(destintas);
+        cq.where(condicoes); 
+        cq.orderBy(Ordencao);
+
+        javax.persistence.Query q = getEntityManager().createQuery(cq);
+        if (range != null ){
+            q.setMaxResults(range[1] - range[0]);
+            q.setFirstResult(range[0]);
+        }
+        return q.getResultList();
+    } 
+    
+    
+    
+          public List<T> findRange(int[] range, String sortField, SortOrder sortOder, Map filters) {
+        javax.persistence.criteria.CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+        javax.persistence.criteria.CriteriaQuery cq = cb.createQuery();
+        javax.persistence.criteria.Root root = cq.from(entityClass);
+        if (!filters.isEmpty()){
+            javax.persistence.criteria.Predicate[] predicate = new javax.persistence.criteria.Predicate[filters.size()]  ;
+            addPredicate(predicate, 0,  filters, cb, root );
+            cq.where(predicate);
+        }
+        cq.select(root);
+
+        Expression expression = null ;       
+        if (sortField != null){
+            expression = makeExpression(sortField, root); 
+           if (sortOder == SortOrder.ASCENDING)
+                cq.orderBy(cb.asc(expression));
+           else
+                cq.orderBy(cb.desc(expression));
+        }
+        
+        // apanha o erro dos filtros e devolve sem filtro para não estoirar
+        try {
+            javax.persistence.Query q = getEntityManager().createQuery(cq);
+            q.setMaxResults(range[1] - range[0]);
+            q.setFirstResult(range[0]);
+            return q.getResultList();
+       } catch (Exception e) {
+       } finally{            
+            cq.where();
+       }
+        
+        javax.persistence.Query q = getEntityManager().createQuery(cq);
+        q.setMaxResults(range[1] - range[0]);
+        q.setFirstResult(range[0]);
+        return q.getResultList();
+    }
+       
+     
+  protected void addPredicate (Predicate[] predicate, int incialpredicate,  Map filters, javax.persistence.criteria.CriteriaBuilder cb, javax.persistence.criteria.Root rt ){     
+        java.util.Iterator it = filters.entrySet().iterator();        
+        int i = incialpredicate;    
+        Expression expression = null ; 
+        while (it.hasNext()){
+            Map.Entry pairs = (Map.Entry)it.next();
+            
+            
+            if (pairs.getKey()!= null){
+                expression = makeExpression(pairs.getKey().toString(), rt);
+                System.out.println(pairs.getKey().toString() + " " + pairs.getValue().toString().substring(1) );
+                System.out.println(expression.getJavaType().getCanonicalName());
+               
+                if (expression.getJavaType().getCanonicalName().equals("java.lang.String")){
+                    if (pairs.getValue().toString().toLowerCase().equals("isnull"))
+                        predicate[i] = cb.isNull(expression);
+                    else    
+                    predicate[i] = cb.like(cb.lower(expression),  pairs.getValue().toString().toLowerCase()); 
+                } else if (expression.getJavaType().getCanonicalName().equals("char"))
+                    predicate[i] = cb.like(cb.lower(expression), pairs.getValue().toString().toLowerCase()); 
+                else
+                    if (pairs.getValue().toString().toLowerCase().substring(0, 1).equals('<'))
+                        predicate[i] = cb.lessThan(expression, pairs.getValue().toString().substring(1));
+                    else
+                   predicate[i] = cb.equal(expression, pairs.getValue().toString());
+                i++;
+           }
+       }           
+  }         
+  
+      protected Order[] userOrder (Order[] ordenar, String sortField, boolean sortOder, javax.persistence.criteria.CriteriaBuilder cb, javax.persistence.criteria.Root rt ){     
+        Expression expression = null ; 
+        ordenar = new Order[1];
+        expression = makeExpression(sortField, rt);
+ 
+        if (sortOder)
+            ordenar[0] = cb.asc(expression);
+        else    
+            ordenar[0] = cb.desc(expression);
+                
+        return ordenar;          
+  }
+      
+      
+  protected Expression makeExpression (String sortField, javax.persistence.criteria.Root rt ) {
+      Expression expression = null ;
+      
+      String s[] = sortField.split("\\.");
+      if (s[s.length-1].equals("toString()")) s[s.length-1]= "dsRedz";
+      
+      switch(s.length){
+          case 1: expression =rt.get(s[0]); break;
+          case 2: expression =rt.join(s[0]).get(s[1]); break;
+          case 3: expression =rt.join(s[0]).join(s[1]).get(s[2]); break;
+          case 4: expression =rt.join(s[0]).join(s[1]).join(s[2]).get(s[3]); break;     
+          case 5: expression =rt.join(s[0]).join(s[1]).join(s[2]).join(s[3]).get(s[4]); break;
+          case 6: expression =rt.join(s[0]).join(s[1]).join(s[2]).join(s[3]).join(s[4]).get(s[5]); break;
+          case 7: expression =rt.join(s[0]).join(s[1]).join(s[2]).join(s[3]).join(s[4]).join(s[5]).get(s[6]);  break;    
+      }
+      
+      return expression;      
+  }
+    
+    
+}
