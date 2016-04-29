@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewQacEnqBandasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:include src="./../menubar.xhtml" />
+            <h:form>
+                <p:panel header="#{bundle.ViewQacEnqBandasTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages />
+                    </h:panelGroup>
+
+                    <br />
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.QacEnqBandasLabel_id}"/>
+                        <h:outputText value="#{qacEnqBandasController.selected.id}" title="#{bundle.QacEnqBandasTitle_id}"/>
+                        <h:outputText value="#{bundle.QacEnqBandasLabel_dsComp}"/>
+                        <h:outputText value="#{qacEnqBandasController.selected.dsComp}" title="#{bundle.QacEnqBandasTitle_dsComp}"/>
+                        <h:outputText value="#{bundle.QacEnqBandasLabel_dsRedz}"/>
+                        <h:outputText value="#{qacEnqBandasController.selected.dsRedz}" title="#{bundle.QacEnqBandasTitle_dsRedz}"/>
+                        <h:outputText value="#{bundle.QacEnqBandasLabel_dsAbrv}"/>
+                        <h:outputText value="#{qacEnqBandasController.selected.dsAbrv}" title="#{bundle.QacEnqBandasTitle_dsAbrv}"/>
+                        <h:outputText value="#{bundle.QacEnqBandasLabel_descritivo}"/>
+                        <h:outputText value="#{qacEnqBandasController.selected.descritivo}" title="#{bundle.QacEnqBandasTitle_descritivo}"/>                       
+                        <h:outputText value="#{bundle.QacEnqBandasLabel_ordem}"/>
+                        <h:outputText value="#{qacEnqBandasController.selected.ordem}" title="#{bundle.QacEnqBandasTitle_ordem}"/>
+                        <h:outputText value="#{bundle.QacEnqBandasLabel_dtInicio}"/>
+                        <h:outputText value="#{qacEnqBandasController.selected.dtInicio}" title="#{bundle.QacEnqBandasTitle_dtInicio}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.QacEnqBandasLabel_dtFim}"/>
+                        <h:outputText value="#{qacEnqBandasController.selected.dtFim}" title="#{bundle.QacEnqBandasTitle_dtFim}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.QacEnqBandasLabel_estado}"/>
+                        <h:outputText value="#{qacEnqBandasController.selected.estado}" title="#{bundle.QacEnqBandasTitle_estado}"/>
+                        <h:outputText value="#{bundle.QacEnqBandasLabel_motivoInactivo}"/>
+                        <h:outputText value="#{qacEnqBandasController.selected.motivoInactivo}" title="#{bundle.QacEnqBandasTitle_motivoInactivo}"/>
+                        <h:outputText value="#{bundle.QacEnqBandasLabel_logNre}"/>
+                        <h:outputText value="#{qacEnqBandasController.selected.logNre}" title="#{bundle.QacEnqBandasTitle_logNre}"/>
+                        <h:outputText value="#{bundle.QacEnqBandasLabel_dtLog}"/>
+                        <h:outputText value="#{qacEnqBandasController.selected.dtLog}" title="#{bundle.QacEnqBandasTitle_dtLog}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{qacEnqBandasController.destroyAndView}" value="#{bundle.DestroyLink}" title="#{bundle.DestroyTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

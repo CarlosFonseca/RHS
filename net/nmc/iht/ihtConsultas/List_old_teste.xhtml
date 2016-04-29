@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="/net/template.xhtml">
+
+            <ui:define name="title">
+                Consulta de IHT
+            </ui:define>
+
+            <ui:define name="body">
+                <h:form prependId="false" >
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages />
+                    </h:panelGroup>
+                    <p:dataTable value="#{IHTConsultaController.items}" var="item" id="tblbase"
+                                 rows="10" paginator="true"  paginatorPosition="bottom"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks}
+                                 {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15,20 ">
+                            <f:facet name="header" >
+                                <h:panelGroup layout="block" style="text-align: left;" >
+                                <h:commandLink>
+                                    <h:graphicImage name="xls.png" library="icons" title="Exporta para Excel" />
+                                    <p:dataExporter type="xls" target="tblbase" fileName="tabela" pageOnly="true"/>
+                                </h:commandLink>&nbsp;
+                                <h:commandLink>
+                                    <h:graphicImage name="csv.png" library="icons" title="Exporta para csv" />
+                                    <p:dataExporter type="csv" target="tblbase" fileName="tabela" pageOnly="true"/>
+                                </h:commandLink>
+                               
+                                </h:panelGroup>
+                            </f:facet>
+                        <p:column headerText="NRE" filterBy="#{item.cadastros.nre}" sortBy="#{item.cadastros.nre}" >
+                            <f:facet name="header">
+                                <h:outputText value="NRE" />
+                            </f:facet>	
+                          <h:outputText value="#{item.get('nre')}"  />						
+                        </p:column>   
+                        <p:column headerText="Nome" filterBy="#{item.cadastros.nomeRedz}" sortBy="#{item.cadastros.nomeRedz}" >
+                            <f:facet name="header">
+                                <h:outputText value="Nome"/>
+                            </f:facet>	
+                          <h:outputText value="#{item.get('nomeComp')}"  />						
+                        </p:column>     
+                        <p:column headerText="Empresa" filterBy="#{item.infoEmpresasPK.siglaE}" filterOptions="#{qacEmpresasController.itemsAvailableSelectOne}" >
+                         <f:facet name="header">
+                                <h:outputText value="Empresa"/>
+                            </f:facet>	                        
+                            <h:outputText value="#{item.get('siglaE')}" />				
+                        </p:column> 
+                       <p:column headerText="IHT_PG"  >
+                         <f:facet name="header" >
+                                <h:outputText value="IHT_PG"/><br/>
+                                <h:inputText value="#{IHTConsultaController.linha}" styleClass="ui-column-filter"  >
+                                    <f:ajax render="tblbase" />                            
+                                </h:inputText>
+                            </f:facet>	                        
+                           <h:outputText value="#{item.get('cdLinha')}" />					
+                        </p:column>
+                        <p:column headerText="DT_IHT_PG" sortBy="#{item.cadastros.remuneracoesEmpregadoCollection.remuneracoesEmpregadoPK.dtCriacao}" >
+                         <f:facet name="header">
+                                <h:outputText value="DT_IHT_PG"/>
+                            </f:facet>	                        
+                        <h:outputText value="#{item.get('dtLinha')}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>						
+                        </p:column>                        
+                         <p:column headerText="Acordo" >
+                         <f:facet name="header">
+                             <h:outputText value="Acordo"/><br/>
+                             <h:inputText value="#{IHTConsultaController.tipo_dscomp}" styleClass="ui-column-filter">
+                                    <f:ajax render="tblbase" />                            
+                                </h:inputText>
+                            </f:facet>	                        
+                             <h:outputText value="#{item.get('Acordo')}" />				
+                        </p:column> 
+                        <p:column headerText="Categoria" filterBy="#{item.cadastros.infoProfs.cdFuncao.dsComp}" sortBy="#{item.cadastros.infoProfs.cdFuncao.dsComp}" >
+                            <f:facet name="header">
+                                <h:outputText value="Categoria"/>
+                            </f:facet>	
+                          <h:outputText value="#{item.get('Categoria')}"  />						
+                        </p:column>    
+                        <p:column headerText="DT_Categoria" sortBy="#{item.cadastros.infoProfs.dtFuncao}" >
+                         <f:facet name="header">
+                                <h:outputText value="DT_Categoria"/>
+                            </f:facet>	                        
+                        <h:outputText value="#{item.get('dtCategoria')}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>						
+                        </p:column>
+                        <p:column headerText="Função" filterBy="#{item.cadastros.infoProfs.cdFuncInt.dsComp}" sortBy="#{item.cadastros.infoProfs.cdFuncInt.dsComp}" >
+                            <f:facet name="header">
+                                <h:outputText value="Função"/>
+                            </f:facet>	
+                          <h:outputText value="#{item.get('Funcao')}"  />						
+                        </p:column>    
+                        <p:column headerText="DT_Função" sortBy="#{item.cadastros.infoProfs.dtFuncaoInt}" >
+                         <f:facet name="header">
+                                <h:outputText value="DT_Função"/>
+                            </f:facet>	                        
+                        <h:outputText value="#{item.get('dtFuncao')}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>						
+                        </p:column>
+  
+                    </p:dataTable>
+
+                </h:form>    
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

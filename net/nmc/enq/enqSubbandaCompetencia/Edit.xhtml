@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ss="http://java.sun.com/jsf/composite/utils/search">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditEnqSubbandaCompetenciaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:include src="./../menubar.xhtml" />
+            <h:form prependId="false" >
+                <p:panel header="#{bundle.EditEnqSubbandaCompetenciaTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages globalOnly="true" />
+                    </h:panelGroup>
+
+                    <br />
+                    <h:panelGrid columns="3">
+                        <h:outputLabel value="#{bundle.EnqSubbandaCompetenciaLabel_subbanda}" for="subbanda" />
+                        <h:selectOneMenu id="subbanda" value="#{enqSubbandaCompetenciaController.selected.subbanda}" title="#{bundle.EnqSubbandaCompetenciaTitle_subbanda}" >
+                            <f:selectItems value="#{qacEnqSubBandaController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <p:message for="subbanda"/>
+                        <h:outputLabel value="#{bundle.EnqSubbandaCompetenciaLabel_nivel}" for="qacEnqNivelCompetencia" />
+                        <ss:qacEnqNivelCompetenciaSelect currentController="#{enqSubbandaCompetenciaController}"
+                                                         currentTargerObjToString="#{enqSubbandaCompetenciaController.selected.nivel.toString()}"
+                                                         currentTargerObject="#{enqSubbandaCompetenciaController.selected.nivel}"
+                                                         id="qacEnqNivelCompetencia" />
+                        <p:message for="qacEnqNivelCompetencia"/>                        
+                        <h:outputLabel value="#{bundle.EnqSubbandaCompetenciaLabel_ordem}" for="ordem" />
+                        <h:inputText id="ordem" value="#{enqSubbandaCompetenciaController.selected.ordem}" title="#{bundle.EnqSubbandaCompetenciaTitle_ordem}" />
+                        <p:message for="ordem"/>
+                        <h:outputLabel value="#{bundle.EnqSubbandaCompetenciaLabel_dtInicio}" for="dtInicio" />
+                        <p:calendar id="dtInicio" value="#{enqSubbandaCompetenciaController.selected.dtInicio}" title="#{bundle.EnqSubbandaCompetenciaTitle_dtInicio}" >
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </p:calendar>
+                        <p:message for="dtInicio"/>
+                        <h:outputLabel value="#{bundle.EnqSubbandaCompetenciaLabel_dtFim}" for="dtFim" />
+                        <p:calendar id="dtFim" value="#{enqSubbandaCompetenciaController.selected.dtFim}" title="#{bundle.EnqSubbandaCompetenciaTitle_dtFim}" >
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </p:calendar>
+                        <p:message for="dtFim"/>
+                        <h:outputLabel value="#{bundle.EnqSubbandaCompetenciaLabel_estado}" for="estado" />
+                        <h:selectOneMenu id="estado" value="#{enqSubbandaCompetenciaController.selected.estado}" title="#{bundle.EnqSubbandaCompetenciaTitle_estado}" required="true" >
+                            <f:selectItem itemValue="A" />
+                            <f:selectItem itemValue="I" />
+                        </h:selectOneMenu>
+                        <p:message for="estado"/>
+                        <h:outputLabel value="#{bundle.EnqSubbandaCompetenciaLabel_motivoInactivo}" for="motivoInactivo" />
+                        <h:inputText id="motivoInactivo" value="#{enqSubbandaCompetenciaController.selected.motivoInactivo}" title="#{bundle.EnqSubbandaCompetenciaTitle_motivoInactivo}" />
+                        <p:message for="motivoInactivo"/>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{enqSubbandaCompetenciaController.update}" value="#{bundle.SaveLink}" title="#{bundle.SaveTitle}" />
+                </p:panel>
+            </h:form>
+            
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="/net/template.xhtml">
+
+            <ui:define name="title">
+                Consulta de IHT
+            </ui:define>
+
+            <ui:define name="body">
+                <ui:include src="./../menubar.xhtml" /> 
+                <h:form prependId="false" >
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages />
+                    </h:panelGroup>
+                    <p:dataTable value="#{IhtDiferencasController.items}" var="item" id="tblbase"
+                                 rows="10" paginator="true"  paginatorPosition="bottom"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks}
+                                 {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15,20 ">
+                            <f:facet name="header" >
+                                <h:panelGroup layout="block" style="text-align: left;" >
+                                <h:commandLink>
+                                    <h:graphicImage name="xls.png" library="icons" title="Exporta para Excel" />
+                                    <p:dataExporter type="xls" target="tblbase" fileName="tabela" pageOnly="true"/>
+                                </h:commandLink>&nbsp;
+                                <h:commandLink>
+                                    <h:graphicImage name="csv.png" library="icons" title="Exporta para csv" />
+                                    <p:dataExporter type="csv" target="tblbase" fileName="tabela" pageOnly="true"/>
+                                </h:commandLink>
+                               
+                                </h:panelGroup>
+                            </f:facet>
+                        <p:column headerText="NRE" filterBy="#{item.cadNre}" sortBy="#{item.cadNre}" >
+                            <f:facet name="header">
+                                <h:outputText value="NRE" />
+                            </f:facet>	
+                          <h:outputText value="#{item.cadNre}"  />						
+                        </p:column>   
+                        <p:column headerText="Nome" filterBy="#{item.nomeComp}" sortBy="#{item.nomeComp}" >
+                            <f:facet name="header">
+                                <h:outputText value="Nome"/>
+                            </f:facet>	
+                          <h:outputText value="#{item.nomeComp}"  />						
+                        </p:column>     
+                        <p:column headerText="Empresa" filterBy="#{item.empresa}" filterOptions="#{qacEmpresasController.itemsAvailableSelectOne}" >
+                         <f:facet name="header">
+                                <h:outputText value="Empresa"/>
+                            </f:facet>	                        
+                            <h:outputText value="#{item.empresa}" />				
+                        </p:column> 
+                       <p:column headerText="IHT_PG" filterBy="#{item.ihtPg}" sortBy="#{item.ihtPg}"  >
+                         <f:facet name="header" >
+                                <h:outputText value="IHT_PG"/>         
+                            </f:facet>	                        
+                           <h:outputText value="#{item.ihtPg}" />					
+                       </p:column> 
+                       <p:column headerText="DT_PG_Criação" filterBy="#{item.dtcriacao}" sortBy="#{item.dtcriacao}" >
+                         <f:facet name="header">
+                                <h:outputText value="DT_PG_Criação"/>
+                            </f:facet>	                        
+                        <h:outputText value="#{item.dtcriacao}"  >
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                        </p:column>    
+                         <p:column headerText="Acordo" filterBy="#{item.acordo}" sortBy="#{item.acordo}" >
+                         <f:facet name="header">
+                             <h:outputText value="Acordo"/><br/>
+                            </f:facet>	                        
+                             <h:outputText value="#{item.acordo}" />				
+                         </p:column> 
+                        <p:column headerText="Categoria" filterBy="#{item.categoria}" sortBy="#{item.categoria}" >
+                            <f:facet name="header">
+                                <h:outputText value="Categoria"/>
+                            </f:facet>	
+                          <h:outputText value="#{item.categoria}"  />						
+                        </p:column>    
+                        <p:column headerText="DT_Categoria" filterBy="#{item.dtCategoria}" sortBy="#{item.dtCategoria}" >
+                         <f:facet name="header">
+                                <h:outputText value="DT_Categoria"/>
+                            </f:facet>	                        
+                        <h:outputText value="#{item.dtCategoria}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>						
+                        </p:column> 
+                        <p:column headerText="Função" filterBy="#{item.funcao}" sortBy="#{item.funcao}" >
+                            <f:facet name="header">
+                                <h:outputText value="Função"/>
+                            </f:facet>	
+                          <h:outputText value="#{item.funcao}"  />						
+                        </p:column>    
+                        <p:column headerText="DT_Função" filterBy="#{item.dtFuncao}" sortBy="#{item.dtFuncao}" >
+                         <f:facet name="header">
+                                <h:outputText value="DT_Função"/>
+                            </f:facet>	                        
+                        <h:outputText value="#{item.dtFuncao}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>						
+                        </p:column>
+                        <p:column headerText="DT_Pessoa" filterBy="#{item.dtPessoa}" sortBy="#{item.dtPessoa}" >
+                         <f:facet name="header">
+                                <h:outputText value="DT_Pessoa"/>
+                            </f:facet>	                        
+                        <h:outputText value="#{item.dtPessoa}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>						
+                        </p:column>
+                        <p:column headerText="DT_ACT" filterBy="#{item.dtAct}"  sortBy="#{item.dtAct}" >
+                         <f:facet name="header">
+                                <h:outputText value="DT_ACT"/>
+                            </f:facet>	                        
+                        <h:outputText value="#{item.dtAct}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>						
+                        </p:column>                        
+                    </p:dataTable>
+
+                </h:form>    
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

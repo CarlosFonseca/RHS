@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewQacEnqCarreiraTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:include src="./../menubar.xhtml" />
+            <h:form>
+                <p:panel header="#{bundle.ViewQacEnqCarreiraTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages />
+                    </h:panelGroup>
+
+                    <br />
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.QacEnqCarreiraLabel_id}"/>
+                        <h:outputText value="#{qacEnqCarreiraController.selected.id}" title="#{bundle.QacEnqCarreiraTitle_id}"/>
+                        <h:outputText value="#{bundle.QacEnqCarreiraLabel_dsComp}"/>
+                        <h:outputText value="#{qacEnqCarreiraController.selected.dsComp}" title="#{bundle.QacEnqCarreiraTitle_dsComp}"/>
+                        <h:outputText value="#{bundle.QacEnqCarreiraLabel_dsRedz}"/>
+                        <h:outputText value="#{qacEnqCarreiraController.selected.dsRedz}" title="#{bundle.QacEnqCarreiraTitle_dsRedz}"/>
+                        <h:outputText value="#{bundle.QacEnqCarreiraLabel_dsAbrv}"/>
+                        <h:outputText value="#{qacEnqCarreiraController.selected.dsAbrv}" title="#{bundle.QacEnqCarreiraTitle_dsAbrv}"/>
+                        <h:outputText value="#{bundle.QacEnqCarreiraLabel_descritivo}"/>
+                        <h:outputText value="#{qacEnqCarreiraController.selected.descritivo}" title="#{bundle.QacEnqCarreiraTitle_descritivo}"/>
+                        <h:outputText value="#{bundle.QacEnqCarreiraLabel_ordem}"/>
+                        <h:outputText value="#{qacEnqCarreiraController.selected.ordem}" title="#{bundle.QacEnqCarreiraTitle_ordem}"/>
+                        <h:outputText value="#{bundle.QacEnqCarreiraLabel_dtInicio}"/>
+                        <h:outputText value="#{qacEnqCarreiraController.selected.dtInicio}" title="#{bundle.QacEnqCarreiraTitle_dtInicio}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.QacEnqCarreiraLabel_dtFim}"/>
+                        <h:outputText value="#{qacEnqCarreiraController.selected.dtFim}" title="#{bundle.QacEnqCarreiraTitle_dtFim}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.QacEnqCarreiraLabel_estado}"/>
+                        <h:outputText value="#{qacEnqCarreiraController.selected.estado}" title="#{bundle.QacEnqCarreiraTitle_estado}"/>
+                        <h:outputText value="#{bundle.QacEnqCarreiraLabel_motivoInactivo}"/>
+                        <h:outputText value="#{qacEnqCarreiraController.selected.motivoInactivo}" title="#{bundle.QacEnqCarreiraTitle_motivoInactivo}"/>
+                        <h:outputText value="#{bundle.QacEnqCarreiraLabel_logNre}"/>
+                        <h:outputText value="#{qacEnqCarreiraController.selected.logNre}" title="#{bundle.QacEnqCarreiraTitle_logNre}"/>
+                        <h:outputText value="#{bundle.QacEnqCarreiraLabel_dtLog}"/>
+                        <h:outputText value="#{qacEnqCarreiraController.selected.dtLog}" title="#{bundle.QacEnqCarreiraTitle_dtLog}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{qacEnqCarreiraController.destroyAndView}" value="#{bundle.DestroyLink}" title="#{bundle.DestroyTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

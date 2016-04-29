@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:confirm="http://java.sun.com/jsf/composite/utils/confirm">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPedidosTransferenciasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:include src="./../menubar.xhtml" />
+            <h:form prependId="false" >
+                <h:panelGroup id="messagePanel" layout="block">
+                    <p:messages />
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListPedidosTransferenciasEmpty}" rendered="#{pedidosTransferenciasController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{pedidosTransferenciasController.items.rowCount > 0}">
+                    <h:inputHidden id="tblbasesize" value="#{pedidosTransferenciasController.tableWidth}"/>
+                    <p:dataTable value="#{pedidosTransferenciasController.items}" var="item" id="tblbase"
+                                 rows="10" paginator="true" paginatorPosition="bottom"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks}
+                                 {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15,20 ">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:commandLink>
+                                    <h:graphicImage name="xls.png" library="icons" title="Exporta para Excel" />
+                                    <p:dataExporter type="xls" target="tblbase" fileName="tabela" pageOnly="true" excludeColumns="0" />
+                                </h:commandLink>&nbsp;
+                                <h:commandLink>
+                                    <h:graphicImage name="csv.png" library="icons" title="Exporta para csv" />
+                                    <p:dataExporter type="csv" target="tblbase" fileName="tabela" pageOnly="true" excludeColumns="0" />
+                                </h:commandLink>
+                            </f:facet>
+                            <p:commandLink action="#{pedidosTransferenciasController.prepareDestroy}" onclick="confirmation.show()" title="#{bundle.DestroyTitle}" styleClass="ui-icon ui-icon-trash" style="float: left; margin: 0 4px;" />
+                            <h:commandLink action="#{pedidosTransferenciasController.prepareEdit}" title="#{bundle.EditTitle}" styleClass="ui-icon ui-icon-pencil" style="float: left; margin: 0 4px;" />
+                        </p:column>
+                        <p:column sortBy="#{item.id}" filterBy="#{item.id}" headerText="#{bundle.PedidosTransferenciasLabel_id}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.PedidosTransferenciasLabel_id}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.id}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.cadNre.nre}" filterBy="#{item.cadNre.nre}"   headerText="#{bundle.PedidosTransferenciasLabel_cadNre}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.PedidosTransferenciasLabel_cadNre}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.cadNre.nre}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.cadNre.nomeRedz}" filterBy="#{item.cadNre.nomeRedz}"   headerText="Nome" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.PedidosTransferenciasLabel_cadNre}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.cadNre.toString()}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dtPedido}" filterBy="#{item.dtPedido}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.PedidosTransferenciasLabel_dtPedido}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtPedido}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{item.situacao}" filterBy="#{item.situacao}" headerText="#{bundle.PedidosTransferenciasLabel_situacao}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.PedidosTransferenciasLabel_situacao}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.situacao}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dtSituacao}" filterBy="#{item.dtSituacao}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.PedidosTransferenciasLabel_dtSituacao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtSituacao}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        
+                        <p:column sortBy="#{item.motivo}" filterBy="#{item.motivo}"   headerText="Nome" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.PedidosTransferenciasLabel_motivo}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.motivo}"  />						
+                        </p:column>
+                        
+                        
+                        <p:column sortBy="#{item.dtLog}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.PedidosTransferenciasLabel_dtLog}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtLog}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{item.logNre}" filterBy="#{item.logNre}" headerText="#{bundle.PedidosTransferenciasLabel_logNre}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.PedidosTransferenciasLabel_logNre}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.logNre}"  />						
+                        </p:column> 
+                    </p:dataTable>
+                </h:panelGroup>
+                <br />&nbsp;
+                <h:commandButton action="#{pedidosTransferenciasController.prepareCreate}" value="#{bundle.CreateLink}" title="#{bundle.CreateTitle}"/>
+
+                <confirm:destroy obj="#{pedidosTransferenciasController}" />  
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

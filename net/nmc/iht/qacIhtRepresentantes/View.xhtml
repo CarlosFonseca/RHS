@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewQacIhtRepresentantesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:include src="./../menubar.xhtml" />
+            <h:form>
+                <p:panel header="#{bundle.ViewQacIhtRepresentantesTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages />
+                    </h:panelGroup>
+
+                    <br />
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.QacIhtRepresentantesLabel_id}"/>
+                        <h:outputText value="#{qacIhtRepresentantesController.selected.id}" title="#{bundle.QacIhtRepresentantesTitle_id}"/>
+                        <h:outputText value="#{bundle.QacIhtRepresentantesLabel_dsComp}"/>
+                        <h:outputText value="#{qacIhtRepresentantesController.selected.dsComp}" title="#{bundle.QacIhtRepresentantesTitle_dsComp}"/>
+                        <h:outputText value="#{bundle.QacIhtRepresentantesLabel_dsRedz}"/>
+                        <h:outputText value="#{qacIhtRepresentantesController.selected.dsRedz}" title="#{bundle.QacIhtRepresentantesTitle_dsRedz}"/>
+                        <h:outputText value="#{bundle.QacIhtRepresentantesLabel_dsAbrv}"/>
+                        <h:outputText value="#{qacIhtRepresentantesController.selected.dsAbrv}" title="#{bundle.QacIhtRepresentantesTitle_dsAbrv}"/>
+                        <h:outputText value="#{bundle.QacIhtRepresentantesLabel_dsLong}"/>
+                        <h:outputText value="#{qacIhtRepresentantesController.selected.dsLong}" title="#{bundle.QacIhtRepresentantesTitle_dsLong}"/>
+                        <h:outputText value="#{bundle.QacIhtRepresentantesLabel_ordem}"/>
+                        <h:outputText value="#{qacIhtRepresentantesController.selected.ordem}" title="#{bundle.QacIhtRepresentantesTitle_ordem}"/>
+                        <h:outputText value="#{bundle.QacIhtRepresentantesLabel_dtInicio}"/>
+                        <h:outputText value="#{qacIhtRepresentantesController.selected.dtInicio}" title="#{bundle.QacIhtRepresentantesTitle_dtInicio}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.QacIhtRepresentantesLabel_dtFim}"/>
+                        <h:outputText value="#{qacIhtRepresentantesController.selected.dtFim}" title="#{bundle.QacIhtRepresentantesTitle_dtFim}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.QacIhtRepresentantesLabel_estado}"/>
+                        <h:outputText value="#{qacIhtRepresentantesController.selected.estado}" title="#{bundle.QacIhtRepresentantesTitle_estado}"/>
+                        <h:outputText value="#{bundle.QacIhtRepresentantesLabel_motivoInactivo}"/>
+                        <h:outputText value="#{qacIhtRepresentantesController.selected.motivoInactivo}" title="#{bundle.QacIhtRepresentantesTitle_motivoInactivo}"/>
+                        <h:outputText value="#{bundle.QacIhtRepresentantesLabel_logNre}"/>
+                        <h:outputText value="#{qacIhtRepresentantesController.selected.logNre}" title="#{bundle.QacIhtRepresentantesTitle_logNre}"/>
+                        <h:outputText value="#{bundle.QacIhtRepresentantesLabel_dtLog}"/>
+                        <h:outputText value="#{qacIhtRepresentantesController.selected.dtLog}" title="#{bundle.QacIhtRepresentantesTitle_dtLog}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{qacIhtRepresentantesController.destroyAndView}" value="#{bundle.DestroyLink}" title="#{bundle.DestroyTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

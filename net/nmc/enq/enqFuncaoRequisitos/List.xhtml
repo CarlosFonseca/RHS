@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:confirm="http://java.sun.com/jsf/composite/utils/confirm">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListEnqFuncaoRequisitosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:include src="./../menubar.xhtml" />
+            <h:form prependId="false" >
+                <h:panelGroup id="messagePanel" layout="block">
+                    <p:messages />
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListEnqFuncaoRequisitosEmpty}" rendered="#{enqFuncaoRequisitosController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{enqFuncaoRequisitosController.items.rowCount > 0}">
+                    <h:inputHidden id="tblbasesize" value="#{enqFuncaoRequisitosController.tableWidth}"/>
+                    <p:dataTable value="#{enqFuncaoRequisitosController.items}" var="item" id="tblbase"
+                                 rows="10" paginator="true"  paginatorPosition="bottom"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks}
+                                 {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15,20 ">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:commandLink>
+                                    <h:graphicImage name="xls.png" library="icons" title="Exporta para Excel" />
+                                    <p:dataExporter type="xls" target="tblbase" fileName="tabela" pageOnly="true" excludeColumns="0" />
+                                </h:commandLink>&nbsp;
+                                <h:commandLink>
+                                    <h:graphicImage name="csv.png" library="icons" title="Exporta para csv" />
+                                    <p:dataExporter type="csv" target="tblbase" fileName="tabela" pageOnly="true" excludeColumns="0" />
+                                </h:commandLink>
+                            </f:facet>
+                            <p:commandLink action="#{enqFuncaoRequisitosController.prepareDestroy}" onclick="confirmation.show()" title="#{bundle.DestroyTitle}" styleClass="ui-icon ui-icon-trash" style="float: left; margin: 0 4px;" />
+                            <h:commandLink action="#{enqFuncaoRequisitosController.prepareEdit}" title="#{bundle.EditTitle}" styleClass="ui-icon ui-icon-pencil" style="float: left; margin: 0 4px;" />
+                        </p:column>
+                        <p:column sortBy="#{item.enqFuncao.dsComp}" filterBy="#{item.enqFuncao.dsComp}" filterOptions="#{enqFuncaoController.itemsAvailableSelectOne}" headerText="#{bundle.EnqFuncaoRequisitosLabel_enqFuncao}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.EnqFuncaoRequisitosLabel_enqFuncao}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.enqFuncao.toString()}"  />						
+                        </p:column> 
+                        <p:column sortBy="#{item.qacEnqRequisitos.dsRedz}" filterBy="#{item.qacEnqRequisitos.dsRedz}" filterOptions="#{qacEnqRequisitosController.itemsAvailableSelectOne}" headerText="#{bundle.EnqFuncaoRequisitosLabel_qacEnqRequisitos}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.EnqFuncaoRequisitosLabel_qacEnqRequisitos}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.qacEnqRequisitos.toString()}"  />						
+                        </p:column>                       
+                        <p:column sortBy="#{item.ordem}" filterBy="#{item.ordem}" headerText="#{bundle.EnqFuncaoRequisitosLabel_ordem}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.EnqFuncaoRequisitosLabel_ordem}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.ordem}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dtInicio}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.EnqFuncaoRequisitosLabel_dtInicio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtInicio}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{item.dtFim}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.EnqFuncaoRequisitosLabel_dtFim}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtFim}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{item.estado}" filterBy="#{item.estado}" headerText="#{bundle.EnqFuncaoRequisitosLabel_estado}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.EnqFuncaoRequisitosLabel_estado}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.estado}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.motivoInactivo}" filterBy="#{item.motivoInactivo}" headerText="#{bundle.EnqFuncaoRequisitosLabel_motivoInactivo}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.EnqFuncaoRequisitosLabel_motivoInactivo}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.motivoInactivo}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.logNre}" filterBy="#{item.logNre}" headerText="#{bundle.EnqFuncaoRequisitosLabel_logNre}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.EnqFuncaoRequisitosLabel_logNre}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.logNre}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dtLog}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.EnqFuncaoRequisitosLabel_dtLog}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtLog}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+
+                    </p:dataTable>
+                </h:panelGroup>
+                <br />&nbsp;
+                <h:commandButton action="#{enqFuncaoRequisitosController.prepareCreate}" value="#{bundle.CreateLink}" title="#{bundle.CreateTitle}"/>
+                
+                <confirm:destroy obj="#{enqFuncaoRequisitosController}" />
+ 
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:confirm="http://java.sun.com/jsf/composite/utils/confirm">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListQacIhtRepresentantesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:include src="./../menubar.xhtml" />
+            <h:form prependId="false" >
+                <h:panelGroup id="messagePanel" layout="block">
+                    <p:messages />
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListQacIhtRepresentantesEmpty}" rendered="#{qacIhtRepresentantesController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{qacIhtRepresentantesController.items.rowCount > 0}">
+                    <h:inputHidden id="tblbasesize" value="#{qacIhtRepresentantesController.tableWidth}"/>
+                    <p:dataTable value="#{qacIhtRepresentantesController.items}" var="item" id="tblbase"
+                                 rows="10" paginator="true"  paginatorPosition="bottom"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks}
+                                 {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15,20 ">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:commandLink>
+                                    <h:graphicImage name="xls.png" library="icons" title="Exporta para Excel" />
+                                    <p:dataExporter type="xls" target="tblbase" fileName="tabela" pageOnly="true" excludeColumns="0" />
+                                </h:commandLink>&nbsp;
+                                <h:commandLink>
+                                    <h:graphicImage name="csv.png" library="icons" title="Exporta para csv" />
+                                    <p:dataExporter type="csv" target="tblbase" fileName="tabela" pageOnly="true" excludeColumns="0" />
+                                </h:commandLink>
+                            </f:facet>
+                            <p:commandLink action="#{qacIhtRepresentantesController.prepareDestroy}" onclick="confirmation.show()" title="#{bundle.DestroyTitle}" styleClass="ui-icon ui-icon-trash" style="float: left; margin: 0 4px;" />
+                            <h:commandLink action="#{qacIhtRepresentantesController.prepareEdit}" title="#{bundle.EditTitle}" styleClass="ui-icon ui-icon-pencil" style="float: left; margin: 0 4px;" />
+                        </p:column>
+                        <p:column sortBy="#{item.id}" filterBy="#{item.id}" headerText="#{bundle.QacIhtRepresentantesLabel_id}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacIhtRepresentantesLabel_id}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.id}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dsComp}" filterBy="#{item.dsComp}" headerText="#{bundle.QacIhtRepresentantesLabel_dsComp}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacIhtRepresentantesLabel_dsComp}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.dsComp}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dsRedz}" filterBy="#{item.dsRedz}" headerText="#{bundle.QacIhtRepresentantesLabel_dsRedz}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacIhtRepresentantesLabel_dsRedz}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.dsRedz}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dsAbrv}" filterBy="#{item.dsAbrv}" headerText="#{bundle.QacIhtRepresentantesLabel_dsAbrv}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacIhtRepresentantesLabel_dsAbrv}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.dsAbrv}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dsLong}" filterBy="#{item.dsLong}" headerText="#{bundle.QacIhtRepresentantesLabel_dsLong}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacIhtRepresentantesLabel_dsLong}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.dsLong}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.ordem}" filterBy="#{item.ordem}" headerText="#{bundle.QacIhtRepresentantesLabel_ordem}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacIhtRepresentantesLabel_ordem}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.ordem}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dtInicio}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacIhtRepresentantesLabel_dtInicio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtInicio}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{item.dtFim}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacIhtRepresentantesLabel_dtFim}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtFim}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{item.estado}" filterBy="#{item.estado}" headerText="#{bundle.QacIhtRepresentantesLabel_estado}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacIhtRepresentantesLabel_estado}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.estado}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.motivoInactivo}" filterBy="#{item.motivoInactivo}" headerText="#{bundle.QacIhtRepresentantesLabel_motivoInactivo}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacIhtRepresentantesLabel_motivoInactivo}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.motivoInactivo}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.logNre}" filterBy="#{item.logNre}" headerText="#{bundle.QacIhtRepresentantesLabel_logNre}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacIhtRepresentantesLabel_logNre}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.logNre}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dtLog}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacIhtRepresentantesLabel_dtLog}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtLog}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                    </p:dataTable>
+                </h:panelGroup>
+                <br />&nbsp;
+                <h:commandButton action="#{qacIhtRepresentantesController.prepareCreate}" value="#{bundle.CreateLink}" title="#{bundle.CreateTitle}"/>
+                
+                <confirm:destroy obj="#{qacIhtRepresentantesController}" />
+                
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

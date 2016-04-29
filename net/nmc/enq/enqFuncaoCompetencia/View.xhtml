@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewEnqFuncaoCompetenciaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:include src="./../menubar.xhtml" />
+            <h:form>
+                <p:panel header="#{bundle.ViewEnqFuncaoCompetenciaTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages />
+                    </h:panelGroup>
+
+                    <br />
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.EnqFuncaoCompetenciaLabel_id}"/>
+                        <h:outputText value="#{enqFuncaoCompetenciaController.selected.id}" title="#{bundle.EnqFuncaoCompetenciaTitle_id}"/>
+                        <h:outputText value="#{bundle.EnqFuncaoCompetenciaLabel_ordem}"/>
+                        <h:outputText value="#{enqFuncaoCompetenciaController.selected.ordem}" title="#{bundle.EnqFuncaoCompetenciaTitle_ordem}"/>
+                        <h:outputText value="#{bundle.EnqFuncaoCompetenciaLabel_dtInicio}"/>
+                        <h:outputText value="#{enqFuncaoCompetenciaController.selected.dtInicio}" title="#{bundle.EnqFuncaoCompetenciaTitle_dtInicio}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.EnqFuncaoCompetenciaLabel_dtFim}"/>
+                        <h:outputText value="#{enqFuncaoCompetenciaController.selected.dtFim}" title="#{bundle.EnqFuncaoCompetenciaTitle_dtFim}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.EnqFuncaoCompetenciaLabel_estado}"/>
+                        <h:outputText value="#{enqFuncaoCompetenciaController.selected.estado}" title="#{bundle.EnqFuncaoCompetenciaTitle_estado}"/>
+                        <h:outputText value="#{bundle.EnqFuncaoCompetenciaLabel_motivoInactivo}"/>
+                        <h:outputText value="#{enqFuncaoCompetenciaController.selected.motivoInactivo}" title="#{bundle.EnqFuncaoCompetenciaTitle_motivoInactivo}"/>
+                        <h:outputText value="#{bundle.EnqFuncaoCompetenciaLabel_logNre}"/>
+                        <h:outputText value="#{enqFuncaoCompetenciaController.selected.logNre}" title="#{bundle.EnqFuncaoCompetenciaTitle_logNre}"/>
+                        <h:outputText value="#{bundle.EnqFuncaoCompetenciaLabel_dtLog}"/>
+                        <h:outputText value="#{enqFuncaoCompetenciaController.selected.dtLog}" title="#{bundle.EnqFuncaoCompetenciaTitle_dtLog}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.EnqFuncaoCompetenciaLabel_nivel}"/>
+                        <h:outputText value="#{enqFuncaoCompetenciaController.selected.nivel}" title="#{bundle.EnqFuncaoCompetenciaTitle_nivel}"/>
+                        <h:outputText value="#{bundle.EnqFuncaoCompetenciaLabel_funcao}"/>
+                        <h:outputText value="#{enqFuncaoCompetenciaController.selected.funcao}" title="#{bundle.EnqFuncaoCompetenciaTitle_funcao}"/>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{enqFuncaoCompetenciaController.destroyAndView}" value="#{bundle.DestroyLink}" title="#{bundle.DestroyTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

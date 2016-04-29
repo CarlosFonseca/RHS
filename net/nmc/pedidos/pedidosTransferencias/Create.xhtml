@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ss="http://java.sun.com/jsf/composite/utils/search">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatePedidosTransferenciasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:include src="./../menubar.xhtml" />
+            <h:form prependId="false" >
+                <p:panel header="#{bundle.CreatePedidosTransferenciasTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages globalOnly="true" />
+                    </h:panelGroup>
+                    <br />
+                    <h:panelGrid columns="3">
+                        <h:outputLabel value="#{bundle.PedidosTransferenciasLabel_dtPedido}" for="dtPedido" />
+                        <p:calendar id="dtPedido" value="#{pedidosTransferenciasController.selected.dtPedido}" title="#{bundle.PedidosTransferenciasTitle_dtPedido}" required="true" >
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </p:calendar>
+                        <p:message for="dtPedido"/>
+                        <h:outputLabel value="#{bundle.PedidosTransferenciasLabel_motivo}" for="motivo" />
+                        <h:inputTextarea rows="4" cols="30" id="motivo" value="#{pedidosTransferenciasController.selected.motivo}" title="#{bundle.PedidosTransferenciasTitle_motivo}" />
+                        <p:message for="motivo"/>
+                        <h:outputLabel value="#{bundle.PedidosTransferenciasLabel_situacao}" for="situacao" />
+                        <h:selectOneMenu id="situacao" value="#{pedidosTransferenciasController.selected.situacao}" title="#{bundle.PedidosTransferenciasTitle_situacao}" required="true" >
+                            <f:selectItem itemValue="A"/>
+                            <f:selectItem itemValue="I"/>
+                        </h:selectOneMenu>
+                        <p:message for="situacao"/>
+                        <h:outputLabel value="#{bundle.PedidosTransferenciasLabel_dtSituacao}" for="dtSituacao" />
+                        <p:calendar id="dtSituacao" value="#{pedidosTransferenciasController.selected.dtSituacao}" title="#{bundle.PedidosTransferenciasTitle_dtSituacao}" >
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </p:calendar>
+                        <p:message for="dtSituacao"/>
+                        <h:outputLabel value="#{bundle.PedidosTransferenciasLabel_cadNre}" for="cadastros" />
+                        <ss:cadastrosSelect currentController="#{pedidosTransferenciasController}"
+                                            currentTargerObjToString="#{pedidosTransferenciasController.selected.cadNre.toString()}"
+                                            currentTargerObject="#{pedidosTransferenciasController.selected.cadNre}"
+                                            id="cadastros" />
+                        <p:message for="cadastros"/>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{pedidosTransferenciasController.create}" value="#{bundle.SaveLink}" title="#{bundle.SaveTitle}" />
+                </p:panel>
+            </h:form>
+            
+        </ui:define>
+    </ui:composition>
+
+</html>

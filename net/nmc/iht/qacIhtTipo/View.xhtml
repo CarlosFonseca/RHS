@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewQacIhtTipoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:include src="./../menubar.xhtml" />
+            <h:form>
+                <p:panel header="#{bundle.ViewQacIhtTipoTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages />
+                    </h:panelGroup>
+
+                    <br />
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.QacIhtTipoLabel_id}"/>
+                        <h:outputText value="#{qacIhtTipoController.selected.id}" title="#{bundle.QacIhtTipoTitle_id}"/>
+                        <h:outputText value="#{bundle.QacIhtTipoLabel_dsComp}"/>
+                        <h:outputText value="#{qacIhtTipoController.selected.dsComp}" title="#{bundle.QacIhtTipoTitle_dsComp}"/>
+                        <h:outputText value="#{bundle.QacIhtTipoLabel_dsRedz}"/>
+                        <h:outputText value="#{qacIhtTipoController.selected.dsRedz}" title="#{bundle.QacIhtTipoTitle_dsRedz}"/>
+                        <h:outputText value="#{bundle.QacIhtTipoLabel_dsAbrv}"/>
+                        <h:outputText value="#{qacIhtTipoController.selected.dsAbrv}" title="#{bundle.QacIhtTipoTitle_dsAbrv}"/>
+                        <h:outputText value="#{bundle.QacIhtTipoLabel_valor}"/>
+                        <h:outputText value="#{qacIhtTipoController.selected.valor}" title="#{bundle.QacIhtTipoTitle_valor}"/>
+                        <h:outputText value="#{bundle.QacIhtTipoLabel_ordem}"/>
+                        <h:outputText value="#{qacIhtTipoController.selected.ordem}" title="#{bundle.QacIhtTipoTitle_ordem}"/>
+                        <h:outputText value="#{bundle.QacIhtTipoLabel_dtInicio}"/>
+                        <h:outputText value="#{qacIhtTipoController.selected.dtInicio}" title="#{bundle.QacIhtTipoTitle_dtInicio}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.QacIhtTipoLabel_dtFim}"/>
+                        <h:outputText value="#{qacIhtTipoController.selected.dtFim}" title="#{bundle.QacIhtTipoTitle_dtFim}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.QacIhtTipoLabel_estado}"/>
+                        <h:outputText value="#{qacIhtTipoController.selected.estado}" title="#{bundle.QacIhtTipoTitle_estado}"/>
+                        <h:outputText value="#{bundle.QacIhtTipoLabel_motivoInactivo}"/>
+                        <h:outputText value="#{qacIhtTipoController.selected.motivoInactivo}" title="#{bundle.QacIhtTipoTitle_motivoInactivo}"/>
+                        <h:outputText value="#{bundle.QacIhtTipoLabel_logNre}"/>
+                        <h:outputText value="#{qacIhtTipoController.selected.logNre}" title="#{bundle.QacIhtTipoTitle_logNre}"/>
+                        <h:outputText value="#{bundle.QacIhtTipoLabel_dtLog}"/>
+                        <h:outputText value="#{qacIhtTipoController.selected.dtLog}" title="#{bundle.QacIhtTipoTitle_dtLog}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{qacIhtTipoController.destroyAndView}" value="#{bundle.DestroyLink}" title="#{bundle.DestroyTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

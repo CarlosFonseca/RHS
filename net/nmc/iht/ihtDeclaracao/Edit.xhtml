@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditIhtDeclaracaoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:include src="./../menubar.xhtml" /> 
+            <h:form prependId="false" >
+                <p:panel header="#{bundle.EditIhtDeclaracaoTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages globalOnly="true" />
+                    </h:panelGroup>
+
+                    <br />
+
+                    <h:panelGrid columns="3">
+                        <h:outputLabel value="#{bundle.IhtDeclaracaoLabel_nre}" for="nre" />
+                        <h:inputText id="nre" value="#{ihtDeclaracaoController.selected.nre}" title="#{bundle.IhtDeclaracaoTitle_nre}" required="true" disabled="disabled" />
+                        <p:message for="nre"/>
+                        <h:outputLabel value="#{bundle.IhtDeclaracaoLabel_empresa}" for="empresa" />
+                        <h:selectOneMenu id="empresa" value="#{ihtDeclaracaoController.selected.empresa}" title="#{bundle.IhtDeclaracaoTitle_empresa}" required="true">
+                            <f:selectItems value="#{qacEmpresasController.itemsAvailableSelectMany}"/>                        
+                        </h:selectOneMenu>
+                        <p:message for="empresa"/>
+                        <h:outputLabel value="#{bundle.IhtDeclaracaoLabel_valor}" for="valor" />
+                        <h:inputText id="valor" value="#{ihtDeclaracaoController.selected.valor}" title="#{bundle.IhtDeclaracaoTitle_valor}" required="true" />
+                        <p:message for="valor"/>
+                        <h:outputLabel value="#{bundle.IhtDeclaracaoLabel_dsFuncDesc}" for="dsFuncDesc" rendered="false" />
+                        <h:inputTextarea rows="4" cols="30" id="dsFuncDesc" value="#{ihtDeclaracaoController.selected.dsFuncDesc}" title="#{bundle.IhtDeclaracaoTitle_dsFuncDesc}"  rendered="false" />
+                        <p:message for="dsFuncDesc" rendered="false"/>
+                        <h:outputLabel value="#{bundle.IhtDeclaracaoLabel_dtPessoa}" for="dtPessoa" />
+                        <p:calendar id="dtPessoa" value="#{ihtDeclaracaoController.selected.dtPessoa}" title="#{bundle.IhtDeclaracaoTitle_dtPessoa}" >
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </p:calendar>
+                        <p:message for="dtPessoa"/>
+                        <h:outputLabel value="#{bundle.IhtDeclaracaoLabel_dtAct}" for="dtAct" />
+                        <p:calendar id="dtAct" value="#{ihtDeclaracaoController.selected.dtAct}" title="#{bundle.IhtDeclaracaoTitle_dtAct}" >
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </p:calendar>
+                        <p:message for="dtAct"/>
+                        <h:outputLabel value="#{bundle.IhtDeclaracaoLabel_ordem}" for="ordem" />
+                        <h:inputText id="ordem" value="#{ihtDeclaracaoController.selected.ordem}" title="#{bundle.IhtDeclaracaoTitle_ordem}" />
+                        <p:message for="ordem"/>
+                        <h:outputLabel value="#{bundle.IhtDeclaracaoLabel_dtInicio}" for="dtInicio" />
+                        <p:calendar id="dtInicio" value="#{ihtDeclaracaoController.selected.dtInicio}" title="#{bundle.IhtDeclaracaoTitle_dtInicio}" >
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </p:calendar>
+                        <p:message for="dtInicio"/>
+                        <h:outputLabel value="#{bundle.IhtDeclaracaoLabel_dtFim}" for="dtFim" />
+                        <p:calendar id="dtFim" value="#{ihtDeclaracaoController.selected.dtFim}" title="#{bundle.IhtDeclaracaoTitle_dtFim}" >
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </p:calendar>
+                        <p:message for="dtFim"/>
+                        <h:outputLabel value="#{bundle.IhtDeclaracaoLabel_estado}" for="estado" />
+                        <h:selectOneMenu id="estado" value="#{ihtDeclaracaoController.selected.estado}" title="#{bundle.IhtDeclaracaoTitle_estado}" required="true" >
+                            <f:selectItem itemValue="A" />
+                            <f:selectItem itemValue="I" />
+                        </h:selectOneMenu>
+                        <p:message for="estado"/>
+                        <h:outputLabel value="#{bundle.IhtDeclaracaoLabel_motivoInactivo}" for="motivoInactivo" />
+                        <h:inputText id="motivoInactivo" value="#{ihtDeclaracaoController.selected.motivoInactivo}" title="#{bundle.IhtDeclaracaoTitle_motivoInactivo}" />
+                        <p:message for="motivoInactivo"/>
+                        <h:outputLabel value="#{bundle.IhtDeclaracaoLabel_tipoId}" for="tipoId" />
+                        <h:selectOneMenu id="tipoId" value="#{ihtDeclaracaoController.selected.tipoId}" title="#{bundle.IhtDeclaracaoTitle_tipoId}" required="true" >
+                            <f:selectItems value="#{qacIhtTipoController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <p:message for="tipoId"/>
+                        <h:outputLabel value="#{bundle.IhtDeclaracaoLabel_categoriaId}" for="categoriaId" />
+                        <h:selectOneMenu id="categoriaId" value="#{ihtDeclaracaoController.selected.categoriaId}" title="#{bundle.IhtDeclaracaoTitle_categoriaId}" >
+                            <f:selectItems value="#{qacIhtCategoriaController.itemsAvailableSelectMany}"/>
+                        </h:selectOneMenu>
+                        <p:message for="categoriaId"/>
+                        <h:outputLabel value="#{bundle.IhtDeclaracaoLabel_representantesId}" for="representantesId" />
+                        <h:selectOneMenu id="representantesId" value="#{ihtDeclaracaoController.selected.representantesId}" title="#{bundle.IhtDeclaracaoTitle_representantesId}" required="true" >
+                            <f:selectItems value="#{qacIhtRepresentantesController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <p:message for="representantesId"/>
+                        <h:outputLabel value="#{bundle.IhtDeclaracaoLabel_enviadoId}" for="enviadoId" />
+                        <h:selectOneMenu id="enviadoId" value="#{ihtDeclaracaoController.selected.enviadoId}" title="#{bundle.IhtDeclaracaoTitle_enviadoId}" required="true" >
+                            <f:selectItems value="#{qacIhtEnviadoController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <p:message for="enviadoId"/>
+                        <h:outputLabel value="#{bundle.IhtDeclaracaoLabel_alineaTextoId}" for="alineaTextoId" rendered="false" />
+                        <h:selectOneMenu id="alineaTextoId" value="#{ihtDeclaracaoController.selected.alineaTextoId}" title="#{bundle.IhtDeclaracaoTitle_alineaTextoId}" rendered="false" >
+                            <f:selectItems value="#{qacIhtAlineaTextoController.itemsAvailableSelectOne}" rendered="false" />
+                        </h:selectOneMenu>
+                        <p:message for="alineaTextoId" rendered="false"/>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{ihtDeclaracaoController.update}" value="#{bundle.SaveLink}" title="#{bundle.SaveTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

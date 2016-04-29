@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewEnqFuncaoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:include src="./../menubar.xhtml" />
+            <h:form>
+                <p:panel header="#{bundle.ViewEnqFuncaoTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages />
+                    </h:panelGroup>
+
+                    <br />
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.EnqFuncaoLabel_id}"/>
+                        <h:outputText value="#{enqFuncaoController.selected.id}" title="#{bundle.EnqFuncaoTitle_id}"/>
+                        <h:outputText value="#{bundle.EnqFuncaoLabel_dsComp}"/>
+                        <h:outputText value="#{enqFuncaoController.selected.dsComp}" title="#{bundle.EnqFuncaoTitle_dsComp}"/>
+                        <h:outputText value="#{bundle.EnqFuncaoLabel_dsRedz}"/>
+                        <h:outputText value="#{enqFuncaoController.selected.dsRedz}" title="#{bundle.EnqFuncaoTitle_dsRedz}"/>
+                        <h:outputText value="#{bundle.EnqFuncaoLabel_dsAbrv}"/>
+                        <h:outputText value="#{enqFuncaoController.selected.dsAbrv}" title="#{bundle.EnqFuncaoTitle_dsAbrv}"/>
+                        <h:outputText value="#{bundle.EnqFuncaoLabel_descritivo}"/>
+                        <h:outputText value="#{enqFuncaoController.selected.descritivo}" title="#{bundle.EnqFuncaoTitle_descritivo}"/>
+                        <h:outputText value="#{bundle.EnqFuncaoLabel_observacao}"/>
+                        <h:outputText value="#{enqFuncaoController.selected.observacao}" title="#{bundle.EnqFuncaoTitle_observacao}"/>
+                        <h:outputText value="#{bundle.EnqFuncaoLabel_notas}"/>
+                        <h:outputText value="#{enqFuncaoController.selected.notas}" title="#{bundle.EnqFuncaoTitle_notas}"/>
+                        <h:outputText value="#{bundle.EnqFuncaoLabel_empresa}"/>
+                        <h:outputText value="#{enqFuncaoController.selected.empresa}" title="#{bundle.EnqFuncaoTitle_empresa}"/>
+                        <h:outputText value="#{bundle.EnqFuncaoLabel_estG1}"/>
+                        <h:outputText value="#{enqFuncaoController.selected.estG1}" title="#{bundle.EnqFuncaoTitle_estG1}"/>
+                        <h:outputText value="#{bundle.EnqFuncaoLabel_ordem}"/>
+                        <h:outputText value="#{enqFuncaoController.selected.ordem}" title="#{bundle.EnqFuncaoTitle_ordem}"/>
+                        <h:outputText value="#{bundle.EnqFuncaoLabel_dtInicio}"/>
+                        <h:outputText value="#{enqFuncaoController.selected.dtInicio}" title="#{bundle.EnqFuncaoTitle_dtInicio}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.EnqFuncaoLabel_dtFim}"/>
+                        <h:outputText value="#{enqFuncaoController.selected.dtFim}" title="#{bundle.EnqFuncaoTitle_dtFim}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.EnqFuncaoLabel_estado}"/>
+                        <h:outputText value="#{enqFuncaoController.selected.estado}" title="#{bundle.EnqFuncaoTitle_estado}"/>
+                        <h:outputText value="#{bundle.EnqFuncaoLabel_motivoInactivo}"/>
+                        <h:outputText value="#{enqFuncaoController.selected.motivoInactivo}" title="#{bundle.EnqFuncaoTitle_motivoInactivo}"/>
+                        <h:outputText value="#{bundle.EnqFuncaoLabel_logNre}"/>
+                        <h:outputText value="#{enqFuncaoController.selected.logNre}" title="#{bundle.EnqFuncaoTitle_logNre}"/>
+                        <h:outputText value="#{bundle.EnqFuncaoLabel_dtLog}"/>
+                        <h:outputText value="#{enqFuncaoController.selected.dtLog}" title="#{bundle.EnqFuncaoTitle_dtLog}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.EnqFuncaoLabel_carreira}"/>
+                        <h:outputText value="#{enqFuncaoController.selected.carreira}" title="#{bundle.EnqFuncaoTitle_carreira}"/>
+                        <h:outputText value="#{bundle.EnqFuncaoLabel_familia}"/>
+                        <h:outputText value="#{enqFuncaoController.selected.familia}" title="#{bundle.EnqFuncaoTitle_familia}"/>
+                        <h:outputText value="#{bundle.EnqFuncaoLabel_subbanda}"/>
+                        <h:outputText value="#{enqFuncaoController.selected.subbanda}" title="#{bundle.EnqFuncaoTitle_subbanda}"/>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{enqFuncaoController.destroyAndView}" value="#{bundle.DestroyLink}" title="#{bundle.DestroyTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

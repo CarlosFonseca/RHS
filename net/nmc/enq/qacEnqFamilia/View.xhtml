@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewQacEnqFamiliaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:include src="./../menubar.xhtml" />
+            <h:form>
+                <p:panel header="#{bundle.ViewQacEnqFamiliaTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages />
+                    </h:panelGroup>
+
+                    <br />
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.QacEnqFamiliaLabel_id}"/>
+                        <h:outputText value="#{qacEnqFamiliaController.selected.id}" title="#{bundle.QacEnqFamiliaTitle_id}"/>
+                        <h:outputText value="#{bundle.QacEnqFamiliaLabel_dsComp}"/>
+                        <h:outputText value="#{qacEnqFamiliaController.selected.dsComp}" title="#{bundle.QacEnqFamiliaTitle_dsComp}"/>
+                        <h:outputText value="#{bundle.QacEnqFamiliaLabel_dsRedz}"/>
+                        <h:outputText value="#{qacEnqFamiliaController.selected.dsRedz}" title="#{bundle.QacEnqFamiliaTitle_dsRedz}"/>
+                        <h:outputText value="#{bundle.QacEnqFamiliaLabel_dsAbrv}"/>
+                        <h:outputText value="#{qacEnqFamiliaController.selected.dsAbrv}" title="#{bundle.QacEnqFamiliaTitle_dsAbrv}"/>
+                        <h:outputText value="#{bundle.QacEnqFamiliaLabel_descritivo}"/>
+                        <h:outputText value="#{qacEnqFamiliaController.selected.descritivo}" title="#{bundle.QacEnqFamiliaTitle_descritivo}"/>
+                        <h:outputText value="#{bundle.QacEnqFamiliaLabel_ordem}"/>
+                        <h:outputText value="#{qacEnqFamiliaController.selected.ordem}" title="#{bundle.QacEnqFamiliaTitle_ordem}"/>
+                        <h:outputText value="#{bundle.QacEnqFamiliaLabel_dtInicio}"/>
+                        <h:outputText value="#{qacEnqFamiliaController.selected.dtInicio}" title="#{bundle.QacEnqFamiliaTitle_dtInicio}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.QacEnqFamiliaLabel_dtFim}"/>
+                        <h:outputText value="#{qacEnqFamiliaController.selected.dtFim}" title="#{bundle.QacEnqFamiliaTitle_dtFim}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.QacEnqFamiliaLabel_estado}"/>
+                        <h:outputText value="#{qacEnqFamiliaController.selected.estado}" title="#{bundle.QacEnqFamiliaTitle_estado}"/>
+                        <h:outputText value="#{bundle.QacEnqFamiliaLabel_motivoInactivo}"/>
+                        <h:outputText value="#{qacEnqFamiliaController.selected.motivoInactivo}" title="#{bundle.QacEnqFamiliaTitle_motivoInactivo}"/>
+                        <h:outputText value="#{bundle.QacEnqFamiliaLabel_logNre}"/>
+                        <h:outputText value="#{qacEnqFamiliaController.selected.logNre}" title="#{bundle.QacEnqFamiliaTitle_logNre}"/>
+                        <h:outputText value="#{bundle.QacEnqFamiliaLabel_dtLog}"/>
+                        <h:outputText value="#{qacEnqFamiliaController.selected.dtLog}" title="#{bundle.QacEnqFamiliaTitle_dtLog}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{qacEnqFamiliaController.destroyAndView}" value="#{bundle.DestroyLink}" title="#{bundle.DestroyTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

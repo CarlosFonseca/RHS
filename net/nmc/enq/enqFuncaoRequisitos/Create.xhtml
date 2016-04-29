@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ss="http://java.sun.com/jsf/composite/utils/search">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateEnqFuncaoRequisitosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:include src="./../menubar.xhtml" />
+            <h:form prependId="false" >
+                <p:panel header="#{bundle.CreateEnqFuncaoRequisitosTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages globalOnly="true" />
+                    </h:panelGroup>
+                    <br />
+                    <h:panelGrid columns="3">
+                        <h:outputLabel value="#{bundle.EnqFuncaoRequisitosLabel_enqFuncao}" for="enqFuncao" />
+                        <ss:enqFuncaoSelect currentController="#{enqFuncaoRequisitosController}" 
+                                            currentTargerObjToString="#{enqFuncaoRequisitosController.selected.enqFuncao.toString()}"
+                                            currentTargerObject="#{enqFuncaoRequisitosController.selected.enqFuncao}"
+                                            id="enqFuncao" />
+                        <p:message for="enqFuncao"/>   
+                        <h:outputLabel value="#{bundle.EnqFuncaoRequisitosLabel_qacEnqRequisitos}" for="qacEnqRequisitos" />
+                        <h:selectOneMenu id="qacEnqRequisitos" value="#{enqFuncaoRequisitosController.selected.qacEnqRequisitos}" title="#{bundle.EnqFuncaoRequisitosTitle_qacEnqRequisitos}" required="true" >
+                            <f:selectItems value="#{qacEnqRequisitosController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <p:message for="qacEnqRequisitos"/>                     
+                        <h:outputLabel value="#{bundle.EnqFuncaoRequisitosLabel_criticos}" for="criticos" />
+                        <h:inputTextarea rows="4" cols="30" id="criticos" value="#{enqFuncaoRequisitosController.selected.criticos}" title="#{bundle.EnqFuncaoRequisitosTitle_criticos}" />
+                        <p:message for="criticos"/>
+                        <h:outputLabel value="#{bundle.EnqFuncaoRequisitosLabel_ordem}" for="ordem" />
+                        <h:inputText id="ordem" value="#{enqFuncaoRequisitosController.selected.ordem}" title="#{bundle.EnqFuncaoRequisitosTitle_ordem}" />
+                        <p:message for="ordem"/>
+                        <h:outputLabel value="#{bundle.EnqFuncaoRequisitosLabel_dtInicio}" for="dtInicio" />
+                        <p:calendar id="dtInicio" value="#{enqFuncaoRequisitosController.selected.dtInicio}" title="#{bundle.EnqFuncaoRequisitosTitle_dtInicio}" >
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </p:calendar>
+                        <p:message for="dtInicio"/>
+                        <h:outputLabel value="#{bundle.EnqFuncaoRequisitosLabel_dtFim}" for="dtFim" />
+                        <p:calendar id="dtFim" value="#{enqFuncaoRequisitosController.selected.dtFim}" title="#{bundle.EnqFuncaoRequisitosTitle_dtFim}" >
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </p:calendar>
+                        <p:message for="dtFim"/>
+                        <h:outputLabel value="#{bundle.EnqFuncaoRequisitosLabel_estado}" for="estado" />
+                        <h:selectOneMenu id="estado" value="#{enqFuncaoRequisitosController.selected.estado}" title="#{bundle.EnqFuncaoRequisitosTitle_estado}" required="true" >
+                            <f:selectItem itemValue="A"/>
+                            <f:selectItem itemValue="I"/>
+                        </h:selectOneMenu>
+                        <p:message for="estado"/>
+                        <h:outputLabel value="#{bundle.EnqFuncaoRequisitosLabel_motivoInactivo}" for="motivoInactivo" />
+                        <h:inputText id="motivoInactivo" value="#{enqFuncaoRequisitosController.selected.motivoInactivo}" title="#{bundle.EnqFuncaoRequisitosTitle_motivoInactivo}" />
+                        <p:message for="motivoInactivo"/>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{enqFuncaoRequisitosController.create}" value="#{bundle.SaveLink}" title="#{bundle.SaveTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

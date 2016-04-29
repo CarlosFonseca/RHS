@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewIhtDeclaracaoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+           <ui:include src="./../menubar.xhtml" /> 
+            <h:form>
+                <p:panel header="#{bundle.ViewIhtDeclaracaoTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages />
+                    </h:panelGroup>
+
+                    <br />
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.IhtDeclaracaoLabel_id}"/>
+                        <h:outputText value="#{ihtDeclaracaoController.selected.id}" title="#{bundle.IhtDeclaracaoTitle_id}"/>
+                        <h:outputText value="#{bundle.IhtDeclaracaoLabel_nre}"/>
+                        <h:outputText value="#{ihtDeclaracaoController.selected.nre}" title="#{bundle.IhtDeclaracaoTitle_nre}"/>
+                        <h:outputText value="#{bundle.IhtDeclaracaoLabel_empresa}"/>
+                        <h:outputText value="#{ihtDeclaracaoController.selected.empresa}" title="#{bundle.IhtDeclaracaoTitle_empresa}"/>
+                        <h:outputText value="#{bundle.IhtDeclaracaoLabel_valor}"/>
+                        <h:outputText value="#{ihtDeclaracaoController.selected.valor}" title="#{bundle.IhtDeclaracaoTitle_valor}"/>
+                        <h:outputText value="#{bundle.IhtDeclaracaoLabel_dsFuncDesc}" rendered="false" />
+                        <h:outputText value="#{ihtDeclaracaoController.selected.dsFuncDesc}" title="#{bundle.IhtDeclaracaoTitle_dsFuncDesc}" rendered="false" />
+                        <h:outputText value="#{bundle.IhtDeclaracaoLabel_dtPessoa}"/>
+                        <h:outputText value="#{ihtDeclaracaoController.selected.dtPessoa}" title="#{bundle.IhtDeclaracaoTitle_dtPessoa}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.IhtDeclaracaoLabel_dtAct}"/>
+                        <h:outputText value="#{ihtDeclaracaoController.selected.dtAct}" title="#{bundle.IhtDeclaracaoTitle_dtAct}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.IhtDeclaracaoLabel_ordem}"/>
+                        <h:outputText value="#{ihtDeclaracaoController.selected.ordem}" title="#{bundle.IhtDeclaracaoTitle_ordem}"/>
+                        <h:outputText value="#{bundle.IhtDeclaracaoLabel_dtInicio}"/>
+                        <h:outputText value="#{ihtDeclaracaoController.selected.dtInicio}" title="#{bundle.IhtDeclaracaoTitle_dtInicio}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.IhtDeclaracaoLabel_dtFim}"/>
+                        <h:outputText value="#{ihtDeclaracaoController.selected.dtFim}" title="#{bundle.IhtDeclaracaoTitle_dtFim}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.IhtDeclaracaoLabel_estado}"/>
+                        <h:outputText value="#{ihtDeclaracaoController.selected.estado}" title="#{bundle.IhtDeclaracaoTitle_estado}"/>
+                        <h:outputText value="#{bundle.IhtDeclaracaoLabel_motivoInactivo}"/>
+                        <h:outputText value="#{ihtDeclaracaoController.selected.motivoInactivo}" title="#{bundle.IhtDeclaracaoTitle_motivoInactivo}"/>
+                        <h:outputText value="#{bundle.IhtDeclaracaoLabel_logNre}"/>
+                        <h:outputText value="#{ihtDeclaracaoController.selected.logNre}" title="#{bundle.IhtDeclaracaoTitle_logNre}"/>
+                        <h:outputText value="#{bundle.IhtDeclaracaoLabel_dtLog}"/>
+                        <h:outputText value="#{ihtDeclaracaoController.selected.dtLog}" title="#{bundle.IhtDeclaracaoTitle_dtLog}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.IhtDeclaracaoLabel_tipoId}"/>
+                        <h:outputText value="#{ihtDeclaracaoController.selected.tipoId}" title="#{bundle.IhtDeclaracaoTitle_tipoId}"/>
+                        <h:outputText value="#{bundle.IhtDeclaracaoLabel_categoriaId}"/>
+                        <h:outputText value="#{ihtDeclaracaoController.selected.categoriaId}" title="#{bundle.IhtDeclaracaoTitle_categoriaId}"/>
+                        <h:outputText value="#{bundle.IhtDeclaracaoLabel_representantesId}"/>
+                        <h:outputText value="#{ihtDeclaracaoController.selected.representantesId}" title="#{bundle.IhtDeclaracaoTitle_representantesId}"/>
+                        <h:outputText value="#{bundle.IhtDeclaracaoLabel_enviadoId}"/>
+                        <h:outputText value="#{ihtDeclaracaoController.selected.enviadoId}" title="#{bundle.IhtDeclaracaoTitle_enviadoId}"/>
+                        <h:outputText value="#{bundle.IhtDeclaracaoLabel_alineaTextoId}" rendered="false"/>
+                        <h:outputText value="#{ihtDeclaracaoController.selected.alineaTextoId}" title="#{bundle.IhtDeclaracaoTitle_alineaTextoId}" rendered="false"/>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{ihtDeclaracaoController.destroyAndView}" value="#{bundle.DestroyLink}" title="#{bundle.DestroyTitle}" />
+                    &nbsp;    
+                    <h:commandButton action="#{ihtDeclaracaoController.performExport2Docx}" value="#{bundle.ExportWordLink}" title="#{bundle.ExportWordTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewQacIhtEnviadoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:include src="./../menubar.xhtml" />
+            <h:form>
+                <p:panel header="#{bundle.ViewQacIhtEnviadoTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages />
+                    </h:panelGroup>
+
+                    <br />
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.QacIhtEnviadoLabel_id}"/>
+                        <h:outputText value="#{qacIhtEnviadoController.selected.id}" title="#{bundle.QacIhtEnviadoTitle_id}"/>
+                        <h:outputText value="#{bundle.QacIhtEnviadoLabel_dsComp}"/>
+                        <h:outputText value="#{qacIhtEnviadoController.selected.dsComp}" title="#{bundle.QacIhtEnviadoTitle_dsComp}"/>
+                        <h:outputText value="#{bundle.QacIhtEnviadoLabel_dsRedz}"/>
+                        <h:outputText value="#{qacIhtEnviadoController.selected.dsRedz}" title="#{bundle.QacIhtEnviadoTitle_dsRedz}"/>
+                        <h:outputText value="#{bundle.QacIhtEnviadoLabel_dsAbrv}"/>
+                        <h:outputText value="#{qacIhtEnviadoController.selected.dsAbrv}" title="#{bundle.QacIhtEnviadoTitle_dsAbrv}"/>
+                        <h:outputText value="#{bundle.QacIhtEnviadoLabel_ordem}"/>
+                        <h:outputText value="#{qacIhtEnviadoController.selected.ordem}" title="#{bundle.QacIhtEnviadoTitle_ordem}"/>
+                        <h:outputText value="#{bundle.QacIhtEnviadoLabel_dtInicio}"/>
+                        <h:outputText value="#{qacIhtEnviadoController.selected.dtInicio}" title="#{bundle.QacIhtEnviadoTitle_dtInicio}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.QacIhtEnviadoLabel_dtFim}"/>
+                        <h:outputText value="#{qacIhtEnviadoController.selected.dtFim}" title="#{bundle.QacIhtEnviadoTitle_dtFim}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.QacIhtEnviadoLabel_estado}"/>
+                        <h:outputText value="#{qacIhtEnviadoController.selected.estado}" title="#{bundle.QacIhtEnviadoTitle_estado}"/>
+                        <h:outputText value="#{bundle.QacIhtEnviadoLabel_motivoInactivo}"/>
+                        <h:outputText value="#{qacIhtEnviadoController.selected.motivoInactivo}" title="#{bundle.QacIhtEnviadoTitle_motivoInactivo}"/>
+                        <h:outputText value="#{bundle.QacIhtEnviadoLabel_logNre}"/>
+                        <h:outputText value="#{qacIhtEnviadoController.selected.logNre}" title="#{bundle.QacIhtEnviadoTitle_logNre}"/>
+                        <h:outputText value="#{bundle.QacIhtEnviadoLabel_dtLog}"/>
+                        <h:outputText value="#{qacIhtEnviadoController.selected.dtLog}" title="#{bundle.QacIhtEnviadoTitle_dtLog}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{qacIhtEnviadoController.destroyAndView}" value="#{bundle.DestroyLink}" title="#{bundle.DestroyTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

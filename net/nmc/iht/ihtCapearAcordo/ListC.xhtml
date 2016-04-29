@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="/net/template.xhtml">
+
+            <ui:define name="title">
+                Capear Acordos
+            </ui:define>
+
+            <ui:define name="body">
+                <ui:include src="./../menubar.xhtml" /> 
+                <h:form prependId="false" >
+                 <h:panelGroup id="messagePanel" layout="block">
+                    <p:messages />
+                </h:panelGroup>                     
+                    <p:dataTable var="capearAcordos" value="#{ihtCapearAcordos.capearAcordosAgupados}" id="tbl"  editable="true"
+                                 emptyMessage="#{bundle.ListEmpty}">
+                        <p:column headerText="Alterar"  style="width:75px" > 
+                            <h:commandLink action="#{ihtCapearAcordos.performExport2Docx()}"  title="#{bundle.ExportWordTitle}" styleClass="ui-icon ui-icon-document" style="float: left; margin: 0 4px;" >
+                                <f:setPropertyActionListener value="#{capearAcordos}"  target="#{ihtCapearAcordos.selectCapearAcordosAgupados}" />  
+                            </h:commandLink>
+                            <p:rowEditor />
+                        </p:column>                         
+                        <p:column headerText="Delegação" >  
+                            <p:cellEditor>  
+                                <f:facet name="output">  
+                                    <h:outputText value="#{capearAcordos.parEd.dsComp}" />  
+                                </f:facet>  
+                                <f:facet name="input">  
+                                    <h:outputText value="#{capearAcordos.parEd.dsComp}" />  
+                                </f:facet>  
+                            </p:cellEditor>  
+                        </p:column >
+                        <p:column headerText="Referência da Carta " >  
+                            <p:cellEditor>  
+                                <f:facet name="output">  
+                                    <h:outputText value="#{capearAcordos.refencia}" />  
+                                </f:facet>  
+                                <f:facet name="input">  
+                                    <h:inputText value="#{capearAcordos.refencia}" />     
+                                </f:facet>  
+                            </p:cellEditor>  
+                        </p:column> 
+                </p:dataTable> 
+                </h:form>     
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

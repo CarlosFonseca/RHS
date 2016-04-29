@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewQacIhtCategoriaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:include src="./../menubar.xhtml" />
+            <h:form>
+                <p:panel header="#{bundle.ViewQacIhtCategoriaTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages />
+                    </h:panelGroup>
+
+                    <br />
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.QacIhtCategoriaLabel_id}"/>
+                        <h:outputText value="#{qacIhtCategoriaController.selected.id}" title="#{bundle.QacIhtCategoriaTitle_id}"/>
+                        <h:outputText value="#{bundle.QacIhtCategoriaLabel_dsComp}"/>
+                        <h:outputText value="#{qacIhtCategoriaController.selected.dsComp}" title="#{bundle.QacIhtCategoriaTitle_dsComp}"/>
+                        <h:outputText value="#{bundle.QacIhtCategoriaLabel_dsRedz}"/>
+                        <h:outputText value="#{qacIhtCategoriaController.selected.dsRedz}" title="#{bundle.QacIhtCategoriaTitle_dsRedz}"/>
+                        <h:outputText value="#{bundle.QacIhtCategoriaLabel_dsAbrv}"/>
+                        <h:outputText value="#{qacIhtCategoriaController.selected.dsAbrv}" title="#{bundle.QacIhtCategoriaTitle_dsAbrv}"/>
+                        <h:outputText value="#{bundle.QacIhtCategoriaLabel_regime}"/>
+                        <h:outputText value="#{qacIhtCategoriaController.selected.regime}" title="#{bundle.QacIhtCategoriaTitle_regime}"/>
+                        <h:outputText value="#{bundle.QacIhtCategoriaLabel_ficheiro}"/>
+                        <h:outputText value="#{qacIhtCategoriaController.selected.ficheiroId.dsAbrv}" title="#{bundle.QacIhtCategoriaTitle_ficheiro}"/>
+                        <h:outputText value="#{bundle.QacIhtCategoriaLabel_ordem}"/>
+                        <h:outputText value="#{qacIhtCategoriaController.selected.ordem}" title="#{bundle.QacIhtCategoriaTitle_ordem}"/>
+                        <h:outputText value="#{bundle.QacIhtCategoriaLabel_dtInicio}"/>
+                        <h:outputText value="#{qacIhtCategoriaController.selected.dtInicio}" title="#{bundle.QacIhtCategoriaTitle_dtInicio}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.QacIhtCategoriaLabel_dtFim}"/>
+                        <h:outputText value="#{qacIhtCategoriaController.selected.dtFim}" title="#{bundle.QacIhtCategoriaTitle_dtFim}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.QacIhtCategoriaLabel_estado}"/>
+                        <h:outputText value="#{qacIhtCategoriaController.selected.estado}" title="#{bundle.QacIhtCategoriaTitle_estado}"/>
+                        <h:outputText value="#{bundle.QacIhtCategoriaLabel_motivoInactivo}"/>
+                        <h:outputText value="#{qacIhtCategoriaController.selected.motivoInactivo}" title="#{bundle.QacIhtCategoriaTitle_motivoInactivo}"/>
+                        <h:outputText value="#{bundle.QacIhtCategoriaLabel_logNre}"/>
+                        <h:outputText value="#{qacIhtCategoriaController.selected.logNre}" title="#{bundle.QacIhtCategoriaTitle_logNre}"/>
+                        <h:outputText value="#{bundle.QacIhtCategoriaLabel_dtLog}"/>
+                        <h:outputText value="#{qacIhtCategoriaController.selected.dtLog}" title="#{bundle.QacIhtCategoriaTitle_dtLog}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{qacIhtCategoriaController.destroyAndView}" value="#{bundle.DestroyLink}" title="#{bundle.DestroyTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:search="http://java.sun.com/jsf/composite/utils/search">
+
+    <body>
+
+        <ui:composition template="/net/template.xhtml">
+
+            <ui:define name="title">
+                Capear Acordos
+            </ui:define>
+
+            <ui:define name="body">
+                <ui:include src="./../menubar.xhtml" /> 
+                <h:form prependId="false" >
+                 <h:panelGroup id="messagePanel" layout="block">
+                    <p:messages />
+                </h:panelGroup>                     
+                    <p:dataTable var="capearAcordos" value="#{ihtCapearAcordos.capearAcordos}" id="tbl" editable="true"  
+                                 selection="#{ihtCapearAcordos.selectCapearAcordos}" selectionMode="single" rowKey="#{capearAcordos.cadastros}"
+                                 emptyMessage="#{bundle.ListEmpty}">
+                        <p:column headerText="Alterar"  style="width:75px" >  
+                            <h:commandLink action="#{ihtCapearAcordos.Destroy}"  title="#{bundle.DestroyTitle}" styleClass="ui-icon ui-icon-trash" style="float: left; margin: 0 4px;" >
+                                <f:setPropertyActionListener value="#{capearAcordos}"  target="#{ihtCapearAcordos.selectCapearAcordos}" />  
+                            </h:commandLink>
+                            <p:rowEditor />
+                        </p:column>                         
+                        <p:column headerText="Colaborador" >  
+                            <p:cellEditor>  
+                                <f:facet name="output">  
+                                    <h:outputText value="#{capearAcordos.cadastros.nomeComp}" />  
+                                </f:facet>  
+                                <f:facet name="input">  
+                                    <h:outputText value="#{capearAcordos.cadastros.nomeComp}" />     
+                                </f:facet>  
+                            </p:cellEditor>  
+                        </p:column> 
+                        <p:column headerText="Delegação" >  
+                            <p:cellEditor>  
+                                <f:facet name="output">  
+                                    <h:outputText value="#{capearAcordos.parEd.dsComp}" />  
+                                </f:facet>  
+                                <f:facet name="input">  
+                                    <h:selectOneMenu value="#{capearAcordos.parEd}" >  
+                                        <f:selectItems value="#{parEdController.IDICTAvailableSelectOne}"   />  
+                                    </h:selectOneMenu>  
+                                </f:facet>  
+                            </p:cellEditor>  
+                        </p:column >
+
+                </p:dataTable> 
+                <p/>&nbsp;&nbsp;
+                <p:commandButton  onclick="procuraCadastros.show();" type="button" value="#{bundle.CreateLink}" title="#{bundle.CreateTitle}"/>
+                    &nbsp;&nbsp;
+                    <h:commandButton  action="#{ihtCapearAcordos.prepareComunicação}" value="Comunicação" title="Comunicado a enviar para a entidade"/>
+                </h:form>     
+              <search:cadastros act="#{ihtCapearAcordos}" val="#{ihtCapearAcordos.cadastros}"/> 
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

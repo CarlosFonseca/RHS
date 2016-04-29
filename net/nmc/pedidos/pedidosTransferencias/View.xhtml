@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPedidosTransferenciasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:include src="./../menubar.xhtml" />
+            <h:form>
+                <p:panel header="#{bundle.ViewPedidosTransferenciasTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages />
+                    </h:panelGroup>
+
+                    <br />
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.PedidosTransferenciasLabel_id}"/>
+                        <h:outputText value="#{pedidosTransferenciasController.selected.id}" title="#{bundle.PedidosTransferenciasTitle_id}"/>
+                        <h:outputText value="#{bundle.PedidosTransferenciasLabel_dtPedido}"/>
+                        <h:outputText value="#{pedidosTransferenciasController.selected.dtPedido}" title="#{bundle.PedidosTransferenciasTitle_dtPedido}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.PedidosTransferenciasLabel_motivo}"/>
+                        <h:outputText value="#{pedidosTransferenciasController.selected.motivo}" title="#{bundle.PedidosTransferenciasTitle_motivo}"/>
+                        <h:outputText value="#{bundle.PedidosTransferenciasLabel_situacao}"/>
+                        <h:outputText value="#{pedidosTransferenciasController.selected.situacao}" title="#{bundle.PedidosTransferenciasTitle_situacao}"/>
+                        <h:outputText value="#{bundle.PedidosTransferenciasLabel_dtSituacao}"/>
+                        <h:outputText value="#{pedidosTransferenciasController.selected.dtSituacao}" title="#{bundle.PedidosTransferenciasTitle_dtSituacao}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.PedidosTransferenciasLabel_dtLog}"/>
+                        <h:outputText value="#{pedidosTransferenciasController.selected.dtLog}" title="#{bundle.PedidosTransferenciasTitle_dtLog}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.PedidosTransferenciasLabel_logNre}"/>
+                        <h:outputText value="#{pedidosTransferenciasController.selected.logNre}" title="#{bundle.PedidosTransferenciasTitle_logNre}"/>
+                        <h:outputText value="#{bundle.PedidosTransferenciasLabel_cadNre}"/>
+                        <h:outputText value="#{pedidosTransferenciasController.selected.cadNre}" title="#{bundle.PedidosTransferenciasTitle_cadNre}"/>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{pedidosTransferenciasController.destroyAndView}" value="#{bundle.DestroyLink}" title="#{bundle.DestroyTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

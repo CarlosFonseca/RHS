@@ -1,0 +1,20 @@
+
+   <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                   xmlns:ui="http://java.sun.com/jsf/facelets"
+                   xmlns:p="http://primefaces.org/ui"
+                   xmlns:h="http://java.sun.com/jsf/html">
+       <p:menubar style="width: 99%; z-index: 2" >
+          <p:menuitem value="Validações de IHT" icon="ui-icon-contact"  url="/net/nmc/iht/ihtConsultas/List.faces" />
+          <p:menuitem value="Acordo IHT" icon="ui-icon-contact" url="/net/nmc/iht/ihtDeclaracao/List.faces"/>
+          <p:menuitem value="Capear Acordos" icon="ui-icon-contact" url="/net/nmc/iht/ihtCapearAcordo/List.faces" />
+           <p:submenu label="Parametrizar" icon="ui-icon-contact" >
+                <p:menuitem value="Alinea " url="/net/nmc/iht/qacIhtAlineaTexto/List.faces" />
+                <p:menuitem value="Categoria" url="/net/nmc/iht/qacIhtCategoria/List.faces" />
+                <p:menuitem value="Enviado" url="/net/nmc/iht/qacIhtEnviado/List.faces"  />
+                <p:menuitem value="Texto Função" url="/net/nmc/iht/qacIhtFuncaoTextoAux/List.faces" />
+                 <p:menuitem value="Representantes" url="/net/nmc/iht/qacIhtRepresentantes/List.faces" />
+                 <p:menuitem value="Tipo IHT" url="/net/nmc/iht/qacIhtTipo/List.faces" />
+           </p:submenu>           
+       </p:menubar>
+       <br/><br/><br/>
+   </ui:composition>  

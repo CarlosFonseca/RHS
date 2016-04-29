@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewQacEnqCompetenciaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:include src="./../menubar.xhtml" />
+            <h:form>
+                <p:panel header="#{bundle.ViewQacEnqCompetenciaTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages />
+                    </h:panelGroup>
+
+                    <br />
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.QacEnqCompetenciaLabel_id}"/>
+                        <h:outputText value="#{qacEnqCompetenciaController.selected.id}" title="#{bundle.QacEnqCompetenciaTitle_id}"/>
+                        <h:outputText value="#{bundle.QacEnqCompetenciaLabel_dsComp}"/>
+                        <h:outputText value="#{qacEnqCompetenciaController.selected.dsComp}" title="#{bundle.QacEnqCompetenciaTitle_dsComp}"/>
+                        <h:outputText value="#{bundle.QacEnqCompetenciaLabel_dsRedz}"/>
+                        <h:outputText value="#{qacEnqCompetenciaController.selected.dsRedz}" title="#{bundle.QacEnqCompetenciaTitle_dsRedz}"/>
+                        <h:outputText value="#{bundle.QacEnqCompetenciaLabel_dsAbrv}"/>
+                        <h:outputText value="#{qacEnqCompetenciaController.selected.dsAbrv}" title="#{bundle.QacEnqCompetenciaTitle_dsAbrv}"/>
+                        <h:outputText value="#{bundle.QacEnqCompetenciaLabel_descritivo}"/>
+                        <h:outputText value="#{qacEnqCompetenciaController.selected.descritivo}" title="#{bundle.QacEnqCompetenciaTitle_descritivo}"/>
+                        <h:outputText value="#{bundle.QacEnqCompetenciaLabel_ordem}"/>
+                        <h:outputText value="#{qacEnqCompetenciaController.selected.ordem}" title="#{bundle.QacEnqCompetenciaTitle_ordem}"/>
+                        <h:outputText value="#{bundle.QacEnqCompetenciaLabel_dtInicio}"/>
+                        <h:outputText value="#{qacEnqCompetenciaController.selected.dtInicio}" title="#{bundle.QacEnqCompetenciaTitle_dtInicio}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.QacEnqCompetenciaLabel_dtFim}"/>
+                        <h:outputText value="#{qacEnqCompetenciaController.selected.dtFim}" title="#{bundle.QacEnqCompetenciaTitle_dtFim}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.QacEnqCompetenciaLabel_estado}"/>
+                        <h:outputText value="#{qacEnqCompetenciaController.selected.estado}" title="#{bundle.QacEnqCompetenciaTitle_estado}"/>
+                        <h:outputText value="#{bundle.QacEnqCompetenciaLabel_motivoInactivo}"/>
+                        <h:outputText value="#{qacEnqCompetenciaController.selected.motivoInactivo}" title="#{bundle.QacEnqCompetenciaTitle_motivoInactivo}"/>
+                        <h:outputText value="#{bundle.QacEnqCompetenciaLabel_logNre}"/>
+                        <h:outputText value="#{qacEnqCompetenciaController.selected.logNre}" title="#{bundle.QacEnqCompetenciaTitle_logNre}"/>
+                        <h:outputText value="#{bundle.QacEnqCompetenciaLabel_dtLog}"/>
+                        <h:outputText value="#{qacEnqCompetenciaController.selected.dtLog}" title="#{bundle.QacEnqCompetenciaTitle_dtLog}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.QacEnqCompetenciaLabel_tipo}"/>
+                        <h:outputText value="#{qacEnqCompetenciaController.selected.tipo}" title="#{bundle.QacEnqCompetenciaTitle_tipo}"/>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{qacEnqCompetenciaController.destroyAndView}" value="#{bundle.DestroyLink}" title="#{bundle.DestroyTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

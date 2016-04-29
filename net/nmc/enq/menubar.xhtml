@@ -1,0 +1,24 @@
+
+   <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                   xmlns:ui="http://java.sun.com/jsf/facelets"
+                   xmlns:p="http://primefaces.org/ui"
+                   xmlns:h="http://java.sun.com/jsf/html">
+       <p:menubar style="width: 99%; z-index: 2" >
+             <p:menuitem value="Função"  url="/net/nmc/enq/enqFuncao/List.faces" />
+             <p:menuitem value="Função- Nv.Faculdade" icon="ui-icon-contact" url="/net/nmc/enq/enqFuncaoCompetencia/List.faces"/>
+             <p:menuitem value="Função- Requisito" icon="ui-icon-contact" url="/net/nmc/enq/enqFuncaoRequisitos/List.faces"/>                                    
+             <p:menuitem value="Função- Estrutura" icon="ui-icon-contact" url="/net/nmc/enq/enqFuncaoEstEmquadramento/List.faces" />
+             <p:submenu label="Parametrizar" icon="ui-icon-contact" >
+                <p:menuitem value="Banda" url="/net/nmc/enq/qacEnqBandas/List.faces" />
+                <p:menuitem value="Sub Banda" url="/net/nmc/enq/qacEnqSubBanda/List.faces" />
+                <p:menuitem value="Carreira" url="/net/nmc/enq/qacEnqCarreira/List.faces" />
+                <p:menuitem value="Família" url="/net/nmc/enq/qacEnqFamilia/List.faces" />
+                <p:menuitem value="Tipo Faculdade" url="/net/nmc/enq/qacEnqTipoCompetencia/List.faces" />
+                <p:menuitem value="Faculdade" url="/net/nmc/enq/qacEnqCompetencia/List.faces" />
+                <p:menuitem value="Nível Faculdade" url="/net/nmc/enq/qacEnqNivelCompetencia/List.faces" />
+                <p:menuitem value="SubB- Nv Faculdade" url="/net/nmc/enq/enqSubbandaCompetencia/List.faces"/>                                                                          
+                <p:menuitem value="Requisito" url="/net/nmc/enq/qacEnqRequisitos/List.faces" />                                        
+           </p:submenu>           
+       </p:menubar>
+       <br/><br/><br/>
+   </ui:composition>  

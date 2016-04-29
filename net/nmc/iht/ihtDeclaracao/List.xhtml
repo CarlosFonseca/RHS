@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:search="http://java.sun.com/jsf/composite/utils/search"
+      xmlns:confirm="http://java.sun.com/jsf/composite/utils/confirm">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListIhtDeclaracaoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:include src="./../menubar.xhtml" /> 
+            <h:form prependId="false" >
+                <h:panelGroup id="messagePanel" layout="block">
+                    <p:messages />
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListIhtDeclaracaoEmpty}" rendered="#{ihtDeclaracaoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{ihtDeclaracaoController.items.rowCount > 0}"   >
+                    <h:inputHidden id="tblbasesize" value="#{ihtDeclaracaoController.tableWidth}"/>
+                    <p:dataTable value="#{ihtDeclaracaoController.items}" var="item" id="tblbase"
+                                 rows="10" paginator="true"  paginatorPosition="bottom"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks}
+                                 {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15,20 ">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:commandLink>
+                                    <h:graphicImage name="xls.png" library="icons" title="Exporta para Excel" />
+                                    <p:dataExporter type="xls" target="tblbase" fileName="tabela" pageOnly="true" excludeColumns="0" />
+                                </h:commandLink>&nbsp;
+                                <h:commandLink>
+                                    <h:graphicImage name="csv.png" library="icons" title="Exporta para csv" />
+                                    <p:dataExporter type="csv" target="tblbase" fileName="tabela" pageOnly="true" excludeColumns="0" />
+                                </h:commandLink>
+                            </f:facet>
+                            <p:commandLink action="#{ihtDeclaracaoController.prepareDestroy}" onclick="confirmation.show()" title="#{bundle.DestroyTitle}" styleClass="ui-icon ui-icon-trash" style="float: left; margin: 0 4px;" />
+                            <h:commandLink action="#{ihtDeclaracaoController.prepareEdit}" title="#{bundle.EditTitle}" styleClass="ui-icon ui-icon-pencil" style="float: left; margin: 0 4px;" />
+                        </p:column>
+                        <p:column sortBy="#{item.id}" filterBy="#{item.id}" headerText="#{bundle.IhtDeclaracaoLabel_id}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.IhtDeclaracaoLabel_id}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.id}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.nre.nre}" filterBy="#{item.nre.nre}" headerText="#{bundle.IhtDeclaracaoLabel_nre}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.IhtDeclaracaoLabel_nre}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.nre}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.empresa.siglaE}" filterBy="#{item.empresa}" headerText="#{bundle.IhtDeclaracaoLabel_empresa}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.IhtDeclaracaoLabel_empresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.empresa.siglaE}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.valor}" filterBy="#{item.valor}" headerText="#{bundle.IhtDeclaracaoLabel_valor}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.IhtDeclaracaoLabel_valor}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.valor}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dtPessoa}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.IhtDeclaracaoLabel_dtPessoa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtPessoa}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{item.dtAct}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.IhtDeclaracaoLabel_dtAct}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtAct}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{item.ordem}" filterBy="#{item.ordem}" headerText="#{bundle.IhtDeclaracaoLabel_ordem}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.IhtDeclaracaoLabel_ordem}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.ordem}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dtInicio}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.IhtDeclaracaoLabel_dtInicio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtInicio}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{item.dtFim}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.IhtDeclaracaoLabel_dtFim}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtFim}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{item.estado}" filterBy="#{item.estado}" headerText="#{bundle.IhtDeclaracaoLabel_estado}" >
+
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.IhtDeclaracaoLabel_estado}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.estado}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.motivoInactivo}" filterBy="#{item.motivoInactivo}" headerText="#{bundle.IhtDeclaracaoLabel_motivoInactivo}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.IhtDeclaracaoLabel_motivoInactivo}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.motivoInactivo}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.logNre}" filterBy="#{item.logNre}" headerText="#{bundle.IhtDeclaracaoLabel_logNre}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.IhtDeclaracaoLabel_logNre}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.logNre}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dtLog}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.IhtDeclaracaoLabel_dtLog}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtLog}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{item.tipoId.dsRedz}" filterBy="#{item.tipoId.dsRedz}" filterOptions="#{qacIhtTipoController.itemsAvailableSelectOne}" headerText="#{bundle.IhtDeclaracaoLabel_tipoId}" >
+                   
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.IhtDeclaracaoLabel_tipoId}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.tipoId.toString()}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.categoriaId}" filterBy="#{item.categoriaId.toString()}" filterOptions="#{qacIhtCategoriaController.itemsAvailableSelectOne}" headerText="#{bundle.IhtDeclaracaoLabel_categoriaId}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.IhtDeclaracaoLabel_categoriaId}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.categoriaId.toString()}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.enviadoId}" filterBy="#{item.enviadoId.toString()}"  filterOptions="#{qacIhtEnviadoController.itemsAvailableSelectOne}" headerText="#{bundle.IhtDeclaracaoLabel_enviadoId}" >
+
+                            <f:facet name="header"> 
+                            </f:facet>	
+                            <h:outputText value="#{item.enviadoId.toString()}"  />
+                        </p:column>
+                    </p:dataTable>
+                <p/>
+                <confirm:destroy obj="#{ihtDeclaracaoController}" />
+                </h:panelGroup>
+
+                &nbsp;&nbsp;
+                <p:commandButton  onclick="procuraCadastros.show();" type="button" value="#{bundle.CreateLink}" title="#{bundle.CreateTitle}"/>
+            </h:form>
+            <search:cadastros act="#{ihtDeclaracaoController}" val="#{ihtDeclaracaoController.cadastros}"/>   
+        </ui:define>
+    </ui:composition>
+
+</html>
