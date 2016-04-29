@@ -1,0 +1,16 @@
+
+   <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                   xmlns:ui="http://java.sun.com/jsf/facelets"
+                   xmlns:p="http://primefaces.org/ui"
+                   xmlns:h="http://java.sun.com/jsf/html">
+       <p:menubar style="width: 99%; z-index: 2" >
+           <p:menuitem value="Validações das Convocatórias" icon="ui-icon-contact" url="/net/srs/med/MedDiferencas/List.faces" />
+           <p:menuitem value="Convocatórias" icon="ui-icon-contact"  url="/net/srs/med/medConvocatoria/List.faces" />
+            <p:menuitem value="Grupo Convocatórias"  icon="ui-icon-contact" url="/net/srs/med/medConvocatoriaGrp/List.faces" />
+             <p:submenu label="Parametrizar" icon="ui-icon-contact" >
+                    <p:menuitem value="Tipo de Exame" url="/net/srs/med/medTipoExame/List.faces" />  
+                    <p:menuitem value="Resultados " url="/net/srs/med/medResultado/List.faces" />        
+           </p:submenu>           
+       </p:menubar>
+       <br/><br/><br/>
+   </ui:composition>  

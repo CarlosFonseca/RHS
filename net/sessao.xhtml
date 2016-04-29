@@ -1,0 +1,20 @@
+
+   <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                   xmlns:ui="http://java.sun.com/jsf/facelets"
+                   xmlns:p="http://primefaces.org/ui"
+                   xmlns:h="http://java.sun.com/jsf/html">   
+                <h:form> 
+                     
+                    <p:commandButton value="#{request.userPrincipal} - #{utilizadoresMoreController.sessionUserName(session)}" id="btUseMenu" alt="selecione uma opção do menu" type="button"  image="ui-icon ui-icon-arrowthick-1-s" style="background: transparent; background-image: none; border: none; position: absolute; top: 1px; right: 50px; color: white ; z-index: 2" />
+                    <p:menu style="z-index: 2" widgetVar="themeMenu" position="dynamic" trigger="btUseMenu" my="left top" at="left bottom" styleClass="themeMenu" >
+                        <p:menuitem value="Consultas RH" action="#{utilizadoresMoreController.appCange}" /> 
+                        <p:menuitem value="Fechar Sessão" action="#{utilizadoresMoreController.logout}" />  
+                        <p:menuitem value="Alterar password" url="/net/emp/utilizadores/Edit.faces" />                  
+                         
+                    </p:menu>
+                <p/>
+                </h:form>    
+       
+   </ui:composition>
+
+

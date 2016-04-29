@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+     
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <f:metadata>
+                <f:viewParam name="nre" value="#{medConvocatoriaController.selected.cadNre}"  />
+            </f:metadata>
+            <h:outputText value="#{bundle.CreateMedConvocatoriaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:include src="./../menubar.xhtml" />
+            <div style="width: 580px; float: left;  margin:10px 20px; " >
+                <h:form prependId="false" >         
+                <p:panel header="#{bundle.CreateMedConvocatoriaTitle}" >
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages globalOnly="true" />
+                    </h:panelGroup>                       
+                   <h:panelGrid id="eventDetails" columns="3">
+                      <h:outputLabel value="Nome:" for="cadastros" escape="true" />
+                      <h:inputText value="#{medConvocatoriaController.selected.cadNre.toString()}" disabled="true" /> 
+                      &nbsp;
+                        <h:outputLabel value="#{bundle.MedConvocatoriaLabel_dtIni}" for="dtIni" />
+                        <h:inputText id="dtIni" value="#{medConvocatoriaController.selected.dtIni}" title="#{bundle.MedConvocatoriaTitle_dtIni}" required="true" >
+                            <f:convertDateTime pattern="dd-MM-yyyy HH:mm" />
+                        </h:inputText>
+                        <p:message for="dtIni"/>
+                        <h:outputLabel value="#{bundle.MedConvocatoriaLabel_dtFim}" for="dtFim" />
+                        <h:inputText id="dtFim" value="#{medConvocatoriaController.selected.dtFim}" title="#{bundle.MedConvocatoriaTitle_dtFim}" required="true" >
+                            <f:convertDateTime pattern="dd-MM-yyyy HH:mm" />
+                        </h:inputText>
+                        <p:message for="dtFim"/>
+                        <h:outputLabel value="#{bundle.MedConvocatoriaLabel_grupo}" for="grupo" />
+                        <h:selectOneMenu id="grupo" value="#{medConvocatoriaController.selected.grupoConv}" title="#{bundle.MedConvocatoriaTitle_grupo}" >
+                            <f:selectItems value="#{medConvocatoriaGrpController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <p:message for="grupo"/>
+                        <h:outputLabel value="#{bundle.MedConvocatoriaLabel_tipo}" for="tipo" />
+                        <h:selectOneMenu id="tipo" value="#{medConvocatoriaController.selected.tipo}" title="#{bundle.MedConvocatoriaTitle_tipo}" >
+                            <f:selectItems value="#{medTipoExameController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <p:message for="tipo"/>
+                        <h:outputLabel value="#{bundle.MedConvocatoriaLabel_resultado}" for="resultado" />
+                        <h:selectOneMenu id="resultado" value="#{medConvocatoriaController.selected.resultado}" title="#{bundle.MedConvocatoriaTitle_resultado}" >
+                            <f:selectItems value="#{medResultadoController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <p:message for="resultado"/>
+                        <h:outputLabel value="#{bundle.MedConvocatoriaLabel_estab}" for="estab" />
+                        <h:selectOneMenu id="estab" value="#{medConvocatoriaController.selected.estab}" title="#{bundle.MedConvocatoriaTitle_estab}" >
+                            <f:selectItems value="#{glEstabelecimentoController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <p:message for="estab"/> 
+                    </h:panelGrid>   
+                         <br />                        
+                         <h:commandButton action="#{medConvocatoriaController.create}" value="#{bundle.SaveLink}" title="#{bundle.SaveTitle}" />
+                         </p:panel>         
+                    </h:form>   
+   
+            </div>
+            <div style="width: 400px; float: left;" >
+                <ui:include src="./../MedDiferencas/subList.xhtml" />  
+            </div> 
+        </ui:define>
+    </ui:composition>
+
+</html>

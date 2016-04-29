@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="/net/template.xhtml">
+
+            <ui:define name="title">
+                Validações das Convocatórias de Medicina
+            </ui:define>
+            <ui:define name="body">
+                <ui:include src="./../menubar.xhtml" /> 
+                <p:panel   style="border: none;" >
+                    <ui:include src="./subList.xhtml" /> 
+                    
+                    <p/>
+                    <h:form prependId="false">
+                    <p:panel header="Legenda" >
+                        <p:rating value="5" disabled="true" stars="5" >
+                            <f:converter converterId="javax.faces.Double"/> 
+                        </p:rating>
+                        <h:outputText value="&amp;nbsp;" escape="false"/> 
+                        Efectuar Exame de Admissão ou não existe dados dos exames do colaborador.
+                     <p/>
+                        <p:rating value="4" disabled="true" stars="5" >
+                            <f:converter converterId="javax.faces.Double"/> 
+                        </p:rating>
+                        <h:outputText value="&amp;nbsp;" escape="false"/>
+                        Passou da data que deveria de ir ao médico.
+                     <p/>
+                     <p:rating value="3" disabled="true" stars="5">
+                            <f:converter converterId="javax.faces.Double"/> 
+                     </p:rating>
+                     <h:outputText value="&amp;nbsp;" escape="false"/>
+                      Falta menos de 1 mês para a data de ir ao médico.  
+                     <p/>
+                     <p:rating value="2" disabled="true" stars="5">
+                        <f:converter converterId="javax.faces.Double"/> 
+                     </p:rating>
+                     <h:outputText value="&amp;nbsp;" escape="false"/>
+                      Falta menos de 2 meses para a data de ir ao médico.  
+                      <p/>
+                      <p:rating value="1" disabled="true" stars="5">
+                           <f:converter converterId="javax.faces.Double"/> 
+                      </p:rating> 
+                      <h:outputText value="&amp;nbsp;" escape="false"/>
+                      Falta mais de 2 meses para a data de ir ao médico.  
+                      <p/>                      
+                    </p:panel> 
+                    </h:form>
+                    
+                </p:panel>
+
+            </ui:define>
+            	
+        </ui:composition>
+
+    </body>
+</html>

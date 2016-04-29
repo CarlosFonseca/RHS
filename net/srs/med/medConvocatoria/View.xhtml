@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewMedConvocatoriaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:include src="./../menubar.xhtml" /> 
+            <h:form>
+                <p:panel header="#{bundle.ViewMedConvocatoriaTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages />
+                    </h:panelGroup>
+
+                    <br />
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.MedConvocatoriaLabel_id}"/>
+                        <h:outputText value="#{medConvocatoriaController.selected.id}" title="#{bundle.MedConvocatoriaTitle_id}"/>
+                        <h:outputText value="#{bundle.MedConvocatoriaLabel_dtIni}"/>
+                        <h:outputText value="#{medConvocatoriaController.selected.dtIni}" title="#{bundle.MedConvocatoriaTitle_dtIni}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.MedConvocatoriaLabel_dtFim}"/>
+                        <h:outputText value="#{medConvocatoriaController.selected.dtFim}" title="#{bundle.MedConvocatoriaTitle_dtFim}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.MedConvocatoriaLabel_ordem}"/>
+                        <h:outputText value="#{medConvocatoriaController.selected.ordem}" title="#{bundle.MedConvocatoriaTitle_ordem}"/>
+                        <h:outputText value="#{bundle.MedConvocatoriaLabel_estado}"/>
+                        <h:outputText value="#{medConvocatoriaController.selected.estado}" title="#{bundle.MedConvocatoriaTitle_estado}"/>
+                        <h:outputText value="#{bundle.MedConvocatoriaLabel_motivoInactivo}"/>
+                        <h:outputText value="#{medConvocatoriaController.selected.motivoInactivo}" title="#{bundle.MedConvocatoriaTitle_motivoInactivo}"/>
+                        <h:outputText value="#{bundle.MedConvocatoriaLabel_logNre}"/>
+                        <h:outputText value="#{medConvocatoriaController.selected.logNre}" title="#{bundle.MedConvocatoriaTitle_logNre}"/>
+                        <h:outputText value="#{bundle.MedConvocatoriaLabel_dtLog}"/>
+                        <h:outputText value="#{medConvocatoriaController.selected.dtLog}" title="#{bundle.MedConvocatoriaTitle_dtLog}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.MedConvocatoriaLabel_tipo}"/>
+                        <h:outputText value="#{medConvocatoriaController.selected.tipo}" title="#{bundle.MedConvocatoriaTitle_tipo}"/>
+                        <h:outputText value="#{bundle.MedConvocatoriaLabel_resultado}"/>
+                        <h:outputText value="#{medConvocatoriaController.selected.resultado}" title="#{bundle.MedConvocatoriaTitle_resultado}"/>
+                        <h:outputText value="#{bundle.MedConvocatoriaLabel_estab}"/>
+                        <h:outputText value="#{medConvocatoriaController.selected.estab}" title="#{bundle.MedConvocatoriaTitle_estab}"/>
+                        <h:outputText value="#{bundle.MedConvocatoriaLabel_cadNre}"/>
+                        <h:outputText value="#{medConvocatoriaController.selected.cadNre}" title="#{bundle.MedConvocatoriaTitle_cadNre}"/>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{medConvocatoriaController.destroyAndView}" value="#{bundle.DestroyLink}" title="#{bundle.DestroyTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

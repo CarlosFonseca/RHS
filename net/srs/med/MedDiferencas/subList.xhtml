@@ -1,0 +1,109 @@
+   <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+                <h:form prependId="false" >
+                    <br/>
+                    <h:outputText value="&amp;nbsp;&amp;nbsp;" escape="false"/>
+                    <h:outputLabel value=" Empresa: " />
+                    <h:selectOneMenu value="#{medDiferencasController.qacEmpresas}">
+                        <f:selectItems value="#{qacEmpresasController.itemsAvailableSelectOne}" />
+                        <f:ajax execute="@this" render="tblbase" onevent="applyFilterStyle" />
+                    </h:selectOneMenu>
+                    <h:outputLabel value=" Sit. Geográfica: " />
+                    <h:selectOneMenu value="#{medDiferencasController.sitGeografica}" >
+                        <f:selectItem itemValue="%" itemLabel="--------" />
+                        <f:selectItem itemValue="C" itemLabel="Continente"/>
+                        <f:selectItem itemValue="M" itemLabel="Madeira" />
+                        <f:selectItem itemValue="A" itemLabel="Açores" />
+                        <f:ajax execute="@this" render="tblbase" onevent="applyFilterStyle"  />
+                    </h:selectOneMenu>
+                    <p/>
+                    <p:dataTable value="#{medDiferencasController.items}" var="item" id="tblbase"
+                                 rows="10" paginator="true"  paginatorPosition="bottom"                                 
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks}
+                                 {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15,20 ">
+                        <p:column headerText="NRE" filterBy="#{item.nre}" sortBy="#{item.nre}" >
+                            <f:facet name="header">
+                                <h:outputText value="NRE" />
+                            </f:facet>
+                            <h:link value="#{item.nre}" outcome="./../medConvocatoria/Create.faces?nre=#{item.nre}"/>
+                        </p:column>   
+                        <p:column headerText="Nome" filterBy="#{item.nomeRedz}" sortBy="#{item.nomeRedz}" >
+                            <f:facet name="header">
+                                <h:outputText value="Nome"/>
+                            </f:facet>	
+                          <h:outputText value="#{item.nomeRedz}"  />						
+                        </p:column> 
+                         <p:column headerText="idade" filterBy="#{item.idade}" sortBy="#{item.idade}"  >
+                         <f:facet name="header" >
+                                <h:outputText value="idade"/>         
+                            </f:facet>	                        
+                             <h:outputText value="#{item.idade}">
+                                 <f:converter converterId="javax.faces.Integer"/>
+                             </h:outputText>					
+                       </p:column> 
+                       <p:column headerText="Direcção" filterBy="#{item.dsAbrv}" sortBy="#{item.dsAbrv}"  >
+                         <f:facet name="header" >
+                                <h:outputText value="Direcção"/>         
+                            </f:facet>	                        
+                           <h:outputText value="#{item.dsAbrv}" />					
+                       </p:column> 
+                        <p:column headerText="Área" filterBy="#{item.dsRedz}" sortBy="#{item.dsRedz}" >
+                         <f:facet name="header">
+                                <h:outputText value="Área"/>
+                            </f:facet>	                        
+                           <h:outputText value="#{item.dsRedz}" />
+                        </p:column>
+                        <p:column headerText="Distrito" filterBy="#{item.dsDistr}" sortBy="#{item.dsDistr}" >
+                         <f:facet name="header">
+                                <h:outputText value="Distrito"/>
+                            </f:facet>	                        
+                           <h:outputText value="#{item.dsDistr}" />
+                        </p:column>                        
+                        <p:column headerText="Local de Trab" filterBy="#{item.sigla}" sortBy="#{item.sigla}" >
+                         <f:facet name="header">
+                             <h:outputText value="Local de Trab"/><br/>
+                            </f:facet>	                        
+                             <h:outputText value="#{item.sigla}" />				
+                         </p:column>
+                        <p:column headerText="N.A.R." filterBy="#{item.rate}" sortBy="#{item.rate}" >
+                            <f:facet name="header">
+                                <h:outputText value="N.A.R." />
+                            </f:facet>	
+                            <p:rating value="#{item.rate}" disabled="true" stars="5" />			
+                        </p:column>                         
+                        <p:column headerText="DT_Exame" sortBy="#{item.maxDtIni}" >
+                         <f:facet name="header">
+                                <h:outputText value="DT_Exame"/>
+                            </f:facet>	                        
+                        <h:outputText value="#{item.maxDtIni}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>						
+                        </p:column>
+                        <p:column sortBy="#{item.situacao}" filterBy="#{item.situacao}" headerText="Situação" >
+                            <f:facet name="header">
+                                <h:outputText value="Situação"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.situacao}"  />						
+                        </p:column>
+                        <p:column headerText="Empresa" filterBy="#{item.siglaE}" filterOptions="#{qacEmpresasController.itemsAvailableSelectOne}" >
+                         <f:facet name="header">
+                                <h:outputText value="Empresa"/>
+                            </f:facet>	                        
+                            <h:outputText value="#{item.siglaE}" />				
+                        </p:column>                         
+                        <p:column headerText="Sit Geográfica" filterBy="#{item.sitGeo}" sortBy="#{item.sitGeo}" >
+                         <f:facet name="header">
+                                <h:outputText value="Sit Geográfica"/>
+                            </f:facet>	                        
+                           <h:outputText value="#{item.sitGeo}" />
+                        </p:column>
+                        
+                    </p:dataTable>
+                </h:form>    
+            	
+        </ui:composition>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewMedResultadoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">            
+            <ui:include src="./../menubar.xhtml" /> 
+            <h:form>
+                <p:panel header="#{bundle.ViewMedResultadoTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages />
+                    </h:panelGroup>
+
+                    <br />
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.MedResultadoLabel_id}"/>
+                        <h:outputText value="#{medResultadoController.selected.id}" title="#{bundle.MedResultadoTitle_id}"/>
+                        <h:outputText value="#{bundle.MedResultadoLabel_dsComp}"/>
+                        <h:outputText value="#{medResultadoController.selected.dsComp}" title="#{bundle.MedResultadoTitle_dsComp}"/>
+                        <h:outputText value="#{bundle.MedResultadoLabel_dsRedz}"/>
+                        <h:outputText value="#{medResultadoController.selected.dsRedz}" title="#{bundle.MedResultadoTitle_dsRedz}"/>
+                        <h:outputText value="#{bundle.MedResultadoLabel_dsAbrv}"/>
+                        <h:outputText value="#{medResultadoController.selected.dsAbrv}" title="#{bundle.MedResultadoTitle_dsAbrv}"/>
+                        <h:outputText value="#{bundle.MedResultadoLabel_ordem}"/>
+                        <h:outputText value="#{medResultadoController.selected.ordem}" title="#{bundle.MedResultadoTitle_ordem}"/>
+                        <h:outputText value="#{bundle.MedResultadoLabel_estado}"/>
+                        <h:outputText value="#{medResultadoController.selected.estado}" title="#{bundle.MedResultadoTitle_estado}"/>
+                        <h:outputText value="#{bundle.MedResultadoLabel_motivoInactivo}"/>
+                        <h:outputText value="#{medResultadoController.selected.motivoInactivo}" title="#{bundle.MedResultadoTitle_motivoInactivo}"/>
+                        <h:outputText value="#{bundle.MedResultadoLabel_logNre}"/>
+                        <h:outputText value="#{medResultadoController.selected.logNre}" title="#{bundle.MedResultadoTitle_logNre}"/>
+                        <h:outputText value="#{bundle.MedResultadoLabel_dtLog}"/>
+                        <h:outputText value="#{medResultadoController.selected.dtLog}" title="#{bundle.MedResultadoTitle_dtLog}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{medResultadoController.destroyAndView}" value="#{bundle.DestroyLink}" title="#{bundle.DestroyTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

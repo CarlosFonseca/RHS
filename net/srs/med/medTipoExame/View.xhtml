@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewMedTipoExameTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:include src="./../menubar.xhtml" /> 
+            <h:form>
+                <p:panel header="#{bundle.ViewMedTipoExameTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages />
+                    </h:panelGroup>
+
+                    <br />
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.MedTipoExameLabel_id}"/>
+                        <h:outputText value="#{medTipoExameController.selected.id}" title="#{bundle.MedTipoExameTitle_id}"/>
+                        <h:outputText value="#{bundle.MedTipoExameLabel_dsComp}"/>
+                        <h:outputText value="#{medTipoExameController.selected.dsComp}" title="#{bundle.MedTipoExameTitle_dsComp}"/>
+                        <h:outputText value="#{bundle.MedTipoExameLabel_dsRedz}"/>
+                        <h:outputText value="#{medTipoExameController.selected.dsRedz}" title="#{bundle.MedTipoExameTitle_dsRedz}"/>
+                        <h:outputText value="#{bundle.MedTipoExameLabel_dsAbrv}"/>
+                        <h:outputText value="#{medTipoExameController.selected.dsAbrv}" title="#{bundle.MedTipoExameTitle_dsAbrv}"/>
+                        <h:outputText value="#{bundle.MedTipoExameLabel_ordem}"/>
+                        <h:outputText value="#{medTipoExameController.selected.ordem}" title="#{bundle.MedTipoExameTitle_ordem}"/>
+                        <h:outputText value="#{bundle.MedTipoExameLabel_estado}"/>
+                        <h:outputText value="#{medTipoExameController.selected.estado}" title="#{bundle.MedTipoExameTitle_estado}"/>
+                        <h:outputText value="#{bundle.MedTipoExameLabel_motivoInactivo}"/>
+                        <h:outputText value="#{medTipoExameController.selected.motivoInactivo}" title="#{bundle.MedTipoExameTitle_motivoInactivo}"/>
+                        <h:outputText value="#{bundle.MedTipoExameLabel_logNre}"/>
+                        <h:outputText value="#{medTipoExameController.selected.logNre}" title="#{bundle.MedTipoExameTitle_logNre}"/>
+                        <h:outputText value="#{bundle.MedTipoExameLabel_dtLog}"/>
+                        <h:outputText value="#{medTipoExameController.selected.dtLog}" title="#{bundle.MedTipoExameTitle_dtLog}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{medTipoExameController.destroyAndView}" value="#{bundle.DestroyLink}" title="#{bundle.DestroyTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

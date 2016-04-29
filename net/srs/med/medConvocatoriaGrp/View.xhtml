@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewMedConvocatoriaGrpTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:include src="./../menubar.xhtml" /> 
+            <h:form>
+                <p:panel header="#{bundle.ViewMedConvocatoriaGrpTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages />
+                    </h:panelGroup>
+
+                    <br />
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.MedConvocatoriaGrpLabel_id}"/>
+                        <h:outputText value="#{medConvocatoriaGrpController.selected.id}" title="#{bundle.MedConvocatoriaGrpTitle_id}"/>
+                        <h:outputText value="#{bundle.MedConvocatoriaGrpLabel_dsComp}"/>
+                        <h:outputText value="#{medConvocatoriaGrpController.selected.dsComp}" title="#{bundle.MedConvocatoriaGrpTitle_dsComp}"/>
+                        <h:outputText value="#{bundle.MedConvocatoriaGrpLabel_dsRedz}"/>
+                        <h:outputText value="#{medConvocatoriaGrpController.selected.dsRedz}" title="#{bundle.MedConvocatoriaGrpTitle_dsRedz}"/>
+                        <h:outputText value="#{bundle.MedConvocatoriaGrpLabel_dsAbrv}"/>
+                        <h:outputText value="#{medConvocatoriaGrpController.selected.dsAbrv}" title="#{bundle.MedConvocatoriaGrpTitle_dsAbrv}"/>
+                        <h:outputText value="#{bundle.MedConvocatoriaGrpLabel_logNre}"/>
+                        <h:outputText value="#{medConvocatoriaGrpController.selected.logNre}" title="#{bundle.MedConvocatoriaGrpTitle_logNre}"/>
+                        <h:outputText value="#{bundle.MedConvocatoriaGrpLabel_dtLog}"/>
+                        <h:outputText value="#{medConvocatoriaGrpController.selected.dtLog}" title="#{bundle.MedConvocatoriaGrpTitle_dtLog}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{medConvocatoriaGrpController.destroyAndView}" value="#{bundle.DestroyLink}" title="#{bundle.DestroyTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

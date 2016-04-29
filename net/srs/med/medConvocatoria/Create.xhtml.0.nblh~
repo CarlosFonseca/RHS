@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:search="http://java.sun.com/jsf/composite/utils/search">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateMedConvocatoriaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form prependId="false" > 
+              <p:panel header="#{bundle.CreateMedConvocatoriaTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages globalOnly="true" />
+                    </h:panelGroup>                       
+                   <br />
+                   <div style="width: 700px">
+                   <table border="0" >
+                       <tbody>
+                           <tr>
+                               <td><h:outputLabel value="#{bundle.MedConvocatoriaLabel_cadNre}" for="cadNre"/> </td>
+                               <td align="center" width="560" ><h:outputText id="cadNre" value="#{medConvocatoriaController.selected.cadNre.toString()}" style="font-size: large; font-weight:bold " /></td>
+                               <td><p:commandButton action="#" onclick="procuraCadastros.show()" title="#{bundle.SearchTitle}" value="#{bundle.SearchTitle}" /> </td>
+                           </tr>
+                       </tbody>
+                   </table>
+                   </div>    
+                   <br />
+                   <p:schedule value="#{medConvocatoriaController.lazyModel}" editable="true" widgetVar="myschedule" 
+                               eventSelectListener="#{scheduleBean.onEventSelect}"
+                               onEventSelectUpdate="eventDetails" 
+                               onEventSelectComplete="eventDialog.show()" 
+                               dateSelectListener="#{medConvocatoriaController.onDateSelect}"
+                               onDateSelectUpdate="eventDetails" onDateSelectComplete="eventDialog.show()" style="width: 700px"  />
+              </p:panel>
+              </h:form>
+                   <br />  
+                    <p:dialog widgetVar="eventDialog"  modal="true" header="Detalhe" showEffect="clip" hideEffect="clip">
+                     <h:form prependId="false" >     
+                    <h:panelGrid id="eventDetails" columns="3">
+                        <h:outputLabel value="#{bundle.MedConvocatoriaLabel_dtIni}" for="dtIni" />
+                        <h:inputText id="dtIni" value="#{medConvocatoriaController.selected.dtIni}" title="#{bundle.MedConvocatoriaTitle_dtIni}" required="true" >
+                            <f:convertDateTime pattern="dd-MM-yyyy HH:mm" />
+                        </h:inputText>
+                        <p:message for="dtIni"/>
+                        <h:outputLabel value="#{bundle.MedConvocatoriaLabel_dtFim}" for="dtFim" />
+                        <h:inputText id="dtFim" value="#{medConvocatoriaController.selected.dtFim}" title="#{bundle.MedConvocatoriaTitle_dtFim}" required="true" >
+                            <f:convertDateTime pattern="dd-MM-yyyy HH:mm " />
+                        </h:inputText>
+                        <p:message for="dtFim"/>
+                        <h:outputLabel value="#{bundle.MedConvocatoriaLabel_grupo}" for="grupo" />
+                        <h:selectOneMenu id="grupo" value="#{medConvocatoriaController.selected.grupoConv}" title="#{bundle.MedConvocatoriaTitle_grupo}" >
+                            <f:selectItems value="#{medConvocatoriaGrpController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <p:message for="grupo"/>
+                        <h:outputLabel value="#{bundle.MedConvocatoriaLabel_tipo}" for="tipo" />
+                        <h:selectOneMenu id="tipo" value="#{medConvocatoriaController.selected.tipo}" title="#{bundle.MedConvocatoriaTitle_tipo}" >
+                            <f:selectItems value="#{medTipoExameController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <p:message for="tipo"/>
+                        <h:outputLabel value="#{bundle.MedConvocatoriaLabel_resultado}" for="resultado" />
+                        <h:selectOneMenu id="resultado" value="#{medConvocatoriaController.selected.resultado}" title="#{bundle.MedConvocatoriaTitle_resultado}" >
+                            <f:selectItems value="#{medResultadoController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <p:message for="resultado"/>
+                        <h:outputLabel value="#{bundle.MedConvocatoriaLabel_estab}" for="estab" />
+                        <h:selectOneMenu id="estab" value="#{medConvocatoriaController.selected.estab}" title="#{bundle.MedConvocatoriaTitle_estab}" >
+                            <f:selectItems value="#{glEstabelecimentoController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <p:message for="estab"/> 
+                        <h:outputLabel value="#{bundle.MedConvocatoriaLabel_estado}" for="estado" />
+                        <h:selectOneMenu id="estado" value="#{medConvocatoriaController.selected.estado}" title="#{bundle.MedConvocatoriaTitle_estado}" required="true" >
+                            <f:selectItem itemValue="A" />
+                            <f:selectItem itemValue="I" />
+                        </h:selectOneMenu>
+                        <p:message for="estado"/>
+                    </h:panelGrid>   
+                         <br />                        
+                    <p:commandButton ajax="false" immediate="true" action="#{medConvocatoriaController.create}" value="#{bundle.SaveLink}" title="#{bundle.SaveTitle}" />
+                    </h:form>      
+                    </p:dialog>  
+ 
+             <search:cadastros act="#{medConvocatoriaController}" val="#{medConvocatoriaController.cadastros}"/> 
+        </ui:define>
+    </ui:composition>
+
+</html>
