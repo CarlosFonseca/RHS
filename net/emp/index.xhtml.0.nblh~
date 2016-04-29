@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="/net/template.xhtml">
+
+            <ui:define name="title">
+                Colaborador
+            </ui:define>
+
+            <ui:define name="body">
+                <div align="center" >
+                <div style="width: 650px; margin-top: 2% "  >
+                    <table  cellpadding="1" border="0"  cellspacing="30"   style=" border-style: solid" >
+                        <tr align="center">
+                            <td>
+                                <div class="ui-widget ui-state-default ui-corner-all" style="height: 100px; width: 300px; color:white;" >
+                                    <strong style="position:relative; top:42%; font-size:large" >RH - Software</strong>
+                                </div>
+                            </td>
+                            <td>
+                               <div class="ui-widget ui-state-focus ui-corner-all" style="height: 100px; width: 300px; color:white;" >
+                                   <strong style="position:relative; top:42%; font-size: large" >RH - Consulta</strong> 
+                               </div>
+                            </td>
+                        </tr>
+                        <tr align="center" >
+                            <td>
+                                <div class="ui-widget ui-corner-all" style="height: 70px; width: 300px; border-color:#EFA9F9; border-style: solid; border-width: 2px;">
+                                    <strong style="position:relative; top:48%">
+                                        Actualização Diária
+                                    </strong>    
+                                </div>    
+                            </td>
+                            <td >
+                                <div class="ui-widget ui-corner-all" style="height: 70px; width: 300px; border-color:#cbb6ce; border-style: solid; border-width: 2px;"> 
+                                <strong style="position:relative; top:48%">
+                                     Consultas Directas
+                                  </strong>   
+                                 </div>   
+                                </td>
+                           </tr >
+                            <tr>                                
+                                <td>  
+                                  <div class="ui-widget ui-corner-all" style="height: 140px; width: 300px; border-color:#EFA9F9; border-style: solid; border-width: 2px;"> 
+                                      <br/><br/>
+                                      <strong style="position:relative; left: 28%" >
+                                      Módulos Disponíveis
+                                    </strong> 
+                                    <ul style="position:relative; left: 13%">
+                                        <li> Enquadramentos de Funções  </li>
+                                        <li> Acordo de IHT</li>
+                                        <li> Medicina do Trabalho</li>
+                                        <li> Gestão de Acesso</li>
+                                    </ul>
+                                    </div>    
+                                </td>
+                                <td >
+                                   <div class="ui-widget ui-corner-all" style="height: 140px; width: 300px; border-color:#cbb6ce; border-style: solid; border-width: 2px;"> 
+                                    <br/><br/>
+                                    <strong style="position:relative; left: 28%">
+                                      Módulos Disponíveis
+                                    </strong>                       
+                                    <ul style="position:relative; left: 13%">
+                                        <li> Quadro de Pessoal</li>
+                                        <li> Histórico Mensal</li>
+                                        <li> Indicadores de Gestão </li>
+                                    </ul> 
+                                  </div>          
+                                </td>
+                            </tr>
+                           <tr>
+                               <td colspan="2" align="center" >
+                   <div align="left" style="position:relative; left: 13%;"  >
+                    Para mudar de interface use o menu no canto superior direito 
+
+                    <span class="ui-icon ui-icon-arrowthick-1-s" style="display:inline-block" ></span> NRE - Nome Abrv
+                    <p/>
+                    <div style="margin-left: 233px "   >
+                       carregando na opção &nbsp;&nbsp; Consulta RH
+                    </div>
+                   </div>                                   
+                                   
+                               </td>                               
+                           </tr>
+                    </table>
+
+                </div>
+                 </div>   
+       
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

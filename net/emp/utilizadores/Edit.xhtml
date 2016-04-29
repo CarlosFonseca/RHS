@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/net/template.xhtml">
+      
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditUtilizadoresTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <f:event type="preRenderComponent" listener="#{utilizadoresController.prepareEditIndividual}"  />
+            <h:form prependId="false"  >
+                <p:panel header="#{bundle.EditUtilizadoresTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages globalOnly="true" />
+                    </h:panelGroup>
+                    <br />
+                    <h:panelGrid columns="3">                      
+                        <h:outputLabel value="#{bundle.UtilizadoresLabel_nre}" for="nre" />
+                        <h:outputText id="nre" value="#{utilizadoresController.selected.nre}" title="#{bundle.UtilizadoresTitle_nre}"/>
+                        <p:message for="nre"/>
+                        <h:outputLabel value="#{bundle.UtilizadoresLabel_nomeComp}" for="nomeComp" />
+                        <h:outputText id="nomeComp" value="#{utilizadoresController.selected.nomeComp}" title="#{bundle.UtilizadoresTitle_nomeComp}" />
+                        <p:message for="nomeComp"/>
+                        <h:outputLabel value="#{bundle.UtilizadoresLabel_nomeRedz}" for="nomeRedz" />
+                        <h:outputText id="nomeRedz" value="#{utilizadoresController.selected.nomeRedz}" title="#{bundle.UtilizadoresTitle_nomeRedz}" />
+                        <p:message for="nomeRedz"/>
+                        <h:outputLabel value="#{bundle.UtilizadoresLabel_nomeAbrv}" for="nomeAbrv" />
+                        <h:outputText id="nomeAbrv" value="#{utilizadoresController.selected.nomeAbrv}" title="#{bundle.UtilizadoresTitle_nomeAbrv}" />
+                        <p:message for="nomeAbrv"/>
+                        <h:outputLabel value="#{bundle.UtilizadoresLabel_palavraChave}" for="palavraChave" />
+                        <h:inputSecret id="palavraChave" value="#{utilizadoresController.selected.palavraChave}" title="#{bundle.UtilizadoresTitle_palavraChave}" required="true" maxlength="10"  />
+                        <p:message for="palavraChave"/>
+                        <h:outputLabel value="#{bundle.UtilizadoresLabel_palavraChaveConfirmacao}" for="palavraChave" />
+                        <h:inputSecret id="palavraChaveConfimacao" value="#{utilizadoresController.confirmaPass}" title="#{bundle.UtilizadoresTitle_palavraChaveConfirmacao}" required="true" maxlength="10" />
+                        <p:message for="palavraChaveConfimacao"/>
+
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{utilizadoresController.update}" value="#{bundle.SaveLink}" title="#{bundle.SaveTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
