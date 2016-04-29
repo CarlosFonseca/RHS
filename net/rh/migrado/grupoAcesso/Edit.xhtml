@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditGrupoAcessoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form prependId="false" >
+                <p:panel header="#{bundle.EditGrupoAcessoTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages globalOnly="true" />
+                    </h:panelGroup>
+
+                    <br />
+
+                    <h:panelGrid columns="3">
+                        <h:outputLabel value="#{bundle.GrupoAcessoLabel_grupoId}" for="grupoId" />
+                        <h:inputText id="grupoId" value="#{grupoAcessoController.selected.grupoId}" title="#{bundle.GrupoAcessoTitle_grupoId}" required="true" />
+                        <p:message for="grupoId"/>
+                        <h:outputLabel value="#{bundle.GrupoAcessoLabel_descricao}" for="descricao" />
+                        <h:inputTextarea rows="4" cols="30" id="descricao" value="#{grupoAcessoController.selected.descricao}" title="#{bundle.GrupoAcessoTitle_descricao}" required="true" />
+                        <p:message for="descricao"/>
+                        <h:outputLabel value="#{bundle.GrupoAcessoLabel_dsComp}" for="dsComp" />
+                        <h:inputText id="dsComp" value="#{grupoAcessoController.selected.dsComp}" title="#{bundle.GrupoAcessoTitle_dsComp}" />
+                        <p:message for="dsComp"/>
+                        <h:outputLabel value="#{bundle.GrupoAcessoLabel_dsRedz}" for="dsRedz" />
+                        <h:inputText id="dsRedz" value="#{grupoAcessoController.selected.dsRedz}" title="#{bundle.GrupoAcessoTitle_dsRedz}" />
+                        <p:message for="dsRedz"/>
+                        <h:outputLabel value="#{bundle.GrupoAcessoLabel_dsAbrv}" for="dsAbrv" />
+                        <h:inputText id="dsAbrv" value="#{grupoAcessoController.selected.dsAbrv}" title="#{bundle.GrupoAcessoTitle_dsAbrv}" />
+                        <p:message for="dsAbrv"/>
+                        <h:outputLabel value="#{bundle.GrupoAcessoLabel_estado}" for="estado" />
+                        <h:selectOneMenu id="estado" value="#{grupoAcessoController.selected.estado}" title="#{bundle.GrupoAcessoTitle_estado}" >
+                            <f:selectItem itemValue="A" />
+                            <f:selectItem itemValue="I" />
+                        </h:selectOneMenu>
+                        <p:message for="estado"/>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{grupoAcessoController.update}" value="#{bundle.SaveLink}" title="#{bundle.SaveTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

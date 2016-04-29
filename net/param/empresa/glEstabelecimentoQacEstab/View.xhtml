@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewGlEstabelecimentoQacEstabTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:include src="./../menubar.xhtml" />
+            <h:form>
+                <p:panel header="#{bundle.ViewGlEstabelecimentoQacEstabTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages />
+                    </h:panelGroup>
+
+                    <br />
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.GlEstabelecimentoQacEstabLabel_id}"/>
+                        <h:outputText value="#{glEstabelecimentoQacEstabController.selected.id}" title="#{bundle.GlEstabelecimentoQacEstabTitle_id}"/>
+                        <h:outputText value="#{bundle.GlEstabelecimentoQacEstabLabel_qacEstabelecimentos}"/>
+                        <h:outputText value="#{glEstabelecimentoQacEstabController.selected.qacEstabelecimentos}" title="#{bundle.GlEstabelecimentoQacEstabTitle_qacEstabelecimentos}"/>
+                        <h:outputText value="#{bundle.GlEstabelecimentoQacEstabLabel_estab}"/>
+                        <h:outputText value="#{glEstabelecimentoQacEstabController.selected.estab}" title="#{bundle.GlEstabelecimentoQacEstabTitle_estab}"/>
+                        <h:outputText value="#{bundle.GlEstabelecimentoLabel_ordem}"/>
+                        <h:outputText value="#{glEstabelecimentoQacEstabController.selected.ordem}" title="#{bundle.GlEstabelecimentoTitle_ordem}"/>
+                        <h:outputText value="#{bundle.GlEstabelecimentoLabel_estado}"/>
+                        <h:outputText value="#{glEstabelecimentoQacEstabController.selected.estado}" title="#{bundle.GlEstabelecimentoTitle_estado}"/>
+                        <h:outputText value="#{bundle.GlEstabelecimentoLabel_motivoInactivo}"/>
+                        <h:outputText value="#{glEstabelecimentoQacEstabController.selected.motivoInactivo}" title="#{bundle.GlEstabelecimentoTitle_motivoInactivo}"/>
+                        <h:outputText value="#{bundle.GlEstabelecimentoLabel_logNre}"/>
+                        <h:outputText value="#{glEstabelecimentoQacEstabController.selected.logNre}" title="#{bundle.GlEstabelecimentoTitle_logNre}"/>
+                        <h:outputText value="#{bundle.GlEstabelecimentoLabel_dtLog}"/>
+                        <h:outputText value="#{glEstabelecimentoQacEstabController.selected.dtLog}" title="#{bundle.GlEstabelecimentoTitle_dtLog}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{glEstabelecimentoQacEstabController.destroyAndView}" value="#{bundle.DestroyLink}" title="#{bundle.DestroyTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

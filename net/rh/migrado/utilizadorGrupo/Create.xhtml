@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateUtilizadorGrupoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form prependId="false" >
+                <p:panel header="#{bundle.CreateUtilizadorGrupoTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages globalOnly="true" />
+                    </h:panelGroup>
+                    <br />
+                    <h:panelGrid columns="3">
+                        <h:outputLabel value="#{bundle.UtilizadorGrupoLabel_dtInicio}" for="dtInicio" />
+                        <p:calendar id="dtInicio" value="#{utilizadorGrupoController.selected.dtInicio}" title="#{bundle.UtilizadorGrupoTitle_dtInicio}" >
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </p:calendar>
+                        <p:message for="dtInicio"/>
+                        <h:outputLabel value="#{bundle.UtilizadorGrupoLabel_dtFim}" for="dtFim" />
+                        <p:calendar id="dtFim" value="#{utilizadorGrupoController.selected.dtFim}" title="#{bundle.UtilizadorGrupoTitle_dtFim}" >
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </p:calendar>
+                        <p:message for="dtFim"/>
+                        <h:outputLabel value="#{bundle.UtilizadorGrupoLabel_estado}" for="estado" />
+                        <h:selectOneMenu id="estado" value="#{utilizadorGrupoController.selected.estado}" title="#{bundle.UtilizadorGrupoTitle_estado}" >
+                            <f:selectItem itemValue="A"/>
+                            <f:selectItem itemValue="I"/>
+                        </h:selectOneMenu>
+                        <p:message for="estado"/>
+                        <h:outputLabel value="#{bundle.UtilizadorGrupoLabel_utilizadores}" for="utilizadores" />
+                        <h:selectOneMenu id="utilizadores" value="#{utilizadorGrupoController.selected.utilizadores}" title="#{bundle.UtilizadorGrupoTitle_utilizadores}" required="true" >
+                            <f:selectItems value="#{utilizadoresController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <p:message for="utilizadores"/>
+                        <h:outputLabel value="#{bundle.UtilizadorGrupoLabel_grupoAcesso}" for="grupoAcesso" />
+                        <h:selectOneMenu id="grupoAcesso" value="#{utilizadorGrupoController.selected.grupoAcesso}" title="#{bundle.UtilizadorGrupoTitle_grupoAcesso}" required="true" >
+                            <f:selectItems value="#{grupoAcessoController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <p:message for="grupoAcesso"/>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{utilizadorGrupoController.create}" value="#{bundle.SaveLink}" title="#{bundle.SaveTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

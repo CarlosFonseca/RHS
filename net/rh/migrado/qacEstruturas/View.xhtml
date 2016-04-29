@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewQacEstruturasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <p:panel header="#{bundle.ViewQacEstruturasTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages />
+                    </h:panelGroup>
+
+                    <br />
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.QacEstruturasLabel_qacEstruturasPK_cdEstrutura}"/>
+                        <h:outputText value="#{qacEstruturasController.selected.qacEstruturasPK.cdEstrutura}" title="#{bundle.QacEstruturasTitle_qacEstruturasPK_cdEstrutura}"/>
+                        <h:outputText value="#{bundle.QacEstruturasLabel_dsComp}"/>
+                        <h:outputText value="#{qacEstruturasController.selected.dsComp}" title="#{bundle.QacEstruturasTitle_dsComp}"/>
+                        <h:outputText value="#{bundle.QacEstruturasLabel_dsRedz}"/>
+                        <h:outputText value="#{qacEstruturasController.selected.dsRedz}" title="#{bundle.QacEstruturasTitle_dsRedz}"/>
+                        <h:outputText value="#{bundle.QacEstruturasLabel_dsAbrv}"/>
+                        <h:outputText value="#{qacEstruturasController.selected.dsAbrv}" title="#{bundle.QacEstruturasTitle_dsAbrv}"/>
+                        <h:outputText value="#{bundle.QacEstruturasLabel_siglaEstruturaPai}"/>
+                        <h:outputText value="#{qacEstruturasController.selected.siglaEstruturaPai}" title="#{bundle.QacEstruturasTitle_siglaEstruturaPai}"/>
+                        <h:outputText value="#{bundle.QacEstruturasLabel_cdEstruturaPai}"/>
+                        <h:outputText value="#{qacEstruturasController.selected.cdEstruturaPai}" title="#{bundle.QacEstruturasTitle_cdEstruturaPai}"/>
+                        <h:outputText value="#{bundle.QacEstruturasLabel_cdGrpEstat}"/>
+                        <h:outputText value="#{qacEstruturasController.selected.cdGrpEstat}" title="#{bundle.QacEstruturasTitle_cdGrpEstat}"/>
+                        <h:outputText value="#{bundle.QacEstruturasLabel_dtAltera}"/>
+                        <h:outputText value="#{qacEstruturasController.selected.dtAltera}" title="#{bundle.QacEstruturasTitle_dtAltera}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.QacEstruturasLabel_nrOrdem}"/>
+                        <h:outputText value="#{qacEstruturasController.selected.nrOrdem}" title="#{bundle.QacEstruturasTitle_nrOrdem}"/>
+                        <h:outputText value="#{bundle.QacEstruturasLabel_pontuacao}"/>
+                        <h:outputText value="#{qacEstruturasController.selected.pontuacao}" title="#{bundle.QacEstruturasTitle_pontuacao}"/>
+                        <h:outputText value="#{bundle.QacEstruturasLabel_manager}"/>
+                        <h:outputText value="#{qacEstruturasController.selected.manager}" title="#{bundle.QacEstruturasTitle_manager}"/>
+                        <h:outputText value="#{bundle.QacEstruturasLabel_qacEmpresas}"/>
+                        <h:outputText value="#{qacEstruturasController.selected.qacEmpresas}" title="#{bundle.QacEstruturasTitle_qacEmpresas}"/>
+                        <h:outputText value="#{bundle.QacEstruturasLabel_cdSbu}"/>
+                        <h:outputText value="#{qacEstruturasController.selected.cdSbu}" title="#{bundle.QacEstruturasTitle_cdSbu}"/>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{qacEstruturasController.destroyAndView}" value="#{bundle.DestroyLink}" title="#{bundle.DestroyTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

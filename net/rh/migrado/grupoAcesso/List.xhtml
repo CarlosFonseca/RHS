@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:confirm="http://java.sun.com/jsf/composite/utils/confirm">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListGrupoAcessoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form prependId="false" >
+                <h:panelGroup id="messagePanel" layout="block">
+                    <p:messages />
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListGrupoAcessoEmpty}" rendered="#{grupoAcessoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{grupoAcessoController.items.rowCount > 0}">
+                    <h:inputHidden id="tblbasesize" value="#{grupoAcessoController.tableWidth}"/>
+                    <p:dataTable value="#{grupoAcessoController.items}" var="item" id="tblbase"
+                                 rows="10" paginator="true"  paginatorPosition="bottom"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks}
+                                 {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15,20 ">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:commandLink>
+                                    <h:graphicImage name="xls.png" library="icons" title="Exporta para Excel" />
+                                    <p:dataExporter type="xls" target="tblbase" fileName="tabela" pageOnly="true" excludeColumns="0" />
+                                </h:commandLink>&nbsp;
+                                <h:commandLink>
+                                    <h:graphicImage name="csv.png" library="icons" title="Exporta para csv" />
+                                    <p:dataExporter type="csv" target="tblbase" fileName="tabela" pageOnly="true" excludeColumns="0" />
+                                </h:commandLink>
+                            </f:facet>
+                            <p:commandLink action="#{grupoAcessoController.prepareDestroy}" onclick="confirmation.show()" title="#{bundle.DestroyTitle}" styleClass="ui-icon ui-icon-trash" style="float: left; margin: 0 4px;" />
+                            <h:commandLink action="#{grupoAcessoController.prepareEdit}" title="#{bundle.EditTitle}" styleClass="ui-icon ui-icon-pencil" style="float: left; margin: 0 4px;" />
+                        </p:column>
+                        <p:column sortBy="#{item.grupoId}" filterBy="#{item.grupoId}" headerText="#{bundle.GrupoAcessoLabel_grupoId}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GrupoAcessoLabel_grupoId}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.grupoId}"  />						
+                        </p:column>
+                        </p:column>
+                        <p:column sortBy="#{item.dsComp}" filterBy="#{item.dsComp}" headerText="#{bundle.GrupoAcessoLabel_dsComp}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GrupoAcessoLabel_dsComp}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.dsComp}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dsRedz}" filterBy="#{item.dsRedz}" headerText="#{bundle.GrupoAcessoLabel_dsRedz}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GrupoAcessoLabel_dsRedz}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.dsRedz}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dsAbrv}" filterBy="#{item.dsAbrv}" headerText="#{bundle.GrupoAcessoLabel_dsAbrv}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GrupoAcessoLabel_dsAbrv}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.dsAbrv}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.estado}" filterBy="#{item.estado}" headerText="#{bundle.GrupoAcessoLabel_estado}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GrupoAcessoLabel_estado}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.estado}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.logNre}" filterBy="#{item.logNre}" headerText="#{bundle.GrupoAcessoLabel_logNre}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GrupoAcessoLabel_logNre}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.logNre}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dtLog}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GrupoAcessoLabel_dtLog}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtLog}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                    </p:dataTable>
+                </h:panelGroup>
+                <br />&nbsp;
+                <h:commandButton action="#{grupoAcessoController.prepareCreate}" value="#{bundle.CreateLink}" title="#{bundle.CreateTitle}"/>
+
+                <confirm:destroy obj="#{grupoAcessoController}" />  
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

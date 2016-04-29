@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewGlEmpresaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:include src="./../menubar.xhtml" />
+            <h:form>
+                <p:panel header="#{bundle.ViewGlEmpresaTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages />
+                    </h:panelGroup>
+
+                    <br />
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.GlEmpresaLabel_id}"/>
+                        <h:outputText value="#{glEmpresaController.selected.id}" title="#{bundle.GlEmpresaTitle_id}"/>
+                        <h:outputText value="#{bundle.GlEmpresaLabel_dsComp}"/>
+                        <h:outputText value="#{glEmpresaController.selected.dsComp}" title="#{bundle.GlEmpresaTitle_dsComp}"/>
+                        <h:outputText value="#{bundle.GlEmpresaLabel_dsRedz}"/>
+                        <h:outputText value="#{glEmpresaController.selected.dsRedz}" title="#{bundle.GlEmpresaTitle_dsRedz}"/>
+                        <h:outputText value="#{bundle.GlEmpresaLabel_dsAbrv}"/>
+                        <h:outputText value="#{glEmpresaController.selected.dsAbrv}" title="#{bundle.GlEmpresaTitle_dsAbrv}"/>
+                        <h:outputText value="#{bundle.GlEmpresaLabel_morada}"/>
+                        <h:outputText value="#{glEmpresaController.selected.morada}" title="#{bundle.GlEmpresaTitle_morada}"/>
+                        <h:outputText value="#{bundle.GlEmpresaLabel_localidade}"/>
+                        <h:outputText value="#{glEmpresaController.selected.localidade}" title="#{bundle.GlEmpresaTitle_localidade}"/>
+                        <h:outputText value="#{bundle.GlEmpresaLabel_tel1}"/>
+                        <h:outputText value="#{glEmpresaController.selected.tel1}" title="#{bundle.GlEmpresaTitle_tel1}"/>
+                        <h:outputText value="#{bundle.GlEmpresaLabel_tel2}"/>
+                        <h:outputText value="#{glEmpresaController.selected.tel2}" title="#{bundle.GlEmpresaTitle_tel2}"/>
+                        <h:outputText value="#{bundle.GlEmpresaLabel_telemovel}"/>
+                        <h:outputText value="#{glEmpresaController.selected.telemovel}" title="#{bundle.GlEmpresaTitle_telemovel}"/>
+                        <h:outputText value="#{bundle.GlEmpresaLabel_fax}"/>
+                        <h:outputText value="#{glEmpresaController.selected.fax}" title="#{bundle.GlEmpresaTitle_fax}"/>
+                        <h:outputText value="#{bundle.GlEmpresaLabel_internet}"/>
+                        <h:outputText value="#{glEmpresaController.selected.internet}" title="#{bundle.GlEmpresaTitle_internet}"/>
+                        <h:outputText value="#{bundle.GlEmpresaLabel_contacto}"/>
+                        <h:outputText value="#{glEmpresaController.selected.contacto}" title="#{bundle.GlEmpresaTitle_contacto}"/>
+                        <h:outputText value="#{bundle.GlEmpresaLabel_observacao}"/>
+                        <h:outputText value="#{glEmpresaController.selected.observacao}" title="#{bundle.GlEmpresaTitle_observacao}"/>
+                        <h:outputText value="#{bundle.GlEmpresaLabel_ordem}"/>
+                        <h:outputText value="#{glEmpresaController.selected.ordem}" title="#{bundle.GlEmpresaTitle_ordem}"/>
+                        <h:outputText value="#{bundle.GlEmpresaLabel_estado}"/>
+                        <h:outputText value="#{glEmpresaController.selected.estado}" title="#{bundle.GlEmpresaTitle_estado}"/>
+                        <h:outputText value="#{bundle.GlEmpresaLabel_motivoInactivo}"/>
+                        <h:outputText value="#{glEmpresaController.selected.motivoInactivo}" title="#{bundle.GlEmpresaTitle_motivoInactivo}"/>
+                        <h:outputText value="#{bundle.GlEmpresaLabel_logNre}"/>
+                        <h:outputText value="#{glEmpresaController.selected.logNre}" title="#{bundle.GlEmpresaTitle_logNre}"/>
+                        <h:outputText value="#{bundle.GlEmpresaLabel_dtLog}"/>
+                        <h:outputText value="#{glEmpresaController.selected.dtLog}" title="#{bundle.GlEmpresaTitle_dtLog}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.GlEmpresaLabel_qacCodigosPostais}"/>
+                        <h:outputText value="#{glEmpresaController.selected.qacCodigosPostais}" title="#{bundle.GlEmpresaTitle_qacCodigosPostais}"/>
+                        <h:outputText value="#{bundle.GlEmpresaLabel_tipoEmpresa}"/>
+                        <h:outputText value="#{glEmpresaController.selected.tipoEmpresa}" title="#{bundle.GlEmpresaTitle_tipoEmpresa}"/>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{glEmpresaController.destroyAndView}" value="#{bundle.DestroyLink}" title="#{bundle.DestroyTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

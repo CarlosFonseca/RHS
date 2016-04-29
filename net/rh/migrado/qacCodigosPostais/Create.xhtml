@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateQacCodigosPostaisTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form prependId="false" >
+                <p:panel header="#{bundle.CreateQacCodigosPostaisTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages globalOnly="true" />
+                    </h:panelGroup>
+                    <br />
+                    <h:panelGrid columns="3">
+                        <h:outputLabel value="#{bundle.QacCodigosPostaisLabel_qacCodigosPostaisPK_nrOrdem}" for="qacCodigosPostaisPK_nrOrdem" />
+                        <h:inputText id="qacCodigosPostaisPK_nrOrdem" value="#{qacCodigosPostaisController.selected.qacCodigosPostaisPK.nrOrdem}" title="#{bundle.QacCodigosPostaisTitle_qacCodigosPostaisPK_nrOrdem}" required="true" />
+                        <p:message for="qacCodigosPostaisPK_nrOrdem"/>
+                        <h:outputLabel value="#{bundle.QacCodigosPostaisLabel_qacCodigosPostaisPK_cdPostal}" for="qacCodigosPostaisPK_cdPostal" />
+                        <h:inputText id="qacCodigosPostaisPK_cdPostal" value="#{qacCodigosPostaisController.selected.qacCodigosPostaisPK.cdPostal}" title="#{bundle.QacCodigosPostaisTitle_qacCodigosPostaisPK_cdPostal}" required="true" />
+                        <p:message for="qacCodigosPostaisPK_cdPostal"/>
+                        <h:outputLabel value="#{bundle.QacCodigosPostaisLabel_dsArea}" for="dsArea" />
+                        <h:inputText id="dsArea" value="#{qacCodigosPostaisController.selected.dsArea}" title="#{bundle.QacCodigosPostaisTitle_dsArea}" required="true" />
+                        <p:message for="dsArea"/>
+                        <h:outputLabel value="#{bundle.QacCodigosPostaisLabel_subCodPostal}" for="subCodPostal" />
+                        <h:inputText id="subCodPostal" value="#{qacCodigosPostaisController.selected.subCodPostal}" title="#{bundle.QacCodigosPostaisTitle_subCodPostal}" />
+                        <p:message for="subCodPostal"/>
+                        <h:outputLabel value="#{bundle.QacCodigosPostaisLabel_qacPaises}" for="qacPaises" />
+                        <h:selectOneMenu id="qacPaises" value="#{qacCodigosPostaisController.selected.qacPaises}" title="#{bundle.QacCodigosPostaisTitle_qacPaises}" required="true" >
+                            <f:selectItems value="#{qacPaisesController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <p:message for="qacPaises"/>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{qacCodigosPostaisController.create}" value="#{bundle.SaveLink}" title="#{bundle.SaveTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

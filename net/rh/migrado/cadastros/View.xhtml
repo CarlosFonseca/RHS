@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCadastrosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <p:panel header="#{bundle.ViewCadastrosTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages />
+                    </h:panelGroup>
+
+                    <br />
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.CadastrosLabel_nre}"/>
+                        <h:outputText value="#{cadastrosController.selected.nre}" title="#{bundle.CadastrosTitle_nre}"/>
+                        <h:outputText value="#{bundle.CadastrosLabel_nomeComp}"/>
+                        <h:outputText value="#{cadastrosController.selected.nomeComp}" title="#{bundle.CadastrosTitle_nomeComp}"/>
+                        <h:outputText value="#{bundle.CadastrosLabel_nomeRedz}"/>
+                        <h:outputText value="#{cadastrosController.selected.nomeRedz}" title="#{bundle.CadastrosTitle_nomeRedz}"/>
+                        <h:outputText value="#{bundle.CadastrosLabel_nomeAbrv}"/>
+                        <h:outputText value="#{cadastrosController.selected.nomeAbrv}" title="#{bundle.CadastrosTitle_nomeAbrv}"/>
+                        <h:outputText value="#{bundle.CadastrosLabel_sexo}"/>
+                        <h:outputText value="#{cadastrosController.selected.sexo}" title="#{bundle.CadastrosTitle_sexo}"/>
+                        <h:outputText value="#{bundle.CadastrosLabel_dtNasc}"/>
+                        <h:outputText value="#{cadastrosController.selected.dtNasc}" title="#{bundle.CadastrosTitle_dtNasc}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.CadastrosLabel_estCivil}"/>
+                        <h:outputText value="#{cadastrosController.selected.estCivil}" title="#{bundle.CadastrosTitle_estCivil}"/>
+                        <h:outputText value="#{bundle.CadastrosLabel_dtSituacao}"/>
+                        <h:outputText value="#{cadastrosController.selected.dtSituacao}" title="#{bundle.CadastrosTitle_dtSituacao}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.CadastrosLabel_cdMotivo}"/>
+                        <h:outputText value="#{cadastrosController.selected.cdMotivo}" title="#{bundle.CadastrosTitle_cdMotivo}"/>
+                        <h:outputText value="#{bundle.CadastrosLabel_dtEstCivil}"/>
+                        <h:outputText value="#{cadastrosController.selected.dtEstCivil}" title="#{bundle.CadastrosTitle_dtEstCivil}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.CadastrosLabel_titulo}"/>
+                        <h:outputText value="#{cadastrosController.selected.titulo}" title="#{bundle.CadastrosTitle_titulo}"/>
+                        <h:outputText value="#{bundle.CadastrosLabel_dtTitulo}"/>
+                        <h:outputText value="#{cadastrosController.selected.dtTitulo}" title="#{bundle.CadastrosTitle_dtTitulo}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.CadastrosLabel_enderecos}"/>
+                        <h:outputText value="#{cadastrosController.selected.enderecos}" title="#{bundle.CadastrosTitle_enderecos}"/>
+                        <h:outputText value="#{bundle.CadastrosLabel_infoProfs}"/>
+                        <h:outputText value="#{cadastrosController.selected.infoProfs}" title="#{bundle.CadastrosTitle_infoProfs}"/>
+                        <h:outputText value="#{bundle.CadastrosLabel_infoGeral}"/>
+                        <h:outputText value="#{cadastrosController.selected.infoGeral}" title="#{bundle.CadastrosTitle_infoGeral}"/>
+                        <h:outputText value="#{bundle.CadastrosLabel_cdSituacao}"/>
+                        <h:outputText value="#{cadastrosController.selected.cdSituacao}" title="#{bundle.CadastrosTitle_cdSituacao}"/>
+                        <h:outputText value="#{bundle.CadastrosLabel_cdPais}"/>
+                        <h:outputText value="#{cadastrosController.selected.cdPais}" title="#{bundle.CadastrosTitle_cdPais}"/>
+                        <h:outputText value="#{bundle.CadastrosLabel_cdPaisNacional}"/>
+                        <h:outputText value="#{cadastrosController.selected.cdPaisNacional}" title="#{bundle.CadastrosTitle_cdPaisNacional}"/>
+                        <h:outputText value="#{bundle.CadastrosLabel_qacFreguesias}"/>
+                        <h:outputText value="#{cadastrosController.selected.qacFreguesias}" title="#{bundle.CadastrosTitle_qacFreguesias}"/>
+                        <h:outputText value="#{bundle.CadastrosLabel_cdHabLit}"/>
+                        <h:outputText value="#{cadastrosController.selected.cdHabLit}" title="#{bundle.CadastrosTitle_cdHabLit}"/>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{cadastrosController.destroyAndView}" value="#{bundle.DestroyLink}" title="#{bundle.DestroyTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

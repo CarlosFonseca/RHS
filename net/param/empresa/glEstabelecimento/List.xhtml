@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:confirm="http://java.sun.com/jsf/composite/utils/confirm">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListGlEstabelecimentoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:include src="./../menubar.xhtml" />
+            <h:form prependId="false" >
+                <h:panelGroup id="messagePanel" layout="block">
+                    <p:messages />
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListGlEstabelecimentoEmpty}" rendered="#{glEstabelecimentoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{glEstabelecimentoController.items.rowCount > 0}">
+                    <h:inputHidden id="tblbasesize" value="#{glEstabelecimentoController.tableWidth}"/>
+                    <p:dataTable value="#{glEstabelecimentoController.items}" var="item" id="tblbase"
+                                 rows="10" paginator="true"  paginatorPosition="bottom"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks}
+                                 {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15,20 ">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:commandLink>
+                                    <h:graphicImage name="xls.png" library="icons" title="Exporta para Excel" />
+                                    <p:dataExporter type="xls" target="tblbase" fileName="tabela" pageOnly="true" excludeColumns="0" />
+                                </h:commandLink>&nbsp;
+                                <h:commandLink>
+                                    <h:graphicImage name="csv.png" library="icons" title="Exporta para csv" />
+                                    <p:dataExporter type="csv" target="tblbase" fileName="tabela" pageOnly="true" excludeColumns="0" />
+                                </h:commandLink>
+                            </f:facet>
+                            <p:commandLink action="#{glEstabelecimentoController.prepareDestroy}" onclick="confirmation.show()" title="#{bundle.DestroyTitle}" styleClass="ui-icon ui-icon-trash" style="float: left; margin: 0 4px;" />
+                            <h:commandLink action="#{glEstabelecimentoController.prepareEdit}" title="#{bundle.EditTitle}" styleClass="ui-icon ui-icon-pencil" style="float: left; margin: 0 4px;" />
+                        </p:column>
+                        <p:column sortBy="#{item.id}" filterBy="#{item.id}" headerText="#{bundle.GlEstabelecimentoLabel_id}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GlEstabelecimentoLabel_id}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.id}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dsComp}" filterBy="#{item.dsComp}" headerText="#{bundle.GlEstabelecimentoLabel_dsComp}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GlEstabelecimentoLabel_dsComp}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.dsComp}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dsRedz}" filterBy="#{item.dsRedz}" headerText="#{bundle.GlEstabelecimentoLabel_dsRedz}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GlEstabelecimentoLabel_dsRedz}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.dsRedz}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dsAbrv}" filterBy="#{item.dsAbrv}" headerText="#{bundle.GlEstabelecimentoLabel_dsAbrv}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GlEstabelecimentoLabel_dsAbrv}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.dsAbrv}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.morada}" filterBy="#{item.morada}" headerText="#{bundle.GlEstabelecimentoLabel_morada}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GlEstabelecimentoLabel_morada}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.morada}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.localidade}" filterBy="#{item.localidade}" headerText="#{bundle.GlEstabelecimentoLabel_localidade}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GlEstabelecimentoLabel_localidade}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.localidade}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.tel1}" filterBy="#{item.tel1}" headerText="#{bundle.GlEstabelecimentoLabel_tel1}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GlEstabelecimentoLabel_tel1}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.tel1}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.tel2}" filterBy="#{item.tel2}" headerText="#{bundle.GlEstabelecimentoLabel_tel2}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GlEstabelecimentoLabel_tel2}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.tel2}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.telemovel}" filterBy="#{item.telemovel}" headerText="#{bundle.GlEstabelecimentoLabel_telemovel}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GlEstabelecimentoLabel_telemovel}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.telemovel}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.fax}" filterBy="#{item.fax}" headerText="#{bundle.GlEstabelecimentoLabel_fax}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GlEstabelecimentoLabel_fax}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.fax}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.internet}" filterBy="#{item.internet}" headerText="#{bundle.GlEstabelecimentoLabel_internet}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GlEstabelecimentoLabel_internet}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.internet}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.contacto}" filterBy="#{item.contacto}" headerText="#{bundle.GlEstabelecimentoLabel_contacto}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GlEstabelecimentoLabel_contacto}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.contacto}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.observacao}" filterBy="#{item.observacao}" headerText="#{bundle.GlEstabelecimentoLabel_observacao}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GlEstabelecimentoLabel_observacao}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.observacao}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.ordem}" filterBy="#{item.ordem}" headerText="#{bundle.GlEstabelecimentoLabel_ordem}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GlEstabelecimentoLabel_ordem}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.ordem}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.estado}" filterBy="#{item.estado}" headerText="#{bundle.GlEstabelecimentoLabel_estado}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GlEstabelecimentoLabel_estado}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.estado}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.motivoInactivo}" filterBy="#{item.motivoInactivo}" headerText="#{bundle.GlEstabelecimentoLabel_motivoInactivo}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GlEstabelecimentoLabel_motivoInactivo}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.motivoInactivo}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.logNre}" filterBy="#{item.logNre}" headerText="#{bundle.GlEstabelecimentoLabel_logNre}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GlEstabelecimentoLabel_logNre}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.logNre}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dtLog}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GlEstabelecimentoLabel_dtLog}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtLog}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{item.qacCodigosPostais}" filterBy="#{item.qacCodigosPostais}"  headerText="#{bundle.GlEstabelecimentoLabel_qacCodigosPostais}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GlEstabelecimentoLabel_qacCodigosPostais}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.qacCodigosPostais.toString()}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.empresa}" filterBy="#{item.empresa}" filterOptions="#{glEmpresaController.itemsAvailableSelectOne}" headerText="#{bundle.GlEstabelecimentoLabel_empresa}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GlEstabelecimentoLabel_empresa}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.empresa.toString()}"  />						
+                        </p:column>
+                    </p:dataTable>
+                </h:panelGroup>
+                <br />&nbsp;
+                <h:commandButton action="#{glEstabelecimentoController.prepareCreate}" value="#{bundle.CreateLink}" title="#{bundle.CreateTitle}"/>
+
+                <confirm:destroy obj="#{glEstabelecimentoController}" />  
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCadastrosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form prependId="false" >
+                <p:panel header="#{bundle.CreateCadastrosTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages globalOnly="true" />
+                    </h:panelGroup>
+                    <br />
+                    <h:panelGrid columns="3">
+                        <h:outputLabel value="#{bundle.CadastrosLabel_nre}" for="nre" />
+                        <h:inputText id="nre" value="#{cadastrosController.selected.nre}" title="#{bundle.CadastrosTitle_nre}" required="true" />
+                        <p:message for="nre"/>
+                        <h:outputLabel value="#{bundle.CadastrosLabel_nomeComp}" for="nomeComp" />
+                        <h:inputText id="nomeComp" value="#{cadastrosController.selected.nomeComp}" title="#{bundle.CadastrosTitle_nomeComp}" required="true" />
+                        <p:message for="nomeComp"/>
+                        <h:outputLabel value="#{bundle.CadastrosLabel_nomeRedz}" for="nomeRedz" />
+                        <h:inputText id="nomeRedz" value="#{cadastrosController.selected.nomeRedz}" title="#{bundle.CadastrosTitle_nomeRedz}" required="true" />
+                        <p:message for="nomeRedz"/>
+                        <h:outputLabel value="#{bundle.CadastrosLabel_nomeAbrv}" for="nomeAbrv" />
+                        <h:inputText id="nomeAbrv" value="#{cadastrosController.selected.nomeAbrv}" title="#{bundle.CadastrosTitle_nomeAbrv}" required="true" />
+                        <p:message for="nomeAbrv"/>
+                        <h:outputLabel value="#{bundle.CadastrosLabel_sexo}" for="sexo" />
+                        <h:inputText id="sexo" value="#{cadastrosController.selected.sexo}" title="#{bundle.CadastrosTitle_sexo}" required="true" />
+                        <p:message for="sexo"/>
+                        <h:outputLabel value="#{bundle.CadastrosLabel_dtNasc}" for="dtNasc" />
+                        <p:calendar id="dtNasc" value="#{cadastrosController.selected.dtNasc}" title="#{bundle.CadastrosTitle_dtNasc}" required="true" >
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </p:calendar>
+                        <p:message for="dtNasc"/>
+                        <h:outputLabel value="#{bundle.CadastrosLabel_estCivil}" for="estCivil" />
+                        <h:inputText id="estCivil" value="#{cadastrosController.selected.estCivil}" title="#{bundle.CadastrosTitle_estCivil}" required="true" />
+                        <p:message for="estCivil"/>
+                        <h:outputLabel value="#{bundle.CadastrosLabel_dtSituacao}" for="dtSituacao" />
+                        <p:calendar id="dtSituacao" value="#{cadastrosController.selected.dtSituacao}" title="#{bundle.CadastrosTitle_dtSituacao}" required="true" >
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </p:calendar>
+                        <p:message for="dtSituacao"/>
+                        <h:outputLabel value="#{bundle.CadastrosLabel_cdMotivo}" for="cdMotivo" />
+                        <h:inputText id="cdMotivo" value="#{cadastrosController.selected.cdMotivo}" title="#{bundle.CadastrosTitle_cdMotivo}" />
+                        <p:message for="cdMotivo"/>
+                        <h:outputLabel value="#{bundle.CadastrosLabel_dtEstCivil}" for="dtEstCivil" />
+                        <p:calendar id="dtEstCivil" value="#{cadastrosController.selected.dtEstCivil}" title="#{bundle.CadastrosTitle_dtEstCivil}" >
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </p:calendar>
+                        <p:message for="dtEstCivil"/>
+                        <h:outputLabel value="#{bundle.CadastrosLabel_titulo}" for="titulo" />
+                        <h:inputText id="titulo" value="#{cadastrosController.selected.titulo}" title="#{bundle.CadastrosTitle_titulo}" />
+                        <p:message for="titulo"/>
+                        <h:outputLabel value="#{bundle.CadastrosLabel_dtTitulo}" for="dtTitulo" />
+                        <p:calendar id="dtTitulo" value="#{cadastrosController.selected.dtTitulo}" title="#{bundle.CadastrosTitle_dtTitulo}" >
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </p:calendar>
+                        <p:message for="dtTitulo"/>
+                        <h:outputLabel value="#{bundle.CadastrosLabel_enderecos}" for="enderecos" />
+                        <h:selectOneMenu id="enderecos" value="#{cadastrosController.selected.enderecos}" title="#{bundle.CadastrosTitle_enderecos}" >
+                            <f:selectItems value="#{enderecosController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <p:message for="enderecos"/>
+                        <h:outputLabel value="#{bundle.CadastrosLabel_infoProfs}" for="infoProfs" />
+                        <h:selectOneMenu id="infoProfs" value="#{cadastrosController.selected.infoProfs}" title="#{bundle.CadastrosTitle_infoProfs}" >
+                            <f:selectItems value="#{infoProfsController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <p:message for="infoProfs"/>
+                        <h:outputLabel value="#{bundle.CadastrosLabel_infoGeral}" for="infoGeral" />
+                        <h:selectOneMenu id="infoGeral" value="#{cadastrosController.selected.infoGeral}" title="#{bundle.CadastrosTitle_infoGeral}" >
+                            <f:selectItems value="#{infoGeralController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <p:message for="infoGeral"/>
+                        <h:outputLabel value="#{bundle.CadastrosLabel_cdSituacao}" for="cdSituacao" />
+                        <h:selectOneMenu id="cdSituacao" value="#{cadastrosController.selected.cdSituacao}" title="#{bundle.CadastrosTitle_cdSituacao}" required="true" >
+                            <f:selectItems value="#{situacoesController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <p:message for="cdSituacao"/>
+                        <h:outputLabel value="#{bundle.CadastrosLabel_cdPais}" for="cdPais" />
+                        <h:selectOneMenu id="cdPais" value="#{cadastrosController.selected.cdPais}" title="#{bundle.CadastrosTitle_cdPais}" >
+                            <f:selectItems value="#{qacPaisesController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <p:message for="cdPais"/>
+                        <h:outputLabel value="#{bundle.CadastrosLabel_cdPaisNacional}" for="cdPaisNacional" />
+                        <h:selectOneMenu id="cdPaisNacional" value="#{cadastrosController.selected.cdPaisNacional}" title="#{bundle.CadastrosTitle_cdPaisNacional}" >
+                            <f:selectItems value="#{qacPaisesController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <p:message for="cdPaisNacional"/>
+                        <h:outputLabel value="#{bundle.CadastrosLabel_qacFreguesias}" for="qacFreguesias" />
+                        <h:selectOneMenu id="qacFreguesias" value="#{cadastrosController.selected.qacFreguesias}" title="#{bundle.CadastrosTitle_qacFreguesias}" >
+                            <f:selectItems value="#{qacFreguesiasController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <p:message for="qacFreguesias"/>
+                        <h:outputLabel value="#{bundle.CadastrosLabel_cdHabLit}" for="cdHabLit" />
+                        <h:selectOneMenu id="cdHabLit" value="#{cadastrosController.selected.cdHabLit}" title="#{bundle.CadastrosTitle_cdHabLit}" >
+                            <f:selectItems value="#{habsLitersController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <p:message for="cdHabLit"/>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{cadastrosController.create}" value="#{bundle.SaveLink}" title="#{bundle.SaveTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

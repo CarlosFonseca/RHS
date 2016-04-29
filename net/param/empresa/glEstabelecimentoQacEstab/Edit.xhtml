@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditGlEstabelecimentoQacEstabTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:include src="./../menubar.xhtml" />
+            <h:form prependId="false" >
+                <p:panel header="#{bundle.EditGlEstabelecimentoQacEstabTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages globalOnly="true" />
+                    </h:panelGroup>
+                    <br />
+                    <h:panelGrid columns="3">
+                        <h:outputLabel value="#{bundle.GlEstabelecimentoQacEstabLabel_qacEstabelecimentos}" for="qacEstabelecimentos" />
+                        <h:panelGroup styleClass="ui-widget-content ui-corner-all ui-inputfield" >
+                        <p:autoComplete value="#{glEstabelecimentoQacEstabController.selected.qacEstabelecimentos}" 
+                                        completeMethod="#{qacEstabelecimentosController.autoComplete}" 
+                                        id="qacEstabelecimentos" required="true" requiredMessage="Erro de validação: O preenchimento do campo é requerido."
+                                        var="autoqacEstabelecimentos"  
+                                        itemLabel="#{autoqacEstabelecimentos.toString()}" 
+                                        itemValue="#{autoqacEstabelecimentos}"
+                                        converter="QacEstabelecimentos"/>                                                
+                            <p:button icon="ui-icon ui-icon-search" style="background: transparent; border: transparent " /> 
+                        </h:panelGroup>
+                        <p:message for="qacEstabelecimentos"/>                        
+                        <h:outputLabel value="#{bundle.GlEstabelecimentoQacEstabLabel_estab}" for="glEstabelecimento" />
+                        <h:panelGroup styleClass="ui-widget-content ui-corner-all ui-inputfield" >
+                        <p:autoComplete value="#{glEstabelecimentoQacEstabController.selected.estab}" 
+                                        completeMethod="#{glEstabelecimentoController.autoComplete}" 
+                                        id="glEstabelecimento" required="true" requiredMessage="Erro de validação: O preenchimento do campo é requerido."
+                                        var="autoglEstabelecimento"  
+                                        itemLabel="#{autoglEstabelecimento.toString()}" 
+                                        itemValue="#{autoglEstabelecimento}"
+                                        converter="GlEstabelecimento"/>                                                
+                            <p:button icon="ui-icon ui-icon-search" style="background: transparent; border: transparent " /> 
+                        </h:panelGroup>
+                        <p:message for="glEstabelecimento"/>
+                        <h:outputLabel value="#{bundle.GlEstabelecimentoLabel_ordem}" for="ordem" />
+                        <h:inputText id="ordem" value="#{glEstabelecimentoQacEstabController.selected.ordem}" title="#{bundle.GlEstabelecimentoTitle_ordem}" />
+                        <p:message for="ordem"/>
+                        <h:outputLabel value="#{bundle.GlEstabelecimentoLabel_estado}" for="estado" />
+                        <h:selectOneMenu id="estado" value="#{glEstabelecimentoQacEstabController.selected.estado}" title="#{bundle.GlEstabelecimentoTitle_estado}" required="true" >
+                            <f:selectItem itemValue="A"/>
+                            <f:selectItem itemValue="I"/>
+                        </h:selectOneMenu>
+                        <p:message for="estado"/>
+                        <h:outputLabel value="#{bundle.GlEstabelecimentoLabel_motivoInactivo}" for="motivoInactivo" />
+                        <h:inputText id="motivoInactivo" value="#{glEstabelecimentoQacEstabController.selected.motivoInactivo}" title="#{bundle.GlEstabelecimentoTitle_motivoInactivo}" />
+                        <p:message for="motivoInactivo"/>                        
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{glEstabelecimentoQacEstabController.update}" value="#{bundle.SaveLink}" title="#{bundle.SaveTitle}" />
+                </p:panel>
+            </h:form>
+            
+        </ui:define>
+    </ui:composition>
+
+</html>

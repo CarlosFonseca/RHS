@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewUtilizadorGrupoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <p:panel header="#{bundle.ViewUtilizadorGrupoTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages />
+                    </h:panelGroup>
+
+                    <br />
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.UtilizadorGrupoLabel_dtInicio}"/>
+                        <h:outputText value="#{utilizadorGrupoController.selected.dtInicio}" title="#{bundle.UtilizadorGrupoTitle_dtInicio}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.UtilizadorGrupoLabel_dtFim}"/>
+                        <h:outputText value="#{utilizadorGrupoController.selected.dtFim}" title="#{bundle.UtilizadorGrupoTitle_dtFim}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.UtilizadorGrupoLabel_estado}"/>
+                        <h:outputText value="#{utilizadorGrupoController.selected.estado}" title="#{bundle.UtilizadorGrupoTitle_estado}"/>
+                        <h:outputText value="#{bundle.UtilizadorGrupoLabel_logNre}"/>
+                        <h:outputText value="#{utilizadorGrupoController.selected.logNre}" title="#{bundle.UtilizadorGrupoTitle_logNre}"/>
+                        <h:outputText value="#{bundle.UtilizadorGrupoLabel_dtLog}"/>
+                        <h:outputText value="#{utilizadorGrupoController.selected.dtLog}" title="#{bundle.UtilizadorGrupoTitle_dtLog}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.UtilizadorGrupoLabel_utilizadores}"/>
+                        <h:outputText value="#{utilizadorGrupoController.selected.utilizadores}" title="#{bundle.UtilizadorGrupoTitle_utilizadores}"/>
+                        <h:outputText value="#{bundle.UtilizadorGrupoLabel_grupoAcesso}"/>
+                        <h:outputText value="#{utilizadorGrupoController.selected.grupoAcesso}" title="#{bundle.UtilizadorGrupoTitle_grupoAcesso}"/>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{utilizadorGrupoController.destroyAndView}" value="#{bundle.DestroyLink}" title="#{bundle.DestroyTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

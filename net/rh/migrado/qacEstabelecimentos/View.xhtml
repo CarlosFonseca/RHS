@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewQacEstabelecimentosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <p:panel header="#{bundle.ViewQacEstabelecimentosTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages />
+                    </h:panelGroup>
+
+                    <br />
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.QacEstabelecimentosLabel_qacEstabelecimentosPK_cdEstab}"/>
+                        <h:outputText value="#{qacEstabelecimentosController.selected.qacEstabelecimentosPK.cdEstab}" title="#{bundle.QacEstabelecimentosTitle_qacEstabelecimentosPK_cdEstab}"/>
+                        <h:outputText value="#{bundle.QacEstabelecimentosLabel_qacEstabelecimentosPK_siglaE}"/>
+                        <h:outputText value="#{qacEstabelecimentosController.selected.qacEstabelecimentosPK.siglaE}" title="#{bundle.QacEstabelecimentosTitle_qacEstabelecimentosPK_siglaE}"/>
+                        <h:outputText value="#{bundle.QacEstabelecimentosLabel_sigla}"/>
+                        <h:outputText value="#{qacEstabelecimentosController.selected.sigla}" title="#{bundle.QacEstabelecimentosTitle_sigla}"/>
+                        <h:outputText value="#{bundle.QacEstabelecimentosLabel_dsComp}"/>
+                        <h:outputText value="#{qacEstabelecimentosController.selected.dsComp}" title="#{bundle.QacEstabelecimentosTitle_dsComp}"/>
+                        <h:outputText value="#{bundle.QacEstabelecimentosLabel_morada}"/>
+                        <h:outputText value="#{qacEstabelecimentosController.selected.morada}" title="#{bundle.QacEstabelecimentosTitle_morada}"/>
+                        <h:outputText value="#{bundle.QacEstabelecimentosLabel_local}"/>
+                        <h:outputText value="#{qacEstabelecimentosController.selected.local}" title="#{bundle.QacEstabelecimentosTitle_local}"/>
+                        <h:outputText value="#{bundle.QacEstabelecimentosLabel_situacao}"/>
+                        <h:outputText value="#{qacEstabelecimentosController.selected.situacao}" title="#{bundle.QacEstabelecimentosTitle_situacao}"/>
+                        <h:outputText value="#{bundle.QacEstabelecimentosLabel_dtSituacao}"/>
+                        <h:outputText value="#{qacEstabelecimentosController.selected.dtSituacao}" title="#{bundle.QacEstabelecimentosTitle_dtSituacao}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.QacEstabelecimentosLabel_sitGeo}"/>
+                        <h:outputText value="#{qacEstabelecimentosController.selected.sitGeo}" title="#{bundle.QacEstabelecimentosTitle_sitGeo}"/>
+                        <h:outputText value="#{bundle.QacEstabelecimentosLabel_cdEd}"/>
+                        <h:outputText value="#{qacEstabelecimentosController.selected.cdEd}" title="#{bundle.QacEstabelecimentosTitle_cdEd}"/>
+                        <h:outputText value="#{bundle.QacEstabelecimentosLabel_cdAecon}"/>
+                        <h:outputText value="#{qacEstabelecimentosController.selected.cdAecon}" title="#{bundle.QacEstabelecimentosTitle_cdAecon}"/>
+                        <h:outputText value="#{bundle.QacEstabelecimentosLabel_metPagFerias}"/>
+                        <h:outputText value="#{qacEstabelecimentosController.selected.metPagFerias}" title="#{bundle.QacEstabelecimentosTitle_metPagFerias}"/>
+                        <h:outputText value="#{bundle.QacEstabelecimentosLabel_tel1}"/>
+                        <h:outputText value="#{qacEstabelecimentosController.selected.tel1}" title="#{bundle.QacEstabelecimentosTitle_tel1}"/>
+                        <h:outputText value="#{bundle.QacEstabelecimentosLabel_tel2}"/>
+                        <h:outputText value="#{qacEstabelecimentosController.selected.tel2}" title="#{bundle.QacEstabelecimentosTitle_tel2}"/>
+                        <h:outputText value="#{bundle.QacEstabelecimentosLabel_tel3}"/>
+                        <h:outputText value="#{qacEstabelecimentosController.selected.tel3}" title="#{bundle.QacEstabelecimentosTitle_tel3}"/>
+                        <h:outputText value="#{bundle.QacEstabelecimentosLabel_fax}"/>
+                        <h:outputText value="#{qacEstabelecimentosController.selected.fax}" title="#{bundle.QacEstabelecimentosTitle_fax}"/>
+                        <h:outputText value="#{bundle.QacEstabelecimentosLabel_cdAeconQp}"/>
+                        <h:outputText value="#{qacEstabelecimentosController.selected.cdAeconQp}" title="#{bundle.QacEstabelecimentosTitle_cdAeconQp}"/>
+                        <h:outputText value="#{bundle.QacEstabelecimentosLabel_cdIrct}"/>
+                        <h:outputText value="#{qacEstabelecimentosController.selected.cdIrct}" title="#{bundle.QacEstabelecimentosTitle_cdIrct}"/>
+                        <h:outputText value="#{bundle.QacEstabelecimentosLabel_dsIrct}"/>
+                        <h:outputText value="#{qacEstabelecimentosController.selected.dsIrct}" title="#{bundle.QacEstabelecimentosTitle_dsIrct}"/>
+                        <h:outputText value="#{bundle.QacEstabelecimentosLabel_dtIrct}"/>
+                        <h:outputText value="#{qacEstabelecimentosController.selected.dtIrct}" title="#{bundle.QacEstabelecimentosTitle_dtIrct}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.QacEstabelecimentosLabel_nrBoletim}"/>
+                        <h:outputText value="#{qacEstabelecimentosController.selected.nrBoletim}" title="#{bundle.QacEstabelecimentosTitle_nrBoletim}"/>
+                        <h:outputText value="#{bundle.QacEstabelecimentosLabel_mesPagFerias}"/>
+                        <h:outputText value="#{qacEstabelecimentosController.selected.mesPagFerias}" title="#{bundle.QacEstabelecimentosTitle_mesPagFerias}"/>
+                        <h:outputText value="#{bundle.QacEstabelecimentosLabel_EMail}"/>
+                        <h:outputText value="#{qacEstabelecimentosController.selected.EMail}" title="#{bundle.QacEstabelecimentosTitle_EMail}"/>
+                        <h:outputText value="#{bundle.QacEstabelecimentosLabel_ordemQp}"/>
+                        <h:outputText value="#{qacEstabelecimentosController.selected.ordemQp}" title="#{bundle.QacEstabelecimentosTitle_ordemQp}"/>
+                        <h:outputText value="#{bundle.QacEstabelecimentosLabel_regiaoIva}"/>
+                        <h:outputText value="#{qacEstabelecimentosController.selected.regiaoIva}" title="#{bundle.QacEstabelecimentosTitle_regiaoIva}"/>
+                        <h:outputText value="#{bundle.QacEstabelecimentosLabel_cdEstabRu}"/>
+                        <h:outputText value="#{qacEstabelecimentosController.selected.cdEstabRu}" title="#{bundle.QacEstabelecimentosTitle_cdEstabRu}"/>
+                        <h:outputText value="#{bundle.QacEstabelecimentosLabel_sede}"/>
+                        <h:outputText value="#{qacEstabelecimentosController.selected.sede}" title="#{bundle.QacEstabelecimentosTitle_sede}"/>
+                        <h:outputText value="#{bundle.QacEstabelecimentosLabel_qacFreguesias}"/>
+                        <h:outputText value="#{qacEstabelecimentosController.selected.qacFreguesias}" title="#{bundle.QacEstabelecimentosTitle_qacFreguesias}"/>
+                        <h:outputText value="#{bundle.QacEstabelecimentosLabel_qacCodigosPostais}"/>
+                        <h:outputText value="#{qacEstabelecimentosController.selected.qacCodigosPostais}" title="#{bundle.QacEstabelecimentosTitle_qacCodigosPostais}"/>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{qacEstabelecimentosController.destroyAndView}" value="#{bundle.DestroyLink}" title="#{bundle.DestroyTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

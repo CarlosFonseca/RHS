@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:confirm="http://java.sun.com/jsf/composite/utils/confirm">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListGlEstabelecimentoQacEstabTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:include src="./../menubar.xhtml" />
+            <h:form prependId="false" >
+                <h:panelGroup id="messagePanel" layout="block">
+                    <p:messages />
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListGlEstabelecimentoQacEstabEmpty}" rendered="#{glEstabelecimentoQacEstabController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{glEstabelecimentoQacEstabController.items.rowCount > 0}">
+                    <h:inputHidden id="tblbasesize" value="#{glEstabelecimentoQacEstabController.tableWidth}"/>
+                    <p:dataTable value="#{glEstabelecimentoQacEstabController.items}" var="item" id="tblbase"
+                                 rows="10" paginator="true"  paginatorPosition="bottom"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks}
+                                 {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15,20 ">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:commandLink>
+                                    <h:graphicImage name="xls.png" library="icons" title="Exporta para Excel" />
+                                    <p:dataExporter type="xls" target="tblbase" fileName="tabela" pageOnly="true" excludeColumns="0" />
+                                </h:commandLink>&nbsp;
+                                <h:commandLink>
+                                    <h:graphicImage name="csv.png" library="icons" title="Exporta para csv" />
+                                    <p:dataExporter type="csv" target="tblbase" fileName="tabela" pageOnly="true" excludeColumns="0" />
+                                </h:commandLink>
+                            </f:facet>
+                            <p:commandLink action="#{glEstabelecimentoQacEstabController.prepareDestroy}" onclick="confirmation.show()" title="#{bundle.DestroyTitle}" styleClass="ui-icon ui-icon-trash" style="float: left; margin: 0 4px;" />
+                            <h:commandLink action="#{glEstabelecimentoQacEstabController.prepareEdit}" title="#{bundle.EditTitle}" styleClass="ui-icon ui-icon-pencil" style="float: left; margin: 0 4px;" />
+                        </p:column>
+                        <p:column sortBy="#{item.id}" filterBy="#{item.id}" headerText="#{bundle.GlEstabelecimentoQacEstabLabel_id}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GlEstabelecimentoQacEstabLabel_id}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.id}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.qacEstabelecimentos}" filterBy="#{item.qacEstabelecimentos}"  headerText="#{bundle.GlEstabelecimentoQacEstabLabel_qacEstabelecimentos}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GlEstabelecimentoQacEstabLabel_qacEstabelecimentos}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.qacEstabelecimentos.toString()}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.estab}" filterBy="#{item.estab}"  headerText="#{bundle.GlEstabelecimentoQacEstabLabel_estab}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GlEstabelecimentoQacEstabLabel_estab}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.estab.toString()}"  />						
+                        </p:column>
+
+                        <p:column sortBy="#{item.ordem}" filterBy="#{item.ordem}" headerText="#{bundle.GlEstabelecimentoLabel_ordem}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GlEstabelecimentoLabel_ordem}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.ordem}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.estado}" filterBy="#{item.estado}" headerText="#{bundle.GlEstabelecimentoLabel_estado}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GlEstabelecimentoLabel_estado}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.estado}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.motivoInactivo}" filterBy="#{item.motivoInactivo}" headerText="#{bundle.GlEstabelecimentoLabel_motivoInactivo}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GlEstabelecimentoLabel_motivoInactivo}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.motivoInactivo}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.logNre}" filterBy="#{item.logNre}" headerText="#{bundle.GlEstabelecimentoLabel_logNre}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GlEstabelecimentoLabel_logNre}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.logNre}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dtLog}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.GlEstabelecimentoLabel_dtLog}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtLog}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        
+                        
+                    </p:dataTable>
+                </h:panelGroup>
+                <br />&nbsp;
+                <h:commandButton action="#{glEstabelecimentoQacEstabController.prepareCreate}" value="#{bundle.CreateLink}" title="#{bundle.CreateTitle}"/>
+
+                <confirm:destroy obj="#{glEstabelecimentoQacEstabController}" />  
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

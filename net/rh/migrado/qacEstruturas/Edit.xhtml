@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditQacEstruturasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form prependId="false" >
+                <p:panel header="#{bundle.EditQacEstruturasTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages globalOnly="true" />
+                    </h:panelGroup>
+
+                    <br />
+
+                    <h:panelGrid columns="3">
+                        <h:outputLabel value="#{bundle.QacEstruturasLabel_qacEstruturasPK_cdEstrutura}" for="qacEstruturasPK_cdEstrutura" />
+                        <h:inputText id="qacEstruturasPK_cdEstrutura" value="#{qacEstruturasController.selected.qacEstruturasPK.cdEstrutura}" title="#{bundle.QacEstruturasTitle_qacEstruturasPK_cdEstrutura}" required="true" />
+                        <p:message for="qacEstruturasPK_cdEstrutura"/>
+                        <h:outputLabel value="#{bundle.QacEstruturasLabel_dsComp}" for="dsComp" />
+                        <h:inputText id="dsComp" value="#{qacEstruturasController.selected.dsComp}" title="#{bundle.QacEstruturasTitle_dsComp}" required="true" />
+                        <p:message for="dsComp"/>
+                        <h:outputLabel value="#{bundle.QacEstruturasLabel_dsRedz}" for="dsRedz" />
+                        <h:inputText id="dsRedz" value="#{qacEstruturasController.selected.dsRedz}" title="#{bundle.QacEstruturasTitle_dsRedz}" required="true" />
+                        <p:message for="dsRedz"/>
+                        <h:outputLabel value="#{bundle.QacEstruturasLabel_dsAbrv}" for="dsAbrv" />
+                        <h:inputText id="dsAbrv" value="#{qacEstruturasController.selected.dsAbrv}" title="#{bundle.QacEstruturasTitle_dsAbrv}" required="true" />
+                        <p:message for="dsAbrv"/>
+                        <h:outputLabel value="#{bundle.QacEstruturasLabel_siglaEstruturaPai}" for="siglaEstruturaPai" />
+                        <h:inputText id="siglaEstruturaPai" value="#{qacEstruturasController.selected.siglaEstruturaPai}" title="#{bundle.QacEstruturasTitle_siglaEstruturaPai}" />
+                        <p:message for="siglaEstruturaPai"/>
+                        <h:outputLabel value="#{bundle.QacEstruturasLabel_cdEstruturaPai}" for="cdEstruturaPai" />
+                        <h:inputText id="cdEstruturaPai" value="#{qacEstruturasController.selected.cdEstruturaPai}" title="#{bundle.QacEstruturasTitle_cdEstruturaPai}" />
+                        <p:message for="cdEstruturaPai"/>
+                        <h:outputLabel value="#{bundle.QacEstruturasLabel_cdGrpEstat}" for="cdGrpEstat" />
+                        <h:inputText id="cdGrpEstat" value="#{qacEstruturasController.selected.cdGrpEstat}" title="#{bundle.QacEstruturasTitle_cdGrpEstat}" />
+                        <p:message for="cdGrpEstat"/>
+                        <h:outputLabel value="#{bundle.QacEstruturasLabel_dtAltera}" for="dtAltera" />
+                        <p:calendar id="dtAltera" value="#{qacEstruturasController.selected.dtAltera}" title="#{bundle.QacEstruturasTitle_dtAltera}" >
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </p:calendar>
+                        <p:message for="dtAltera"/>
+                        <h:outputLabel value="#{bundle.QacEstruturasLabel_nrOrdem}" for="nrOrdem" />
+                        <h:inputText id="nrOrdem" value="#{qacEstruturasController.selected.nrOrdem}" title="#{bundle.QacEstruturasTitle_nrOrdem}" required="true" />
+                        <p:message for="nrOrdem"/>
+                        <h:outputLabel value="#{bundle.QacEstruturasLabel_pontuacao}" for="pontuacao" />
+                        <h:inputText id="pontuacao" value="#{qacEstruturasController.selected.pontuacao}" title="#{bundle.QacEstruturasTitle_pontuacao}" />
+                        <p:message for="pontuacao"/>
+                        <h:outputLabel value="#{bundle.QacEstruturasLabel_manager}" for="manager" />
+                        <h:inputText id="manager" value="#{qacEstruturasController.selected.manager}" title="#{bundle.QacEstruturasTitle_manager}" />
+                        <p:message for="manager"/>
+                        <h:outputLabel value="#{bundle.QacEstruturasLabel_qacEmpresas}" for="qacEmpresas" />
+                        <h:selectOneMenu id="qacEmpresas" value="#{qacEstruturasController.selected.qacEmpresas}" title="#{bundle.QacEstruturasTitle_qacEmpresas}" required="true" >
+                            <f:selectItems value="#{qacEmpresasController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <p:message for="qacEmpresas"/>
+                        <h:outputLabel value="#{bundle.QacEstruturasLabel_cdSbu}" for="cdSbu" />
+                        <h:selectOneMenu id="cdSbu" value="#{qacEstruturasController.selected.cdSbu}" title="#{bundle.QacEstruturasTitle_cdSbu}" >
+                            <f:selectItems value="#{qacAreasNegocioController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <p:message for="cdSbu"/>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{qacEstruturasController.update}" value="#{bundle.SaveLink}" title="#{bundle.SaveTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

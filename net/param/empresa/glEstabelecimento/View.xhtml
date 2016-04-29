@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewGlEstabelecimentoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:include src="./../menubar.xhtml" />
+            <h:form>
+                <p:panel header="#{bundle.ViewGlEstabelecimentoTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages />
+                    </h:panelGroup>
+
+                    <br />
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.GlEstabelecimentoLabel_id}"/>
+                        <h:outputText value="#{glEstabelecimentoController.selected.id}" title="#{bundle.GlEstabelecimentoTitle_id}"/>
+                        <h:outputText value="#{bundle.GlEstabelecimentoLabel_dsComp}"/>
+                        <h:outputText value="#{glEstabelecimentoController.selected.dsComp}" title="#{bundle.GlEstabelecimentoTitle_dsComp}"/>
+                        <h:outputText value="#{bundle.GlEstabelecimentoLabel_dsRedz}"/>
+                        <h:outputText value="#{glEstabelecimentoController.selected.dsRedz}" title="#{bundle.GlEstabelecimentoTitle_dsRedz}"/>
+                        <h:outputText value="#{bundle.GlEstabelecimentoLabel_dsAbrv}"/>
+                        <h:outputText value="#{glEstabelecimentoController.selected.dsAbrv}" title="#{bundle.GlEstabelecimentoTitle_dsAbrv}"/>
+                        <h:outputText value="#{bundle.GlEstabelecimentoLabel_morada}"/>
+                        <h:outputText value="#{glEstabelecimentoController.selected.morada}" title="#{bundle.GlEstabelecimentoTitle_morada}"/>
+                        <h:outputText value="#{bundle.GlEstabelecimentoLabel_localidade}"/>
+                        <h:outputText value="#{glEstabelecimentoController.selected.localidade}" title="#{bundle.GlEstabelecimentoTitle_localidade}"/>
+                        <h:outputText value="#{bundle.GlEstabelecimentoLabel_tel1}"/>
+                        <h:outputText value="#{glEstabelecimentoController.selected.tel1}" title="#{bundle.GlEstabelecimentoTitle_tel1}"/>
+                        <h:outputText value="#{bundle.GlEstabelecimentoLabel_tel2}"/>
+                        <h:outputText value="#{glEstabelecimentoController.selected.tel2}" title="#{bundle.GlEstabelecimentoTitle_tel2}"/>
+                        <h:outputText value="#{bundle.GlEstabelecimentoLabel_telemovel}"/>
+                        <h:outputText value="#{glEstabelecimentoController.selected.telemovel}" title="#{bundle.GlEstabelecimentoTitle_telemovel}"/>
+                        <h:outputText value="#{bundle.GlEstabelecimentoLabel_fax}"/>
+                        <h:outputText value="#{glEstabelecimentoController.selected.fax}" title="#{bundle.GlEstabelecimentoTitle_fax}"/>
+                        <h:outputText value="#{bundle.GlEstabelecimentoLabel_internet}"/>
+                        <h:outputText value="#{glEstabelecimentoController.selected.internet}" title="#{bundle.GlEstabelecimentoTitle_internet}"/>
+                        <h:outputText value="#{bundle.GlEstabelecimentoLabel_contacto}"/>
+                        <h:outputText value="#{glEstabelecimentoController.selected.contacto}" title="#{bundle.GlEstabelecimentoTitle_contacto}"/>
+                        <h:outputText value="#{bundle.GlEstabelecimentoLabel_observacao}"/>
+                        <h:outputText value="#{glEstabelecimentoController.selected.observacao}" title="#{bundle.GlEstabelecimentoTitle_observacao}"/>
+                        <h:outputText value="#{bundle.GlEstabelecimentoLabel_ordem}"/>
+                        <h:outputText value="#{glEstabelecimentoController.selected.ordem}" title="#{bundle.GlEstabelecimentoTitle_ordem}"/>
+                        <h:outputText value="#{bundle.GlEstabelecimentoLabel_estado}"/>
+                        <h:outputText value="#{glEstabelecimentoController.selected.estado}" title="#{bundle.GlEstabelecimentoTitle_estado}"/>
+                        <h:outputText value="#{bundle.GlEstabelecimentoLabel_motivoInactivo}"/>
+                        <h:outputText value="#{glEstabelecimentoController.selected.motivoInactivo}" title="#{bundle.GlEstabelecimentoTitle_motivoInactivo}"/>
+                        <h:outputText value="#{bundle.GlEstabelecimentoLabel_logNre}"/>
+                        <h:outputText value="#{glEstabelecimentoController.selected.logNre}" title="#{bundle.GlEstabelecimentoTitle_logNre}"/>
+                        <h:outputText value="#{bundle.GlEstabelecimentoLabel_dtLog}"/>
+                        <h:outputText value="#{glEstabelecimentoController.selected.dtLog}" title="#{bundle.GlEstabelecimentoTitle_dtLog}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.GlEstabelecimentoLabel_qacCodigosPostais}"/>
+                        <h:outputText value="#{glEstabelecimentoController.selected.qacCodigosPostais}" title="#{bundle.GlEstabelecimentoTitle_qacCodigosPostais}"/>
+                        <h:outputText value="#{bundle.GlEstabelecimentoLabel_empresa}"/>
+                        <h:outputText value="#{glEstabelecimentoController.selected.empresa}" title="#{bundle.GlEstabelecimentoTitle_empresa}"/>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{glEstabelecimentoController.destroyAndView}" value="#{bundle.DestroyLink}" title="#{bundle.DestroyTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

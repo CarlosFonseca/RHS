@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewQacEmpresasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <p:panel header="#{bundle.ViewQacEmpresasTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages />
+                    </h:panelGroup>
+
+                    <br />
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.QacEmpresasLabel_siglaE}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.siglaE}" title="#{bundle.QacEmpresasTitle_siglaE}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_cdRepFiscal}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.cdRepFiscal}" title="#{bundle.QacEmpresasTitle_cdRepFiscal}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_cdEstab}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.cdEstab}" title="#{bundle.QacEmpresasTitle_cdEstab}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_dsSocial}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.dsSocial}" title="#{bundle.QacEmpresasTitle_dsSocial}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_nrPssColect}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.nrPssColect}" title="#{bundle.QacEmpresasTitle_nrPssColect}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_capSocial}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.capSocial}" title="#{bundle.QacEmpresasTitle_capSocial}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_txRepNacn}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.txRepNacn}" title="#{bundle.QacEmpresasTitle_txRepNacn}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_txRepEstg}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.txRepEstg}" title="#{bundle.QacEmpresasTitle_txRepEstg}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_txRepPubl}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.txRepPubl}" title="#{bundle.QacEmpresasTitle_txRepPubl}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_nomeInd}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.nomeInd}" title="#{bundle.QacEmpresasTitle_nomeInd}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_conservat}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.conservat}" title="#{bundle.QacEmpresasTitle_conservat}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_matricula}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.matricula}" title="#{bundle.QacEmpresasTitle_matricula}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_cdLingEstrg1}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.cdLingEstrg1}" title="#{bundle.QacEmpresasTitle_cdLingEstrg1}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_cdLingEstrg2}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.cdLingEstrg2}" title="#{bundle.QacEmpresasTitle_cdLingEstrg2}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_dtConstit}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.dtConstit}" title="#{bundle.QacEmpresasTitle_dtConstit}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_siglaEEstabSede}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.siglaEEstabSede}" title="#{bundle.QacEmpresasTitle_siglaEEstabSede}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_cdAssocPatr3}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.cdAssocPatr3}" title="#{bundle.QacEmpresasTitle_cdAssocPatr3}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_domicFiscal}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.domicFiscal}" title="#{bundle.QacEmpresasTitle_domicFiscal}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_cdAssocPatr}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.cdAssocPatr}" title="#{bundle.QacEmpresasTitle_cdAssocPatr}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_cdAssocPatr2}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.cdAssocPatr2}" title="#{bundle.QacEmpresasTitle_cdAssocPatr2}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_cdNatJurid}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.cdNatJurid}" title="#{bundle.QacEmpresasTitle_cdNatJurid}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_dsNatJurid}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.dsNatJurid}" title="#{bundle.QacEmpresasTitle_dsNatJurid}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_volVendas}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.volVendas}" title="#{bundle.QacEmpresasTitle_volVendas}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_ctrbInd}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.ctrbInd}" title="#{bundle.QacEmpresasTitle_ctrbInd}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_msgAcidTrb}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.msgAcidTrb}" title="#{bundle.QacEmpresasTitle_msgAcidTrb}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_nrOrdem}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.nrOrdem}" title="#{bundle.QacEmpresasTitle_nrOrdem}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_cdGrpEmpresa}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.cdGrpEmpresa}" title="#{bundle.QacEmpresasTitle_cdGrpEmpresa}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_dspAssocPatr}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.dspAssocPatr}" title="#{bundle.QacEmpresasTitle_dspAssocPatr}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_dspAssocPatr2}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.dspAssocPatr2}" title="#{bundle.QacEmpresasTitle_dspAssocPatr2}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_dspAssocPatr3}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.dspAssocPatr3}" title="#{bundle.QacEmpresasTitle_dspAssocPatr3}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_nifRepresLeg}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.nifRepresLeg}" title="#{bundle.QacEmpresasTitle_nifRepresLeg}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_nifToc}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.nifToc}" title="#{bundle.QacEmpresasTitle_nifToc}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_codCirs}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.codCirs}" title="#{bundle.QacEmpresasTitle_codCirs}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_priv1}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.priv1}" title="#{bundle.QacEmpresasTitle_priv1}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_priv2}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.priv2}" title="#{bundle.QacEmpresasTitle_priv2}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_cdEmpresaRu}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.cdEmpresaRu}" title="#{bundle.QacEmpresasTitle_cdEmpresaRu}"/>
+                        <h:outputText value="#{bundle.QacEmpresasLabel_anoVolNeg}"/>
+                        <h:outputText value="#{qacEmpresasController.selected.anoVolNeg}" title="#{bundle.QacEmpresasTitle_anoVolNeg}"/>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{qacEmpresasController.destroyAndView}" value="#{bundle.DestroyLink}" title="#{bundle.DestroyTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

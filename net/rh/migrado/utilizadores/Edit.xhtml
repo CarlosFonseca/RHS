@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditUtilizadoresTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form prependId="false" >
+                <p:panel header="#{bundle.EditUtilizadoresTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages globalOnly="true" />
+                    </h:panelGroup>
+
+                    <br />
+
+                    <h:panelGrid columns="3">
+                        <h:outputLabel value="#{bundle.UtilizadoresLabel_nre}" for="nre" />
+                        <h:inputText id="nre" value="#{utilizadoresController.selected.nre}" title="#{bundle.UtilizadoresTitle_nre}" required="true" />
+                        <p:message for="nre"/>
+                        <h:outputLabel value="#{bundle.UtilizadoresLabel_palavraChave}" for="palavraChave" />
+                        <h:inputText id="palavraChave" value="#{utilizadoresController.selected.palavraChave}" title="#{bundle.UtilizadoresTitle_palavraChave}" required="true" />
+                        <p:message for="palavraChave"/>
+                        <h:outputLabel value="#{bundle.UtilizadoresLabel_nomeComp}" for="nomeComp" />
+                        <h:inputText id="nomeComp" value="#{utilizadoresController.selected.nomeComp}" title="#{bundle.UtilizadoresTitle_nomeComp}" />
+                        <p:message for="nomeComp"/>
+                        <h:outputLabel value="#{bundle.UtilizadoresLabel_nomeRedz}" for="nomeRedz" />
+                        <h:inputText id="nomeRedz" value="#{utilizadoresController.selected.nomeRedz}" title="#{bundle.UtilizadoresTitle_nomeRedz}" />
+                        <p:message for="nomeRedz"/>
+                        <h:outputLabel value="#{bundle.UtilizadoresLabel_nomeAbrv}" for="nomeAbrv" />
+                        <h:inputText id="nomeAbrv" value="#{utilizadoresController.selected.nomeAbrv}" title="#{bundle.UtilizadoresTitle_nomeAbrv}" />
+                        <p:message for="nomeAbrv"/>
+                        <h:outputLabel value="#{bundle.UtilizadoresLabel_dtInicio}" for="dtInicio" />
+                        <p:calendar id="dtInicio" value="#{utilizadoresController.selected.dtInicio}" title="#{bundle.UtilizadoresTitle_dtInicio}" >
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </p:calendar>
+                        <p:message for="dtInicio"/>
+                        <h:outputLabel value="#{bundle.UtilizadoresLabel_dtFim}" for="dtFim" />
+                        <p:calendar id="dtFim" value="#{utilizadoresController.selected.dtFim}" title="#{bundle.UtilizadoresTitle_dtFim}" >
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </p:calendar>
+                        <p:message for="dtFim"/>
+                        <h:outputLabel value="#{bundle.UtilizadoresLabel_estado}" for="estado" />
+                        <h:selectOneMenu id="estado" value="#{utilizadoresController.selected.estado}" title="#{bundle.UtilizadoresTitle_estado}" required="true" >
+                            <f:selectItem itemValue="A" />
+                            <f:selectItem itemValue="I" />
+                        </h:selectOneMenu>
+                        <p:message for="estado"/>
+                        <h:outputLabel value="#{bundle.UtilizadoresLabel_motivoInactivo}" for="motivoInactivo" />
+                        <h:inputText id="motivoInactivo" value="#{utilizadoresController.selected.motivoInactivo}" title="#{bundle.UtilizadoresTitle_motivoInactivo}" />
+                        <p:message for="motivoInactivo"/>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{utilizadoresController.update}" value="#{bundle.SaveLink}" title="#{bundle.SaveTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:confirm="http://java.sun.com/jsf/composite/utils/confirm">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListQacEmpresasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form prependId="false" >
+                <h:panelGroup id="messagePanel" layout="block">
+                    <p:messages />
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListQacEmpresasEmpty}" rendered="#{qacEmpresasController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{qacEmpresasController.items.rowCount > 0}">
+                    <h:inputHidden id="tblbasesize" value="#{qacEmpresasController.tableWidth}"/>
+                    <p:dataTable value="#{qacEmpresasController.items}" var="item" id="tblbase"
+                                 rows="10" paginator="true"  paginatorPosition="bottom"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks}
+                                 {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15,20 ">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:commandLink>
+                                    <h:graphicImage name="xls.png" library="icons" title="Exporta para Excel" />
+                                    <p:dataExporter type="xls" target="tblbase" fileName="tabela" pageOnly="true" excludeColumns="0" />
+                                </h:commandLink>&nbsp;
+                                <h:commandLink>
+                                    <h:graphicImage name="csv.png" library="icons" title="Exporta para csv" />
+                                    <p:dataExporter type="csv" target="tblbase" fileName="tabela" pageOnly="true" excludeColumns="0" />
+                                </h:commandLink>
+                            </f:facet>
+                            <p:commandLink action="#{qacEmpresasController.prepareDestroy}" onclick="confirmation.show()" title="#{bundle.DestroyTitle}" styleClass="ui-icon ui-icon-trash" style="float: left; margin: 0 4px;" />
+                            <h:commandLink action="#{qacEmpresasController.prepareEdit}" title="#{bundle.EditTitle}" styleClass="ui-icon ui-icon-pencil" style="float: left; margin: 0 4px;" />
+                        </p:column>
+                        <p:column sortBy="#{item.siglaE}" filterBy="#{item.siglaE}" headerText="#{bundle.QacEmpresasLabel_siglaE}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_siglaE}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.siglaE}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.cdRepFiscal}" filterBy="#{item.cdRepFiscal}" headerText="#{bundle.QacEmpresasLabel_cdRepFiscal}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_cdRepFiscal}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.cdRepFiscal}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.cdEstab}" filterBy="#{item.cdEstab}" headerText="#{bundle.QacEmpresasLabel_cdEstab}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_cdEstab}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.cdEstab}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dsSocial}" filterBy="#{item.dsSocial}" headerText="#{bundle.QacEmpresasLabel_dsSocial}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_dsSocial}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.dsSocial}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.nrPssColect}" filterBy="#{item.nrPssColect}" headerText="#{bundle.QacEmpresasLabel_nrPssColect}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_nrPssColect}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.nrPssColect}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.capSocial}" filterBy="#{item.capSocial}" headerText="#{bundle.QacEmpresasLabel_capSocial}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_capSocial}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.capSocial}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.txRepNacn}" filterBy="#{item.txRepNacn}" headerText="#{bundle.QacEmpresasLabel_txRepNacn}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_txRepNacn}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.txRepNacn}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.txRepEstg}" filterBy="#{item.txRepEstg}" headerText="#{bundle.QacEmpresasLabel_txRepEstg}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_txRepEstg}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.txRepEstg}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.txRepPubl}" filterBy="#{item.txRepPubl}" headerText="#{bundle.QacEmpresasLabel_txRepPubl}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_txRepPubl}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.txRepPubl}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.nomeInd}" filterBy="#{item.nomeInd}" headerText="#{bundle.QacEmpresasLabel_nomeInd}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_nomeInd}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.nomeInd}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.conservat}" filterBy="#{item.conservat}" headerText="#{bundle.QacEmpresasLabel_conservat}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_conservat}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.conservat}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.matricula}" filterBy="#{item.matricula}" headerText="#{bundle.QacEmpresasLabel_matricula}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_matricula}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.matricula}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.cdLingEstrg1}" filterBy="#{item.cdLingEstrg1}" headerText="#{bundle.QacEmpresasLabel_cdLingEstrg1}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_cdLingEstrg1}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.cdLingEstrg1}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.cdLingEstrg2}" filterBy="#{item.cdLingEstrg2}" headerText="#{bundle.QacEmpresasLabel_cdLingEstrg2}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_cdLingEstrg2}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.cdLingEstrg2}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dtConstit}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_dtConstit}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtConstit}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{item.siglaEEstabSede}" filterBy="#{item.siglaEEstabSede}" headerText="#{bundle.QacEmpresasLabel_siglaEEstabSede}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_siglaEEstabSede}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.siglaEEstabSede}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.cdAssocPatr3}" filterBy="#{item.cdAssocPatr3}" headerText="#{bundle.QacEmpresasLabel_cdAssocPatr3}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_cdAssocPatr3}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.cdAssocPatr3}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.domicFiscal}" filterBy="#{item.domicFiscal}" headerText="#{bundle.QacEmpresasLabel_domicFiscal}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_domicFiscal}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.domicFiscal}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.cdAssocPatr}" filterBy="#{item.cdAssocPatr}" headerText="#{bundle.QacEmpresasLabel_cdAssocPatr}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_cdAssocPatr}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.cdAssocPatr}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.cdAssocPatr2}" filterBy="#{item.cdAssocPatr2}" headerText="#{bundle.QacEmpresasLabel_cdAssocPatr2}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_cdAssocPatr2}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.cdAssocPatr2}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.cdNatJurid}" filterBy="#{item.cdNatJurid}" headerText="#{bundle.QacEmpresasLabel_cdNatJurid}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_cdNatJurid}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.cdNatJurid}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dsNatJurid}" filterBy="#{item.dsNatJurid}" headerText="#{bundle.QacEmpresasLabel_dsNatJurid}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_dsNatJurid}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.dsNatJurid}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.volVendas}" filterBy="#{item.volVendas}" headerText="#{bundle.QacEmpresasLabel_volVendas}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_volVendas}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.volVendas}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.ctrbInd}" filterBy="#{item.ctrbInd}" headerText="#{bundle.QacEmpresasLabel_ctrbInd}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_ctrbInd}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.ctrbInd}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.msgAcidTrb}" filterBy="#{item.msgAcidTrb}" headerText="#{bundle.QacEmpresasLabel_msgAcidTrb}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_msgAcidTrb}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.msgAcidTrb}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.nrOrdem}" filterBy="#{item.nrOrdem}" headerText="#{bundle.QacEmpresasLabel_nrOrdem}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_nrOrdem}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.nrOrdem}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.cdGrpEmpresa}" filterBy="#{item.cdGrpEmpresa}" headerText="#{bundle.QacEmpresasLabel_cdGrpEmpresa}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_cdGrpEmpresa}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.cdGrpEmpresa}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dspAssocPatr}" filterBy="#{item.dspAssocPatr}" headerText="#{bundle.QacEmpresasLabel_dspAssocPatr}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_dspAssocPatr}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.dspAssocPatr}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dspAssocPatr2}" filterBy="#{item.dspAssocPatr2}" headerText="#{bundle.QacEmpresasLabel_dspAssocPatr2}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_dspAssocPatr2}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.dspAssocPatr2}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dspAssocPatr3}" filterBy="#{item.dspAssocPatr3}" headerText="#{bundle.QacEmpresasLabel_dspAssocPatr3}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_dspAssocPatr3}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.dspAssocPatr3}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.nifRepresLeg}" filterBy="#{item.nifRepresLeg}" headerText="#{bundle.QacEmpresasLabel_nifRepresLeg}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_nifRepresLeg}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.nifRepresLeg}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.nifToc}" filterBy="#{item.nifToc}" headerText="#{bundle.QacEmpresasLabel_nifToc}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_nifToc}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.nifToc}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.codCirs}" filterBy="#{item.codCirs}" headerText="#{bundle.QacEmpresasLabel_codCirs}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_codCirs}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.codCirs}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.priv1}" filterBy="#{item.priv1}" headerText="#{bundle.QacEmpresasLabel_priv1}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_priv1}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.priv1}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.priv2}" filterBy="#{item.priv2}" headerText="#{bundle.QacEmpresasLabel_priv2}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_priv2}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.priv2}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.cdEmpresaRu}" filterBy="#{item.cdEmpresaRu}" headerText="#{bundle.QacEmpresasLabel_cdEmpresaRu}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_cdEmpresaRu}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.cdEmpresaRu}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.anoVolNeg}" filterBy="#{item.anoVolNeg}" headerText="#{bundle.QacEmpresasLabel_anoVolNeg}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEmpresasLabel_anoVolNeg}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.anoVolNeg}"  />						
+                        </p:column>
+                    </p:dataTable>
+                </h:panelGroup>
+                <br />&nbsp;
+                <h:commandButton action="#{qacEmpresasController.prepareCreate}" value="#{bundle.CreateLink}" title="#{bundle.CreateTitle}"/>
+
+                <confirm:destroy obj="#{qacEmpresasController}" />  
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

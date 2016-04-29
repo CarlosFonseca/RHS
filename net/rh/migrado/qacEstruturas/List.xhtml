@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:confirm="http://java.sun.com/jsf/composite/utils/confirm">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListQacEstruturasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form prependId="false" >
+                <h:panelGroup id="messagePanel" layout="block">
+                    <p:messages />
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListQacEstruturasEmpty}" rendered="#{qacEstruturasController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{qacEstruturasController.items.rowCount > 0}">
+                    <h:inputHidden id="tblbasesize" value="#{qacEstruturasController.tableWidth}"/>
+                    <p:dataTable value="#{qacEstruturasController.items}" var="item" id="tblbase"
+                                 rows="10" paginator="true"  paginatorPosition="bottom"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks}
+                                 {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15,20 ">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:commandLink>
+                                    <h:graphicImage name="xls.png" library="icons" title="Exporta para Excel" />
+                                    <p:dataExporter type="xls" target="tblbase" fileName="tabela" pageOnly="true" excludeColumns="0" />
+                                </h:commandLink>&nbsp;
+                                <h:commandLink>
+                                    <h:graphicImage name="csv.png" library="icons" title="Exporta para csv" />
+                                    <p:dataExporter type="csv" target="tblbase" fileName="tabela" pageOnly="true" excludeColumns="0" />
+                                </h:commandLink>
+                            </f:facet>
+                            <p:commandLink action="#{qacEstruturasController.prepareDestroy}" onclick="confirmation.show()" title="#{bundle.DestroyTitle}" styleClass="ui-icon ui-icon-trash" style="float: left; margin: 0 4px;" />
+                            <h:commandLink action="#{qacEstruturasController.prepareEdit}" title="#{bundle.EditTitle}" styleClass="ui-icon ui-icon-pencil" style="float: left; margin: 0 4px;" />
+                        </p:column>
+                        <p:column sortBy="#{item.qacEstruturasPK.cdEstrutura}" filterBy="#{item.qacEstruturasPK.cdEstrutura}" headerText="#{bundle.QacEstruturasLabel_qacEstruturasPK_cdEstrutura}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstruturasLabel_qacEstruturasPK_cdEstrutura}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.qacEstruturasPK.cdEstrutura}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dsComp}" filterBy="#{item.dsComp}" headerText="#{bundle.QacEstruturasLabel_dsComp}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstruturasLabel_dsComp}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.dsComp}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dsRedz}" filterBy="#{item.dsRedz}" headerText="#{bundle.QacEstruturasLabel_dsRedz}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstruturasLabel_dsRedz}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.dsRedz}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dsAbrv}" filterBy="#{item.dsAbrv}" headerText="#{bundle.QacEstruturasLabel_dsAbrv}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstruturasLabel_dsAbrv}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.dsAbrv}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.siglaEstruturaPai}" filterBy="#{item.siglaEstruturaPai}" headerText="#{bundle.QacEstruturasLabel_siglaEstruturaPai}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstruturasLabel_siglaEstruturaPai}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.siglaEstruturaPai}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.cdEstruturaPai}" filterBy="#{item.cdEstruturaPai}" headerText="#{bundle.QacEstruturasLabel_cdEstruturaPai}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstruturasLabel_cdEstruturaPai}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.cdEstruturaPai}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.cdGrpEstat}" filterBy="#{item.cdGrpEstat}" headerText="#{bundle.QacEstruturasLabel_cdGrpEstat}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstruturasLabel_cdGrpEstat}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.cdGrpEstat}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dtAltera}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstruturasLabel_dtAltera}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtAltera}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{item.nrOrdem}" filterBy="#{item.nrOrdem}" headerText="#{bundle.QacEstruturasLabel_nrOrdem}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstruturasLabel_nrOrdem}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.nrOrdem}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.pontuacao}" filterBy="#{item.pontuacao}" headerText="#{bundle.QacEstruturasLabel_pontuacao}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstruturasLabel_pontuacao}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.pontuacao}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.manager}" filterBy="#{item.manager}" headerText="#{bundle.QacEstruturasLabel_manager}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstruturasLabel_manager}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.manager}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.qacEmpresas}" filterBy="#{item.qacEmpresas}" filterOptions="#{qacEmpresasController.itemsAvailableSelectOne}" headerText="#{bundle.QacEstruturasLabel_qacEmpresas}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstruturasLabel_qacEmpresas}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.qacEmpresas.toString()}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.cdSbu}" filterBy="#{item.cdSbu}" filterOptions="#{qacAreasNegocioController.itemsAvailableSelectOne}" headerText="#{bundle.QacEstruturasLabel_cdSbu}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstruturasLabel_cdSbu}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.cdSbu.toString()}"  />						
+                        </p:column>
+                    </p:dataTable>
+                </h:panelGroup>
+                <br />&nbsp;
+                <h:commandButton action="#{qacEstruturasController.prepareCreate}" value="#{bundle.CreateLink}" title="#{bundle.CreateTitle}"/>
+
+                <confirm:destroy obj="#{qacEstruturasController}" />  
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

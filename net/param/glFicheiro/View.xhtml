@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewGlFicheiroTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <p:panel header="#{bundle.ViewGlFicheiroTitle}" style="border: none;">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <p:messages />
+                    </h:panelGroup>
+
+                    <br />
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.GlFicheiroLabel_id}"/>
+                        <h:outputText value="#{glFicheiroController.selected.id}" title="#{bundle.GlFicheiroTitle_id}"/>
+                        <h:outputText value="#{bundle.GlFicheiroLabel_dsComp}"/>
+                        <h:outputText value="#{glFicheiroController.selected.dsComp}" title="#{bundle.GlFicheiroTitle_dsComp}"/>
+                        <h:outputText value="#{bundle.GlFicheiroLabel_dsRedz}"/>
+                        <h:outputText value="#{glFicheiroController.selected.dsRedz}" title="#{bundle.GlFicheiroTitle_dsRedz}"/>
+                        <h:outputText value="#{bundle.GlFicheiroLabel_dsAbrv}"/>
+                        <h:outputText value="#{glFicheiroController.selected.dsAbrv}" title="#{bundle.GlFicheiroTitle_dsAbrv}"/>
+                        <h:outputText value="#{bundle.GlFicheiroLabel_assunto}"/>
+                        <h:outputText value="#{glFicheiroController.selected.assunto}" title="#{bundle.GlFicheiroTitle_assunto}"/>
+                        <h:outputText value="#{bundle.GlFicheiroLabel_ficheiro}"/>
+                        <h:outputText value="#{glFicheiroController.selected.ficheiro}" title="#{bundle.GlFicheiroTitle_ficheiro}"/>
+                        <h:outputText value="#{bundle.GlFicheiroLabel_logNre}"/>
+                        <h:outputText value="#{glFicheiroController.selected.logNre}" title="#{bundle.GlFicheiroTitle_logNre}"/>
+                        <h:outputText value="#{bundle.GlFicheiroLabel_dtLog}"/>
+                        <h:outputText value="#{glFicheiroController.selected.dtLog}" title="#{bundle.GlFicheiroTitle_dtLog}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{glFicheiroController.destroyAndView}" value="#{bundle.DestroyLink}" title="#{bundle.DestroyTitle}" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

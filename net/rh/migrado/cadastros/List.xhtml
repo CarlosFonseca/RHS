@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:confirm="http://java.sun.com/jsf/composite/utils/confirm">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCadastrosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form prependId="false" >
+                <h:panelGroup id="messagePanel" layout="block">
+                    <p:messages />
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListCadastrosEmpty}" rendered="#{cadastrosController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{cadastrosController.items.rowCount > 0}">
+                    <h:inputHidden id="tblbasesize" value="#{cadastrosController.tableWidth}"/>
+                    <p:dataTable value="#{cadastrosController.items}" var="item" id="tblbase"
+                                 rows="10" paginator="true"  paginatorPosition="bottom"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks}
+                                 {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15,20 ">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:commandLink>
+                                    <h:graphicImage name="xls.png" library="icons" title="Exporta para Excel" />
+                                    <p:dataExporter type="xls" target="tblbase" fileName="tabela" pageOnly="true" excludeColumns="0" />
+                                </h:commandLink>&nbsp;
+                                <h:commandLink>
+                                    <h:graphicImage name="csv.png" library="icons" title="Exporta para csv" />
+                                    <p:dataExporter type="csv" target="tblbase" fileName="tabela" pageOnly="true" excludeColumns="0" />
+                                </h:commandLink>
+                            </f:facet>
+                            <p:commandLink action="#{cadastrosController.prepareDestroy}" onclick="confirmation.show()" title="#{bundle.DestroyTitle}" styleClass="ui-icon ui-icon-trash" style="float: left; margin: 0 4px;" />
+                            <h:commandLink action="#{cadastrosController.prepareEdit}" title="#{bundle.EditTitle}" styleClass="ui-icon ui-icon-pencil" style="float: left; margin: 0 4px;" />
+                        </p:column>
+                        <p:column sortBy="#{item.nre}" filterBy="#{item.nre}" headerText="#{bundle.CadastrosLabel_nre}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.CadastrosLabel_nre}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.nre}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.nomeComp}" filterBy="#{item.nomeComp}" headerText="#{bundle.CadastrosLabel_nomeComp}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.CadastrosLabel_nomeComp}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.nomeComp}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.nomeRedz}" filterBy="#{item.nomeRedz}" headerText="#{bundle.CadastrosLabel_nomeRedz}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.CadastrosLabel_nomeRedz}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.nomeRedz}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.nomeAbrv}" filterBy="#{item.nomeAbrv}" headerText="#{bundle.CadastrosLabel_nomeAbrv}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.CadastrosLabel_nomeAbrv}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.nomeAbrv}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.sexo}" filterBy="#{item.sexo}" headerText="#{bundle.CadastrosLabel_sexo}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.CadastrosLabel_sexo}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.sexo}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dtNasc}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.CadastrosLabel_dtNasc}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtNasc}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{item.estCivil}" filterBy="#{item.estCivil}" headerText="#{bundle.CadastrosLabel_estCivil}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.CadastrosLabel_estCivil}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.estCivil}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dtSituacao}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.CadastrosLabel_dtSituacao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtSituacao}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{item.cdMotivo}" filterBy="#{item.cdMotivo}" headerText="#{bundle.CadastrosLabel_cdMotivo}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.CadastrosLabel_cdMotivo}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.cdMotivo}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dtEstCivil}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.CadastrosLabel_dtEstCivil}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtEstCivil}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{item.titulo}" filterBy="#{item.titulo}" headerText="#{bundle.CadastrosLabel_titulo}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.CadastrosLabel_titulo}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.titulo}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dtTitulo}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.CadastrosLabel_dtTitulo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtTitulo}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{item.enderecos}" filterBy="#{item.enderecos}" filterOptions="#{enderecosController.itemsAvailableSelectOne}" headerText="#{bundle.CadastrosLabel_enderecos}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.CadastrosLabel_enderecos}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.enderecos.toString()}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.infoProfs}" filterBy="#{item.infoProfs}" filterOptions="#{infoProfsController.itemsAvailableSelectOne}" headerText="#{bundle.CadastrosLabel_infoProfs}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.CadastrosLabel_infoProfs}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.infoProfs.toString()}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.infoGeral}" filterBy="#{item.infoGeral}" filterOptions="#{infoGeralController.itemsAvailableSelectOne}" headerText="#{bundle.CadastrosLabel_infoGeral}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.CadastrosLabel_infoGeral}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.infoGeral.toString()}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.cdSituacao}" filterBy="#{item.cdSituacao}" filterOptions="#{situacoesController.itemsAvailableSelectOne}" headerText="#{bundle.CadastrosLabel_cdSituacao}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.CadastrosLabel_cdSituacao}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.cdSituacao.toString()}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.cdPais}" filterBy="#{item.cdPais}" filterOptions="#{qacPaisesController.itemsAvailableSelectOne}" headerText="#{bundle.CadastrosLabel_cdPais}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.CadastrosLabel_cdPais}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.cdPais.toString()}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.cdPaisNacional}" filterBy="#{item.cdPaisNacional}" filterOptions="#{qacPaisesController.itemsAvailableSelectOne}" headerText="#{bundle.CadastrosLabel_cdPaisNacional}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.CadastrosLabel_cdPaisNacional}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.cdPaisNacional.toString()}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.qacFreguesias}" filterBy="#{item.qacFreguesias}" filterOptions="#{qacFreguesiasController.itemsAvailableSelectOne}" headerText="#{bundle.CadastrosLabel_qacFreguesias}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.CadastrosLabel_qacFreguesias}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.qacFreguesias.toString()}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.cdHabLit}" filterBy="#{item.cdHabLit}" filterOptions="#{habsLitersController.itemsAvailableSelectOne}" headerText="#{bundle.CadastrosLabel_cdHabLit}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.CadastrosLabel_cdHabLit}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.cdHabLit.toString()}"  />						
+                        </p:column>
+                    </p:dataTable>
+                </h:panelGroup>
+                <br />&nbsp;
+                <h:commandButton action="#{cadastrosController.prepareCreate}" value="#{bundle.CreateLink}" title="#{bundle.CreateTitle}"/>
+
+                <confirm:destroy obj="#{cadastrosController}" />  
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:confirm="http://java.sun.com/jsf/composite/utils/confirm">
+
+    <ui:composition template="/net/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListQacEstabelecimentosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form prependId="false" >
+                <h:panelGroup id="messagePanel" layout="block">
+                    <p:messages />
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListQacEstabelecimentosEmpty}" rendered="#{qacEstabelecimentosController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{qacEstabelecimentosController.items.rowCount > 0}">
+                    <h:inputHidden id="tblbasesize" value="#{qacEstabelecimentosController.tableWidth}"/>
+                    <p:dataTable value="#{qacEstabelecimentosController.items}" var="item" id="tblbase"
+                                 rows="10" paginator="true"  paginatorPosition="bottom"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks}
+                                 {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15,20 ">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:commandLink>
+                                    <h:graphicImage name="xls.png" library="icons" title="Exporta para Excel" />
+                                    <p:dataExporter type="xls" target="tblbase" fileName="tabela" pageOnly="true" excludeColumns="0" />
+                                </h:commandLink>&nbsp;
+                                <h:commandLink>
+                                    <h:graphicImage name="csv.png" library="icons" title="Exporta para csv" />
+                                    <p:dataExporter type="csv" target="tblbase" fileName="tabela" pageOnly="true" excludeColumns="0" />
+                                </h:commandLink>
+                            </f:facet>
+                            <p:commandLink action="#{qacEstabelecimentosController.prepareDestroy}" onclick="confirmation.show()" title="#{bundle.DestroyTitle}" styleClass="ui-icon ui-icon-trash" style="float: left; margin: 0 4px;" />
+                            <h:commandLink action="#{qacEstabelecimentosController.prepareEdit}" title="#{bundle.EditTitle}" styleClass="ui-icon ui-icon-pencil" style="float: left; margin: 0 4px;" />
+                        </p:column>
+                        <p:column sortBy="#{item.qacEstabelecimentosPK.siglaE}" filterBy="#{item.qacEstabelecimentosPK.siglaE}" headerText="#{bundle.QacEstabelecimentosLabel_qacEstabelecimentosPK_siglaE}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstabelecimentosLabel_qacEstabelecimentosPK_siglaE}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.qacEstabelecimentosPK.siglaE}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.qacEstabelecimentosPK.cdEstab}" filterBy="#{item.qacEstabelecimentosPK.cdEstab}" headerText="#{bundle.QacEstabelecimentosLabel_qacEstabelecimentosPK_cdEstab}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstabelecimentosLabel_qacEstabelecimentosPK_cdEstab}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.qacEstabelecimentosPK.cdEstab}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.sigla}" filterBy="#{item.sigla}" headerText="#{bundle.QacEstabelecimentosLabel_sigla}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstabelecimentosLabel_sigla}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.sigla}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dsComp}" filterBy="#{item.dsComp}" headerText="#{bundle.QacEstabelecimentosLabel_dsComp}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstabelecimentosLabel_dsComp}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.dsComp}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.morada}" filterBy="#{item.morada}" headerText="#{bundle.QacEstabelecimentosLabel_morada}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstabelecimentosLabel_morada}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.morada}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.local}" filterBy="#{item.local}" headerText="#{bundle.QacEstabelecimentosLabel_local}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstabelecimentosLabel_local}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.local}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.situacao}" filterBy="#{item.situacao}" headerText="#{bundle.QacEstabelecimentosLabel_situacao}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstabelecimentosLabel_situacao}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.situacao}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dtSituacao}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstabelecimentosLabel_dtSituacao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtSituacao}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{item.sitGeo}" filterBy="#{item.sitGeo}" headerText="#{bundle.QacEstabelecimentosLabel_sitGeo}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstabelecimentosLabel_sitGeo}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.sitGeo}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.cdEd}" filterBy="#{item.cdEd}" headerText="#{bundle.QacEstabelecimentosLabel_cdEd}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstabelecimentosLabel_cdEd}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.cdEd}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.cdAecon}" filterBy="#{item.cdAecon}" headerText="#{bundle.QacEstabelecimentosLabel_cdAecon}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstabelecimentosLabel_cdAecon}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.cdAecon}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.metPagFerias}" filterBy="#{item.metPagFerias}" headerText="#{bundle.QacEstabelecimentosLabel_metPagFerias}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstabelecimentosLabel_metPagFerias}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.metPagFerias}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.tel1}" filterBy="#{item.tel1}" headerText="#{bundle.QacEstabelecimentosLabel_tel1}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstabelecimentosLabel_tel1}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.tel1}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.tel2}" filterBy="#{item.tel2}" headerText="#{bundle.QacEstabelecimentosLabel_tel2}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstabelecimentosLabel_tel2}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.tel2}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.tel3}" filterBy="#{item.tel3}" headerText="#{bundle.QacEstabelecimentosLabel_tel3}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstabelecimentosLabel_tel3}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.tel3}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.fax}" filterBy="#{item.fax}" headerText="#{bundle.QacEstabelecimentosLabel_fax}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstabelecimentosLabel_fax}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.fax}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.cdAeconQp}" filterBy="#{item.cdAeconQp}" headerText="#{bundle.QacEstabelecimentosLabel_cdAeconQp}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstabelecimentosLabel_cdAeconQp}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.cdAeconQp}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.cdIrct}" filterBy="#{item.cdIrct}" headerText="#{bundle.QacEstabelecimentosLabel_cdIrct}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstabelecimentosLabel_cdIrct}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.cdIrct}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dsIrct}" filterBy="#{item.dsIrct}" headerText="#{bundle.QacEstabelecimentosLabel_dsIrct}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstabelecimentosLabel_dsIrct}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.dsIrct}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dtIrct}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstabelecimentosLabel_dtIrct}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtIrct}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{item.nrBoletim}" filterBy="#{item.nrBoletim}" headerText="#{bundle.QacEstabelecimentosLabel_nrBoletim}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstabelecimentosLabel_nrBoletim}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.nrBoletim}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.mesPagFerias}" filterBy="#{item.mesPagFerias}" headerText="#{bundle.QacEstabelecimentosLabel_mesPagFerias}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstabelecimentosLabel_mesPagFerias}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.mesPagFerias}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.EMail}" filterBy="#{item.EMail}" headerText="#{bundle.QacEstabelecimentosLabel_EMail}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstabelecimentosLabel_EMail}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.EMail}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.ordemQp}" filterBy="#{item.ordemQp}" headerText="#{bundle.QacEstabelecimentosLabel_ordemQp}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstabelecimentosLabel_ordemQp}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.ordemQp}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.regiaoIva}" filterBy="#{item.regiaoIva}" headerText="#{bundle.QacEstabelecimentosLabel_regiaoIva}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstabelecimentosLabel_regiaoIva}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.regiaoIva}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.cdEstabRu}" filterBy="#{item.cdEstabRu}" headerText="#{bundle.QacEstabelecimentosLabel_cdEstabRu}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstabelecimentosLabel_cdEstabRu}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.cdEstabRu}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.sede}" filterBy="#{item.sede}" headerText="#{bundle.QacEstabelecimentosLabel_sede}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstabelecimentosLabel_sede}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.sede}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.qacFreguesias}" filterBy="#{item.qacFreguesias}" filterOptions="#{qacFreguesiasController.itemsAvailableSelectOne}" headerText="#{bundle.QacEstabelecimentosLabel_qacFreguesias}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstabelecimentosLabel_qacFreguesias}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.qacFreguesias.toString()}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.qacCodigosPostais}" filterBy="#{item.qacCodigosPostais}" filterOptions="#{qacCodigosPostaisController.itemsAvailableSelectOne}" headerText="#{bundle.QacEstabelecimentosLabel_qacCodigosPostais}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstabelecimentosLabel_qacCodigosPostais}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.qacCodigosPostais.toString()}"  />						
+                        </p:column>
+                    </p:dataTable>
+                </h:panelGroup>
+                <br />&nbsp;
+                <h:commandButton action="#{qacEstabelecimentosController.prepareCreate}" value="#{bundle.CreateLink}" title="#{bundle.CreateTitle}"/>
+
+                <confirm:destroy obj="#{qacEstabelecimentosController}" />  
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
