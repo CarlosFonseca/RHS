@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <f:metadata>
+        <f:viewParam name="j_username" value="#{utilizadoresMoreController.user}"/>
+        <f:viewParam name="j_password" value="#{utilizadoresMoreController.pwd}"/>
+        <f:event type="preRenderView" listener="#{utilizadoresMoreController.dopreLog(actionListener)}" />
+    </f:metadata>
+    <f:view contentType="text/html">
+
+        <h:head>  
+        <title>RH - Software</title>
+        <link rel="shortcut icon" href="#{resource['icons:favicon.ico']}" />
+        <h:outputStylesheet  name="jqueryuiBanif.css"  library="css" />
+           <link href="#{request.contextPath}/resources/css/Login.css" rel="stylesheet" />
+           <script type="text/javascript" src="#{resource['js:jquery-min.js']}"></script>
+           <script type="text/javascript" src="#{resource['js:jquery-ui-custom.min.js']}"></script>
+           <h:outputScript name="jquery-login.js" library="js" />
+         <!--[if IE]>
+            <link href="#{resource['css:LoginIE.css']}" rel="stylesheet" />
+        <![endif]-->
+        <!--[if IE 6]>
+            <link href="#{resource['css:LoginIE6.css']}" rel="stylesheet" />
+        <![endif]-->
+    </h:head>
+    <h:body>
+            <div class="ui-widget ui-widget-header" >
+                <div id="logo">
+                <h1>Recursos Humanos</h1>
+                </div>
+            </div>  
+        <div id="contentor" name="contentor">                
+            <div id="central" name="central" class="ui-widget">
+                <h:form>
+                <!--form action="j_security_check" method="post"-->
+                    <!--input type="text" name="j_username" /-->
+                    <!--input type="password" name="j_password" /-->
+                    <!--input type="submit" value="Login" onclick="document.getElementById('workingIndicator').style.display = 'block';" /-->
+                <!--/form-->
+                <h:panelGrid columns="3" >
+                <h:outputText value="Username:"/>
+                <h:inputText id="j_username" value="#{utilizadoresMoreController.user}" /> 
+                &nbsp;
+                <h:outputText value=" Password:" />
+                <h:inputSecret id="j_password" value="#{utilizadoresMoreController.pwd}" /> 
+                <h:commandButton action="#{utilizadoresMoreController.doLog()}"  value="Login" onclick="document.getElementById('workingIndicator').style.display = 'block';" />
+               </h:panelGrid>
+                    <p />
+                    <span id="workingIndicator" style="display: none; width: 268px; text-align: center;  ">
+                        A efectuar ligação a base de dados...
+                        <h:graphicImage value="#{resource['icons:ajax-loader-bert2.gif']}" />                      
+                    </span>                   
+                    
+                </h:form>    
+            </div>
+        </div>
+        <div id="note" class="ui-widget ui-widget-header">
+            Layout optimizado para Firefox / Chrome
+        </div>
+     </h:body>
+    </f:view>
+</html>
+

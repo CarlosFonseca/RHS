@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <f:view contentType="text/html" >
+    <h:head>
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+<h:outputStylesheet name="css/jsfcrud.css"/>
+
+
+        <link rel="icon" href="#{resource['icons:rh.gif']}" />
+         <h:outputStylesheet  name="jqueryuiBanif.css"  library="css"  />
+         <h:outputStylesheet name="baseLog.css" library="css" />
+         <h:outputScript name="jquery-ui-custom.min.js" library="js" />
+         <h:outputScript name="jquery-base.js" library="js" />
+          <h:outputScript name="locale-primefaces.js" library="js" />
+         <!--[if IE]>
+            <link href="#{resource['css:baseLogIE.css']}" rel="stylesheet" />
+        <![endif]-->
+
+    </h:head>
+
+    <h:body>
+        <h1>
+            <ui:insert name="title">Default Title</ui:insert>
+        </h1>
+        <p>
+            <ui:insert name="body">Default Body</ui:insert>
+        </p>
+    </h:body>
+    </f:view>
+</html>
