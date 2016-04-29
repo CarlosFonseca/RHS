@@ -1,0 +1,74 @@
+/* 
+    Document   : base
+    Created on : 3/Mar/2011, 16:11:00
+    Author     : Carlos
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    border: none;
+    height: 100%;
+    font-size: 11px !important
+}
+#contentor{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    text-align: center;
+}
+#central{
+    width: 310px;
+    height: 50%;
+    text-align: left;
+    margin: 0 auto;
+    padding: 10%;
+}
+
+/*lagura do campos exepto os filtros*/
+input:text, input:password, textarea{
+    width: 200px;
+    padding:3px;
+}
+.ui-column-filter{
+    width: 102px;
+    padding: 0px;
+}
+
+/*espaco entre as campos outputLabel*/
+td Label,td{
+    height:21px;
+}
+#logo{
+    height: 65px;
+    margin: 0 auto;
+    padding: 25px 10px 0;
+    width: 960px; 
+ 
+}
+#logo h1{    
+    font-size: 30px;
+    font-weight: normal;
+    letter-spacing: -1px;
+    padding: 0;     
+    margin-top: 1px;
+}
+
+#note{
+    position: absolute; 
+    bottom: 0px; 
+    left: 0px; 
+    right: 0px;
+    text-align: right;
+}

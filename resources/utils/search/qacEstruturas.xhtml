@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+    <composite:interface>
+         <composite:attribute name="act" required="true" />
+         <composite:attribute name="val" required="true" />
+    </composite:interface>
+    <composite:implementation>
+                        <p:dialog  width="570" 
+                    showEffect="explode" hideEffect="explode"  
+                    header="#{bundle.SearchTitle}"  widgetVar="procura"> 
+                    <br />
+                    <h:form>
+                    <p:dataTable value="#{qacEstruturasController.items}" var="item" id="tblbase"
+                                 emptyMessage="#{bundle.ListEmpty}"
+                                 rows="10" paginator="true"  paginatorPosition="bottom"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks}
+                                 {NextPageLink} {LastPageLink}"
+                                 rowsPerPageTemplate="5,10,15,20">
+                        <p:column>
+                            <h:commandLink action="#{cc.attrs.act.doSearch()}" title="#{bundle.CheckTitle}" styleClass="ui-icon ui-icon-check" style="float: left; margin: 0 4px;" immediate="true" >
+                                <f:setPropertyActionListener value="#{item}"  target="#{cc.attrs.val}" />
+                            </h:commandLink>  
+                        </p:column>
+                        <p:column sortBy="#{item.qacEstruturasPK.siglaE}" filterBy="#{item.qacEstruturasPK.siglaE}" headerText="#{bundle.QacEstruturasLabel_SiglaE}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstruturasLabel_SiglaE}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.qacEstruturasPK.siglaE}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.dsAbrv}" filterBy="#{item.dsAbrv}" headerText="#{bundle.QacEstruturasLabel_dsAbrv}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstruturasLabel_dsAbrv}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.dsAbrv}"  />						
+                        </p:column> 
+                        <p:column sortBy="#{item.dsComp}" filterBy="#{item.dsComp}" headerText="#{bundle.QacEstruturasLabel_dsComp}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEstruturasLabel_dsComp}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.dsComp}"  />						
+                        </p:column>                   
+                    </p:dataTable>
+                    </h:form>    
+                    <p /> <br />
+                </p:dialog>          
+      
+    </composite:implementation>
+</html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+    <composite:interface>
+         <composite:attribute name="act" required="true" />
+         <composite:attribute name="val" required="true" />
+    </composite:interface>
+    <composite:implementation>
+                        <p:dialog  width="570" 
+                    showEffect="explode" hideEffect="explode"  
+                    header="#{bundle.SearchTitle}"  widgetVar="procuraQqacEnqNivelCompetencia"> 
+                    <br />
+                    <h:form>
+                    <p:dataTable value="#{qacEnqNivelCompetenciaController.items}" var="item" id="tblbase"
+                                 emptyMessage="#{bundle.ListEmpty}"
+                                 rows="10" paginator="true"  paginatorPosition="bottom"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks}
+                                 {NextPageLink} {LastPageLink}"
+                                 rowsPerPageTemplate="5,10,15,20">
+                        <p:column>
+                            <h:commandLink action="#{cc.attrs.act.doSearch()}" title="#{bundle.CheckTitle}" styleClass="ui-icon ui-icon-check" style="float: left; margin: 0 4px;" immediate="true">
+                                <f:setPropertyActionListener value="#{item}"  target="#{cc.attrs.val}" />
+                            </h:commandLink>  
+                        </p:column>
+                        <p:column sortBy="#{item.dsRedz}" filterBy="#{item.dsRedz}" headerText="#{bundle.QacEnqNivelCompetenciaLabel_dsRedz}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEnqNivelCompetenciaLabel_dsRedz}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.dsRedz}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.competencia.dsRedz}" filterBy="#{item.competencia.dsRedz}" filterOptions="#{qacEnqCompetenciaController.itemsAvailableSelectOne}" headerText="#{bundle.QacEnqNivelCompetenciaLabel_competencia}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEnqNivelCompetenciaLabel_competencia}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.competencia.toString()}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.competencia.tipo.dsRedz}" filterBy="#{item.competencia.tipo.dsRedz}" filterOptions="#{qacEnqTipoCompetenciaController.itemsAvailableSelectOne}" headerText="#{bundle.QacEnqCompetenciaLabel_tipo}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.QacEnqCompetenciaLabel_tipo}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.competencia.tipo.toString()}"  />						
+                        </p:column>                   
+                    </p:dataTable>
+                    </h:form>    
+                    <p /> <br />
+                </p:dialog>          
+      
+    </composite:implementation>
+</html>

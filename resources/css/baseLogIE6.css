@@ -1,0 +1,22 @@
+/* 
+    Document   : base
+    Created on : 3/Mar/2011, 16:11:00
+    Author     : Carlos
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+#central{
+    padding-top: 50%;
+}
+.wijmo-wijmenu .wijmo-wijmenu-link{
+    border: 0px;
+
+}
+.btDropMenu{
+    width: 150px; 
+}

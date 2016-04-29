@@ -1,0 +1,35 @@
+/* 
+    Document   : base
+    Created on : 3/Mar/2011, 16:11:00
+    Author     : Carlos
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+
+#central{
+    width: 380px;
+    height: 100%;
+}
+#contentor{
+        height: 80%;   
+}
+
+h2{
+    font-size: 20px;
+}
+#logo{
+    padding: 25px 20% 0;
+    height: 90px;
+}
+#note{
+    width: 100%;    
+}

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:cc="http://java.sun.com/jsf/composite">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+         <cc:attribute name="currentController" required="true"  />
+         <cc:attribute name="currentTargerObject" required="true" />
+         <cc:attribute name="currentTargerObjToString" required="true" />
+    </cc:interface>
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <h:inputText value="${cc.attrs.currentTargerObjToString}" disabled="true" style="width: 20px;"  />                
+        <p:commandButton value="Seleccione" image="ui-icon ui-icon-arrowthick-1-s"
+                         onclick="jQuery('#utilizadores\\:tblUtilizadores').fadeToggle('fast');" />
+         <p:dataTable value="#{utilizadoresController.items}" var="item" 
+                     id="tblUtilizadores" rows="10" widgetVar="wUtilizadores" 
+                     paginator="true"  paginatorPosition="bottom"
+                     style="display: none; z-index: 2; position: absolute; ">
+            <f:facet name="header"  >
+                <h:outputText value="Pesquisar: " />
+                <h:inputText id="globalFilter" onkeyup="wUtilizadores.filter()"
+                             onfocus="jQuery('#utilizadores\\:tblUtilizadores').find('.ui-column-filter').val('%')"
+                             onblur="jQuery('#utilizadores\\:tblUtilizadores').find('.ui-column-filter').val('')" />
+            </f:facet>                            
+            <p:column >
+                <h:commandLink action="#{cc.attrs.currentController.doSearch()}" 
+                               value="#{item.nre} : #{item.nomeComp}" 
+                               title="#{bundle.CheckTitle}" immediate="true">
+                    <f:setPropertyActionListener value="#{item}"  
+                                                 target="#{cc.attrs.currentTargerObject}" />
+                </h:commandLink>  
+            </p:column>
+             <p:column filterBy="#{item.nre}"  style="display: none;" />
+            <p:column filterBy="#{item.nomeComp}" style="display: none;" />
+     </p:dataTable>           
+    </cc:implementation>
+</html>

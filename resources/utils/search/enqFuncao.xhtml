@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+    <composite:interface>
+         <composite:attribute name="act" required="true" />
+         <composite:attribute name="val" required="true" />
+    </composite:interface>
+    <composite:implementation>
+                        <p:dialog  width="470"  
+                    showEffect="explode" hideEffect="explode"  
+                    header="#{bundle.SearchTitle}"  widgetVar="procuraEnqFuncao"> 
+                    <br />
+                    <h:form>
+                    <p:dataTable value="#{enqFuncaoController.items}" var="item" id="tblbase"
+                                 emptyMessage="#{bundle.ListEmpty}"
+                                 rows="10" paginator="true"  paginatorPosition="bottom"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks}
+                                 {NextPageLink} {LastPageLink}"
+                                 rowsPerPageTemplate="5,10,15,20">
+                        <p:column>
+                            <h:commandLink action="#{cc.attrs.act.doSearch()}" title="#{bundle.CheckTitle}" styleClass="ui-icon ui-icon-check" style="float: left; margin: 0 4px;" immediate="true" >
+                                <f:setPropertyActionListener value="#{item}"  target="#{cc.attrs.val}" />
+                            </h:commandLink>  
+                        </p:column>
+                        <p:column sortBy="#{item.dsComp}" filterBy="#{item.dsComp}" headerText="#{bundle.EnqFuncaoLabel_dsRedz}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.EnqFuncaoLabel_dsRedz}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.dsComp}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.subbanda.dsRedz}" filterBy="#{item.subbanda.dsRedz}" filterOptions="#{qacEnqSubBandaController.itemsAvailableSelectOne}" headerText="#{bundle.EnqFuncaoLabel_subbanda}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.EnqFuncaoLabel_subbanda}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.subbanda.toString()}"  />						
+                        </p:column>                
+                    </p:dataTable>
+                    </h:form>    
+                    <p /> <br />
+                </p:dialog>          
+      
+    </composite:implementation>
+</html>

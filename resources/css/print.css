@@ -1,0 +1,50 @@
+/* 
+    Document   : print
+    Created on : 11/Mar/2011, 23:20:33
+    Author     : Carlos
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+@media print{
+    #cmdprint{ display: none; }
+    h2, h3 {height: 40px; }    
+
+}
+
+@media Screen{
+    body{
+        margin-left: 10px;
+    }
+}
+
+root { 
+    display: block;
+}
+
+thead {
+    display: table-header-group;
+}
+
+.ui-state-default {
+    background-color: #999999;
+    background-image: none;
+    color: #050505        
+}
+
+.ui-widget-content{
+    border-color: #999999;
+}
+.caixa{
+    background-color: #999999;
+    width: 20px;
+    height: 20px;
+    padding: 4px;
+    text-align: center;
+/*    vertical-align: middle;*/
+   }

@@ -1,0 +1,51 @@
+/* 
+    Document   : base
+    Created on : 3/Mar/2011, 16:11:00
+    Author     : Carlos
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+
+body  {
+    margin: 0;
+    padding: 0;
+    border: none;
+    height: 100%;
+    font-size: 11px !important
+}
+select, td, th {
+    font-size: 11px !important
+}
+select {
+    /* para colocar um border no select */
+    filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=-1, OffY=0,color=#EFA9F9) 
+            progid:DXImageTransform.Microsoft.dropshadow(OffX=1, OffY=0,color=#EFA9F9) 
+            progid:DXImageTransform.Microsoft.dropshadow(OffX=0, OffY=-1,color=#EFA9F9) 
+            progid:DXImageTransform.Microsoft.dropshadow(OffX=0, OffY=1,color=#EFA9F9);     
+}
+img{
+    border: 0px !important ;
+}
+.ui-datepicker table th {
+    font-size: 9px !important;
+}
+
+#central{
+    width: 380px;
+    height: 100%;
+}
+h2{
+    font-size: 20px;
+}
+.btDropMenu{
+    width: 170px; 
+}

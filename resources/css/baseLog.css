@@ -1,0 +1,66 @@
+/* 
+    Document   : base
+    Created on : 3/Mar/2011, 16:11:00
+    Author     : Carlos
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    border: none;
+    height: 100%;
+    font-size: 11px !important
+}
+#contentor{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    text-align: center;
+}
+#central{
+    width: 310px;
+    height: 50%;
+    text-align: left;
+    margin: 0 auto;
+    padding: 10%;
+}
+
+.btDropMenu{
+    width: 160px; 
+    padding: 0.1em;
+    margin:auto; 
+    background: transparent; 
+    background-image: none;
+}
+
+/*lagura do campos exepto os filtros*/
+/*input:text, input:password, textarea{
+    width: 200px;
+    padding:3px;
+}
+.ui-column-filter{
+    width: 102px;
+    padding: 0px;
+}*/
+
+/*espaco entre as campos outputLabel*/
+td Label,td{
+    height:21px;
+}
+
+.ui-button-icon-only-bnf {
+    width: 32px;
+}
+
+.ui-button-icon-only-bnf .ui-button-text, .ui-button-icons-only-bnf .ui-button-text { padding: .4em; text-indent: -9999999px; }

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+    <composite:interface>
+         <composite:attribute name="hSelectController" required="true" />
+         <composite:attribute name="hSelectField" required="true" />
+         <composite:attribute name="widgetVarName" required="true" />
+    </composite:interface>
+    <composite:implementation>
+                        <p:dialog  width="470" 
+                    showEffect="explode" hideEffect="explode"  
+                    header="#{bundle.SearchTitle}" widgetVar="#{cc.attrs.widgetVarName}"> 
+                    <br />
+                    <h:form>
+                    <p:dataTable value="#{utilizadoresController.items}" var="item" id="tblbase"
+                                 emptyMessage="#{bundle.ListEmpty}"
+                                 rows="10" paginator="true"  paginatorPosition="bottom"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks}
+                                 {NextPageLink} {LastPageLink}"
+                                 rowsPerPageTemplate="5,10,15,20">
+                        <p:column>
+                            <h:commandLink action="#{cc.attrs.hSelectController.doSearch()}" title="#{bundle.CheckTitle}" styleClass="ui-icon ui-icon-check" style="float: left; margin: 0 4px;" immediate="true" >
+                                <f:setPropertyActionListener value="#{item}"  target="#{cc.attrs.hSelectField}" />
+                            </h:commandLink>  
+                        </p:column>
+                        <p:column sortBy="#{item.nre}" filterBy="#{item.nre}" headerText="#{bundle.UtilizadoresLabel_nre}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.UtilizadoresLabel_nre}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.nre}"  />						
+                        </p:column>
+                        <p:column sortBy="#{item.nomeComp}" filterBy="#{item.nomeComp}" headerText="#{bundle.UtilizadoresLabel_nomeComp}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.UtilizadoresLabel_nomeComp}"/>
+                            </f:facet>	
+                            <h:outputText value="#{item.nomeComp}"  />						
+                        </p:column>                   
+                    </p:dataTable>
+                    </h:form>    
+                    <p /> <br />
+                </p:dialog>          
+      
+    </composite:implementation>
+</html>
