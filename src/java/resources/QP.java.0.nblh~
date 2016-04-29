@@ -1,0 +1,142 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package resources;
+
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.Element;
+import com.lowagie.text.Font;
+import com.lowagie.text.PageSize;
+import com.lowagie.text.Phrase;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfWriter;
+import java.awt.Color;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.faces.context.FacesContext;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import pg.entities.InfoEmpresas;
+
+/**
+ *
+ * @author bnf02107
+ */
+public class QP {
+    
+    public void exportaQP(FacesContext facesContext,  String filename, String empresa, String direccao, List<InfoEmpresas> listInfoEmpresas ) throws IOException {
+
+       int area=0; 
+       
+       long semVaga=0;
+       
+       DateFormat df = DateFormat.getDateInstance(3, Locale.getDefault());
+       
+       Font fontHead = new Font(Font.HELVETICA, 9);
+       Font font = new Font(Font.HELVETICA, 8);
+       
+        
+       try {
+            Document document = new Document(PageSize.A4.rotate());
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            PdfWriter.getInstance(document, baos);
+            
+            document.open();
+                       
+            PdfPTable table = new PdfPTable(new float[]{3,20,6,6,10,3,2,6,3,10,10,8});
+            table.setWidthPercentage(100f);
+            table.getDefaultCell().setColspan(12);
+             table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.getDefaultCell().setBorder(0);
+            table.addCell(empresa);
+            table.addCell("");
+            table.addCell(direccao);
+            table.addCell("");
+            
+            Iterator<InfoEmpresas> it = listInfoEmpresas.iterator();
+            
+            while(it.hasNext()){
+             InfoEmpresas ie = it.next();
+            
+            if(area != ie.getQacEstruturas().getQacEstruturasPK().getCdEstrutura()){
+                table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT); 
+                table.addCell(ie.getQacEstruturas().getDsComp());
+                table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
+                table.getDefaultCell().setColspan(1);
+                table.getDefaultCell().setBorder(1);
+                table.getDefaultCell().setBackgroundColor(Color.LIGHT_GRAY);
+                table.addCell(new Phrase("Nre", fontHead));
+                table.addCell(new Phrase("Nome", fontHead));
+                table.addCell(new Phrase("Dt Nasc", fontHead));
+                table.addCell(new Phrase("Dt Admiss", fontHead));
+                table.addCell(new Phrase("Habilitações", fontHead));
+                table.addCell(new Phrase("Grp", fontHead));
+                table.addCell(new Phrase("Nv", fontHead));
+                table.addCell(new Phrase("Dt Nível", fontHead));
+                table.addCell(new Phrase("IHT", fontHead));
+                table.addCell(new Phrase("Categoria", fontHead));
+                table.addCell(new Phrase("Função", fontHead));
+                table.addCell(new Phrase("Vínculo", fontHead));
+               }
+             
+             area = ie.getQacEstruturas().getQacEstruturasPK().getCdEstrutura(); 
+            
+             table.getDefaultCell().setBackgroundColor(null);
+             table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_RIGHT);             
+             table.addCell(new Phrase(ie.getCadastros().getNre().toString(),font)) ;
+             table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT); 
+             table.addCell(new Phrase(ie.getCadastros().getNomeRedz(),font)); 
+             table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
+             table.addCell(new Phrase(df.format(ie.getCadastros().getDtNasc()),font)); 
+             table.addCell(new Phrase(df.format(ie.getCadastros().getInfoGeral().getDtAdmiss()),font));
+             table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
+             table.addCell(new Phrase(ie.getCadastros().getHabsLiters().getDsRedz(),font));
+             table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
+             table.addCell(new Phrase(ie.getCadastros().getInfoGeral().getCdGrupo(),font));
+             table.addCell(new Phrase(ie.getCadastros().getInfoGeral().getCdNivel().toString(),font));
+             table.addCell(new Phrase(df.format(ie.getCadastros().getInfoGeral().getDtNivel()),font));
+             table.addCell(new Phrase(ie.getCadastros().getNre().toString(),font)); //aqui é o iht
+             table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
+             table.addCell(new Phrase(ie.getCadastros().getInfoProfs().getFuncoesOficiais().getDsComp(),font));
+             table.addCell(new Phrase(ie.getCadastros().getInfoProfs().getFuncoesInternas().getDsComp(),font));
+             table.addCell(new Phrase(ie.getCadastros().getSituacoes().getDsRedz(),font));
+            }    
+            
+            document.add(table);
+
+           document.close();      
+           writePDFToResponse(((HttpServletResponse) facesContext.getExternalContext().getResponse()), baos, filename); 
+            
+        } catch (DocumentException ex) {
+            Logger.getLogger(QP.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+}
+    
+    
+
+    private void writePDFToResponse(HttpServletResponse response, ByteArrayOutputStream baos, String fileName) throws IOException, DocumentException {     
+        response.setContentType("application/pdf");
+        response.setHeader("Expires", "0");
+        response.setHeader("Cache-Control","must-revalidate, post-check=0, pre-check=0");
+        response.setHeader("Pragma", "public");
+        response.setHeader("Content-disposition", "attachment;filename="+ fileName + ".pdf");
+        response.setContentLength(baos.size());
+        
+        ServletOutputStream out = response.getOutputStream();
+        baos.writeTo(out);
+        out.flush();
+    }
+   
+    
+    
+    
+}
