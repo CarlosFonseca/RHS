@@ -1,0 +1,52 @@
+
+   <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                   xmlns:ui="http://java.sun.com/jsf/facelets"
+                   xmlns:p="http://primefaces.org/ui"
+                   xmlns:h="http://java.sun.com/jsf/html">  
+       <h:inputHidden id="tabId" value="#{utilizadoresMoreController.tabId}"/>
+ 
+       <p:accordionPanel activeIndex="#{utilizadoresMoreController.tabIndex}" id="menu" >     
+            <p:ajax event="tabChange" listener="#{utilizadoresMoreController.onChange}" />
+                <p:tab id="menu00" title="Colaborador">
+                    <p:menu style="z-index: 1"  >
+                        <p:menuitem value="Alterar P. Chave" url="/net/emp/utilizadores/Edit.faces"  />                  
+                   </p:menu> 
+                </p:tab> 
+                <p:tab id="menu01" title="Relações Laborais">
+                    <h:panelGroup layout="block" >                         
+                        <p:menu style="z-index: 1"  >
+                            <p:menuitem value="Enquadramento"  url="/net/nmc/enq/enqFuncao/List.faces" />
+                            <p:menuitem value="Pedidos Transferência"  url="/net/nmc/pedidos/pedidosTransferencias/List.faces" />
+                        </p:menu>
+                    </h:panelGroup>
+                        <h:panelGroup layout="block"  > 
+                              <p:menu style="z-index: 1" >
+                                <p:menuitem value="IHT"  url="/net/nmc/iht/ihtConsultas/List.faces" />
+                            </p:menu>                
+                            
+                            </h:panelGroup>
+                    </p:tab> 
+               <p:tab id="menu02" title="Segurança">
+                    <p:menu style="z-index: 1" >
+                        <p:menuitem value="Medicina"  url="/net/srs/med/MedDiferencas/List.faces" />  
+                    </p:menu>                        
+               </p:tab>              
+               <p:tab id="menu03" title="Parametrização">
+                    <p:menu style="z-index: 1" >
+                        <p:menuitem value="Empresas Externas" url="/net/param/empresa/glEmpresa/List.faces" />
+                    </p:menu>                        
+                    <p:menu style="z-index: 1" >
+                        <p:menuitem value="Ficheiros" url="/net/param/glFicheiro/List.faces" />
+                    </p:menu>  
+               </p:tab>                   
+               <p:tab id="menu04" title="Consola de Gestão">
+                    <p:menu style="z-index: 1" >
+                        <p:menuitem value="Acesso" url="/net/adm/acessos/utilizadorGrupo/List.faces" />
+                    </p:menu>                        
+               </p:tab>  
+            </p:accordionPanel>     
+ 
+       
+   </ui:composition>
+
+
